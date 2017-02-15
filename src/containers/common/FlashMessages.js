@@ -1,15 +1,15 @@
-import React, { Component, PropTypes } from 'react';
-import { connect } from 'react-redux';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import FlashMessage from './FlashMessage';
-import { dismissFlashMessage } from '../../actions/';
+import React, { Component, PropTypes } from 'react'
+import { connect } from 'react-redux'
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
+import FlashMessage from './FlashMessage'
+import { dismissFlashMessage } from '../../actions/'
 
-import '../../assets/css/FlashMessages.css';
+import '../../assets/css/FlashMessages.css'
 
 
 class FlashMessages extends Component {
   dismissFlash(stamp) {
-    this.props.dispatch(dismissFlashMessage(stamp));
+    this.props.dispatch(dismissFlashMessage(stamp))
   }
 
   render() {
@@ -18,10 +18,10 @@ class FlashMessages extends Component {
         <FlashMessage
           key={index}
           message={message}
-          dismiss={() => { this.dismissFlash(message.timestamp); }}
+          dismiss={() => { this.dismissFlash(message.timestamp) }}
           dismissDelay={3000} />
-      );
-    });
+      )
+    })
 
     return (
       <div className="flash-wrapper">
@@ -32,19 +32,19 @@ class FlashMessages extends Component {
           {flashMessages}
         </ReactCSSTransitionGroup>
       </div>
-    );
+    )
   }
 }
 
 FlashMessages.propTypes = {
   dispatch: PropTypes.func.isRequired,
   flashMessages: PropTypes.array.isRequired
-};
+}
 
 function mapStateToProps(state) {
   return {
     flashMessages: state.flashMessages.list
-  };
+  }
 }
 
-export default connect(mapStateToProps)(FlashMessages);
+export default connect(mapStateToProps)(FlashMessages)

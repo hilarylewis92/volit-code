@@ -1,25 +1,25 @@
-import React, { Component, PropTypes } from 'react';
-import { connect } from 'react-redux';
-import ListItemForm from '../components/ListItemForm';
-import { addItem, addFlashMessage } from '../actions/index';
+import React, { Component, PropTypes } from 'react'
+import { connect } from 'react-redux'
+import ListItemForm from '../components/ListItemForm'
+import { addItem, addFlashMessage } from '../actions/index'
 
-import '../assets/css/ListPage.css';
+import '../assets/css/ListPage.css'
 
 
 class ListPage extends Component {
   handleAddItem(item) {
-    this.props.dispatch(addItem(item));
+    this.props.dispatch(addItem(item))
   }
 
   generateError(e) {
-    e.preventDefault();
-    this.props.dispatch(addFlashMessage('An error has occurred!'));
+    e.preventDefault()
+    this.props.dispatch(addFlashMessage('An error has occurred!'))
   }
 
   render() {
     const items = this.props.items.map((item, index) => {
-      return <li key={index}>{item}</li>;
-    });
+      return <li key={index}>{item}</li>
+    })
 
     return (
       <div>
@@ -45,17 +45,17 @@ class ListPage extends Component {
           </ul>
         </div>
       </div>
-    );
+    )
   }
 }
 
 ListPage.propTypes = {
   dispatch: PropTypes.func.isRequired,
   items: PropTypes.array.isRequired
-};
-
-function mapStateToProps(state) {
-  return { items: state.list.items };
 }
 
-export default connect(mapStateToProps)(ListPage);
+function mapStateToProps(state) {
+  return { items: state.list.items }
+}
+
+export default connect(mapStateToProps)(ListPage)
