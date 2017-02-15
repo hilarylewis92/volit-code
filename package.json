@@ -1,7 +1,7 @@
 {
-  "name": "react-redux-starter-kit",
-  "version": "3.0.0-alpha.2",
-  "description": "Get started with React, Redux, and React-Router!",
+  "name": "Volit",
+  "version": "1.0.0",
+  "description": "Volunteer Management App",
   "main": "index.js",
   "engines": {
     "node": ">=4.5.0",
@@ -114,6 +114,7 @@
   "devDependencies": {
     "babel-eslint": "^7.1.0",
     "babel-plugin-istanbul": "^3.0.0",
+    "body-parser": "^1.16.1",
     "chai": "^3.4.1",
     "chai-as-promised": "^6.0.0",
     "chai-enzyme": "^0.6.1",

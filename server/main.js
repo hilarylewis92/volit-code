@@ -5,6 +5,7 @@ const webpack = require('webpack')
 const webpackConfig = require('../config/webpack.config')
 const project = require('../config/project.config')
 const compress = require('compression')
+const bodyParser = require('body-parser')
 
 const app = express()
 
@@ -30,6 +31,10 @@ if (project.env === 'development') {
   app.use(require('webpack-hot-middleware')(compiler, {
     path: '/__webpack_hmr'
   }))
+
+  app.get('/api/test', (req, res) => {
+    res.send('your endpoint works')
+  })
 
   // Serve static assets from ~/public since Webpack is unaware of
   // these files. This middleware doesn't need to be enabled outside
