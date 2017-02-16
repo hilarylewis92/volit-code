@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router'
 
-const App = () => {
+const SideBar = () => {
   return (
     <div>
       <Link to='/dashboard'>
@@ -20,4 +20,4 @@ const App = () => {
   )
 }
 
-export default App
+export default SideBar
