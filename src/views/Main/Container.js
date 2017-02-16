@@ -15,7 +15,7 @@ export class Container extends React.Component {
 
     return (
       <div>
-        <h1>Super Secret Message Board</h1>
+        <h1>Volit</h1>
         <div className="wrapper">{children}</div>
       </div>
     )
