@@ -58,5 +58,5 @@ app.get('/api/test', (req, res) => {
 })
 
 app.listen(PORT, () => {
-  console.log(`${app.locals.title} is running on ${app.get('port')}`);
+  console.log(`${app.locals.title} is running on ${app.get('port')}`)
 })

@@ -1,4 +1,3 @@
-
 exports.up = function(knex, Promise) {
   return Promise.all([
     knex.schema.createTable('users', function(table) {
@@ -15,7 +14,7 @@ exports.up = function(knex, Promise) {
              .inTable('users')
     })
   ])
-};
+}
 
 exports.down = function(knex, Promise) {
   return Promise.all([
@@ -24,4 +23,4 @@ exports.down = function(knex, Promise) {
 
     ])
 
-};
+}
