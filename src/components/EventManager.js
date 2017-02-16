@@ -1,5 +1,6 @@
 import React, { PropTypes as T } from 'react'
 import AuthService from '../utils/AuthService'
+import SideBar from './SideBar'
 
 export class EventManager extends React.Component {
   static contextTypes = {
@@ -29,6 +30,7 @@ export class EventManager extends React.Component {
     const { profile } = this.state
     return (
       <div>
+        <SideBar />
         <div>
           <p>Logged in as: <span>{profile.name}</span></p>
           <button
