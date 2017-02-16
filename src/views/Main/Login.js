@@ -15,7 +15,7 @@ export class Login extends React.Component {
     const { auth } = this.props
     return (
       <div>
-        <h2>You must log in to add a volunteer event.</h2>
+        <h2>Please Login</h2>
         <button onClick={auth.login.bind(this)}>Login</button>
       </div>
     )

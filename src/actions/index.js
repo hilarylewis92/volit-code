@@ -1,6 +1,5 @@
 import * as types from './ActionTypes'
 
-
 export function addItem(item) {
   return dispatch => {
     dispatch(addFlashMessage(`Successfully added "${item}"!`, 'notification'))
