@@ -1,7 +1,7 @@
 import React from 'react'
 import {Route, IndexRedirect} from 'react-router'
 import Container from './Container'
-import Home from './Home'
+import EventList from './EventList'
 import Login from './Login'
 import AuthService from '../../utils/AuthService'
 
@@ -16,8 +16,8 @@ const requireAuth = (nextState, replace) => {
 export const makeMainRoutes = () => {
   return (
     <Route path="/" component={Container} auth={auth}>
-      <IndexRedirect to="/home" />
-      <Route path="/home" component={Home} onEnter={requireAuth} />
+      <IndexRedirect to="/eventlist" />
+      <Route path="/eventlist" component={EventList} onEnter={requireAuth} />
       <Route path="/login" component={Login} />
     </Route>
   )

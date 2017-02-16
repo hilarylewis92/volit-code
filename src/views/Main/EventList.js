@@ -1,7 +1,7 @@
 import React, { PropTypes as T } from 'react'
 import AuthService from '../../utils/AuthService'
 
-export class Home extends React.Component {
+export class EventList extends React.Component {
   static contextTypes = {
     router: T.object
   }
@@ -31,11 +31,14 @@ export class Home extends React.Component {
       <div>
         <div>
           <p>Logged in as: <span>{profile.name}</span></p>
-          <button onClick={this.logout.bind(this)}>Logout</button>
+          <button
+            onClick={this.logout.bind(this)}>
+            Logout
+          </button>
         </div>
       </div>
     )
   }
 }
 
-export default Home
+export default EventList
