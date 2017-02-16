@@ -1,7 +1,7 @@
 import React from 'react'
 import { Route } from 'react-router'
 
-import makeMainRoutes from './views/Main/routes'
+import makeMainRoutes from './views/routes'
 
 export const makeRoutes = () => {
   const main = makeMainRoutes()

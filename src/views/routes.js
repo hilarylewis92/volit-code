@@ -1,9 +1,9 @@
 import React from 'react'
 import {Route, IndexRedirect} from 'react-router'
 import Container from './Container'
-import EventManager from '../../components/EventManager'
-import Login from '../../components/Login'
-import AuthService from '../../utils/AuthService'
+import EventManager from '../components/EventManager'
+import Login from '../components/Login'
+import AuthService from '../utils/AuthService'
 
 const auth = new AuthService('jSm9RjhcmgxhAPat3avNPZTvnIMZvFl2', 'volit.auth0.com')
 
