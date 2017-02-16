@@ -1,7 +1,7 @@
 import React, { PropTypes as T } from 'react'
-import AuthService from '../../utils/AuthService'
+import AuthService from '../utils/AuthService'
 
-export class EventList extends React.Component {
+export class EventManager extends React.Component {
   static contextTypes = {
     router: T.object
   }
@@ -41,4 +41,4 @@ export class EventList extends React.Component {
   }
 }
 
-export default EventList
+export default EventManager

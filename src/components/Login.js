@@ -1,5 +1,5 @@
 import React, { PropTypes as T } from 'react'
-import AuthService from '../../utils/AuthService'
+import AuthService from '../utils/AuthService'
 
 export class Login extends React.Component {
   static contextTypes = {

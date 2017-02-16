@@ -20,7 +20,7 @@ export default class AuthService extends EventEmitter {
 
   _doAuthentication(authResult){
     this.setToken(authResult.idToken)
-    browserHistory.replace('/eventlist')
+    browserHistory.replace('/event-manager')
     this.lock.getProfile(authResult.idToken, (error, profile) => {
       if (error) {
         console.log('Error loading the Profile', error)
