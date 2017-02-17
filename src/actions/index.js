@@ -8,6 +8,10 @@ export function addItem(item) {
   }
 }
 
+export function setProfile(newProfile) {
+  console.log('dispatched')
+}
+
 export function addItemSuccess(item) {
   return { type: types.ITEM__CREATE, item }
 }
@@ -28,4 +32,10 @@ export function dismissFlashMessage(stamp) {
 
 export function deleteFlashMessage(timestamp) {
   return { type: types.FLASH_MESSAGE__DELETE, timestamp }
+}
+
+export function adminLogin(newProfile) {
+  return dispatch => {
+    dispatch(setProfile(newProfile))
+  }
 }

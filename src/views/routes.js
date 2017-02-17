@@ -2,7 +2,7 @@ import React from 'react'
 import {Route, IndexRedirect} from 'react-router'
 import Container from './Container'
 
-import Login from '../components/Login'
+import LoginContainer from '../containers/LoginContainer'
 
 import Dashboard from '../components/Dashboard'
 import EventManager from '../components/EventManager'
@@ -27,7 +27,7 @@ export const makeMainRoutes = () => {
       <Route path="/event-manager" component={EventManager} onEnter={requireAuth} />
       <Route path="/role-manager" component={RoleManager} onEnter={requireAuth} />
       <Route path="/volunteers" component={Volunteers} onEnter={requireAuth} />
-      <Route path="/login" component={Login} />
+      <Route path="/login" component={LoginContainer} />
     </Route>
   )
 }
