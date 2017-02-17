@@ -1,8 +1,6 @@
-import { createStore, compose, applyMiddleware } from 'redux';
-import rootReducer from '../reducers';
-import thunk from 'redux-thunk';
-import DevTools from '../containers/DevTools';
-
+import { createStore, compose, applyMiddleware } from 'redux'
+import rootReducer from '../reducers'
+import thunk from 'redux-thunk'
 
 export default function configureStore(initialState) {
   const store = createStore(
@@ -10,17 +8,16 @@ export default function configureStore(initialState) {
     initialState,
     compose(
       applyMiddleware(thunk),
-      DevTools.instrument()
     )
-  );
+  )
 
   if (module.hot) {
     // Enable Webpack hot module replacement for reducers
     module.hot.accept('../reducers', () => {
-      const nextRootReducer = require('../reducers').default;
-      store.replaceReducer(nextRootReducer);
-    });
+      const nextRootReducer = require('../reducers').default
+      store.replaceReducer(nextRootReducer)
+    })
   }
 
-  return store;
+  return store
 }

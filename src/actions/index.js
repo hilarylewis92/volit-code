@@ -1,19 +1,19 @@
-import * as types from './ActionTypes';
-
+import * as types from './ActionTypes'
+import axios from 'axios'
 
 export function addItem(item) {
   return dispatch => {
-    dispatch(addFlashMessage(`Successfully added "${item}"!`, 'notification'));
-    dispatch(addItemSuccess(item));
-  };
+    dispatch(addFlashMessage(`Successfully added "${item}"!`, 'notification'))
+    dispatch(addItemSuccess(item))
+  }
 }
 
 export function addItemSuccess(item) {
-  return { type: types.ITEM__CREATE, item };
+  return { type: types.ITEM__CREATE, item }
 }
 
 export function addFlashMessage(text, messageType = 'error') {
-  return { type: types.FLASH_MESSAGE__CREATE, text, messageType };
+  return { type: types.FLASH_MESSAGE__CREATE, text, messageType }
 }
 
 export function dismissFlashMessage(stamp) {
@@ -21,11 +21,11 @@ export function dismissFlashMessage(stamp) {
     // NOTE: Without this timeout, a bug occurs that causes one
     // or more closely-timed flash messages to get skipped over.
     setTimeout(() => {
-      dispatch(deleteFlashMessage(stamp));
-    }, 500);
-  };
+      dispatch(deleteFlashMessage(stamp))
+    }, 500)
+  }
 }
 
 export function deleteFlashMessage(timestamp) {
-  return { type: types.FLASH_MESSAGE__DELETE, timestamp };
+  return { type: types.FLASH_MESSAGE__DELETE, timestamp }
 }

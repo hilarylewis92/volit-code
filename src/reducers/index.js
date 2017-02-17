@@ -1,12 +1,8 @@
-import { combineReducers } from 'redux';
-import { routerReducer as routing } from 'react-router-redux';
-import flashMessages from './flashMessages';
-import list from './list';
+import { combineReducers } from 'redux'
+import { routerReducer as routing } from 'react-router-redux'
 
 const rootReducer = combineReducers({
-  flashMessages,
-  list,
   routing
-});
+})
 
-export default rootReducer;
+export default rootReducer
