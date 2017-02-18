@@ -42,12 +42,12 @@ export class Login extends React.Component {
               id='email'
               placeholder='example@domain.com'/>
           </section>
-        <button
-          type='submit'
-          onClick={auth.login.bind(this)}>
-          Create Account
-        </button>
       </form>
+      <button
+        type='submit'
+        onClick={auth.login.bind(this)}>
+        Create Account
+      </button>
       </div>
     )
   }

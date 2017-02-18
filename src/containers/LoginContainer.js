@@ -1,4 +1,3 @@
-// @flow
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { adminLogin } from '../actions/index'
