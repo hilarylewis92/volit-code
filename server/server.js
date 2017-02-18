@@ -60,7 +60,9 @@ app.get('/api/checkorg/:name', (req, res) => {
   .then((org) => {
     res.status(200).json(org)
   })
-  .catch( console.error('blah'))
+  .catch((err) => {
+    console.error(err)
+  })
 });
 
 app.post('/api/organizations', (req, res) => {

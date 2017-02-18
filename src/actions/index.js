@@ -35,12 +35,11 @@ export function deleteFlashMessage(timestamp) {
 }
 
 export function authorization() {
-  
+
 }
 
 export function adminLogin(name, email, phone_number, organization_name) {
   return dispatch => {
-    debugger;
     return axios.post('/api/users', (name, email, phone_number, organization_name))
     // dispatch(setProfile(newProfile))
   }

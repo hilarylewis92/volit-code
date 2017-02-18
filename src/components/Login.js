@@ -15,20 +15,22 @@ export class Login extends React.Component {
     const { auth } = this.props
     return (
       <div className='Login'>
-        <form className='login-form'>
+        <form className='login-form'
+          onSubmit={this.props.adminLogin}>
           <header className='login-form-header'>
             <img
               className='login-form-header-image'
               src={require('../assets/icons/icon.png')}/>
             <h2
               className='login-form-header-title'>
-              Welcome to Volit!
+              Login to your organization.
             </h2>
             <p
               className='login-form-header-branding'>
               The simplest way to schedule your team of volunteers
             </p>
           </header>
+
           <section>
             <p>
               Enter your email and organization name to create an account
@@ -42,12 +44,12 @@ export class Login extends React.Component {
               id='email'
               placeholder='example@domain.com'/>
           </section>
-      </form>
-      <button
-        type='submit'
-        onClick={auth.login.bind(this)}>
-        Create Account
-      </button>
+        </form>
+        <button
+          type='submit'
+          onClick={auth.login.bind(this)}>
+          Create Account
+        </button>
       </div>
     )
   }
