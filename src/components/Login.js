@@ -14,13 +14,18 @@ export class Login extends React.Component {
   render() {
     const { auth } = this.props
     return (
-      <div>
+      <div className='Login'>
         <form className='login-form'>
-          <header>
-            <h2>
+          <header className='login-form-header'>
+            <img
+              className='login-form-header-image'
+              src={require('../assets/icons/icon.png')}/>
+            <h2
+              className='login-form-header-title'>
               Welcome to Volit!
             </h2>
-            <p>
+            <p
+              className='login-form-header-branding'>
               The simplest way to schedule your team of volunteers
             </p>
           </header>
