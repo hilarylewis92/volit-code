@@ -1,6 +1,10 @@
 import React, { PropTypes as T } from 'react'
+import AddEvent from './AddEvent'
 
 export class EventList extends React.Component {
+  showAddEventForm() {
+    this.refs.modal.showModal()
+  }
 
   render(){
     var eventMonthCount=5
@@ -14,7 +18,8 @@ export class EventList extends React.Component {
             Upcoming Events
           </h3>
           <button
-            className='event-list-new-event-btn'>
+            className='event-list-new-event-btn'
+            onClick={()=>this.showAddEventForm()}>
             New Event
           </button>
           <span
@@ -33,6 +38,10 @@ export class EventList extends React.Component {
             <p>description of event</p>
           </li>
         </ul>
+
+        <AddEvent
+          ref='modal'
+        />
       </div>
     )
   }
