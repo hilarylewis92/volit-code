@@ -20,13 +20,13 @@ export class OrganizationLogin extends React.Component {
     e.preventDefault()
     const name = this.state.organization
     axios.get(`/api/checkorg/${name}`)
-    .then((res) => {
-      if(res.data.length)
-        replace({ pathname: '/login' })
-    })
-    .catch((err) => {
-      console.error(err)
-    })
+      .then((res) => {
+        if(res.data.length)
+          replace({ pathname: '/login' })
+      })
+      .catch((err) => {
+        console.error(err)
+      })
   }
 
   render(){
