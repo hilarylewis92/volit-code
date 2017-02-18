@@ -5,7 +5,6 @@ import { adminLogin } from '../actions/index'
 import Login from '../components/Login'
 
 function mapStateToProps(state, props) {
-
   return {
     profile: state.profile,
   }

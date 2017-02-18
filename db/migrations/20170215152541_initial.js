@@ -30,8 +30,6 @@ exports.down = function(knex, Promise) {
       knex.schema.dropTable('events'),
       knex.schema.dropTable('organizations'),
       knex.schema.dropTable('users')
-
-
     ])
 
 }

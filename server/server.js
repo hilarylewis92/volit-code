@@ -54,6 +54,15 @@ app.get('/api/organizations', (req, res) => {
   })
 })
 
+app.get('/api/checkorg/:name', (req, res) => {
+  const { name } = req.params
+  db('organizations').where('name', name).select()
+  .then((org) => {
+    res.status(200).json(org)
+  })
+  .catch( console.error('blah'))
+});
+
 app.post('/api/organizations', (req, res) => {
   // TODO: how do we get this id? Do we make post request to users for and save id?
   const { name, admin_id } = req.body
@@ -77,6 +86,16 @@ app.get('/api/users', (req, res) => {
   })
   .catch(error => {
     console.error('ERROR: in GET request for users')
+  })
+})
+
+app.post('/api/users', (req, res) => {
+  const { name, email, phone_number, organization_name } = req.body
+
+  const user = { name: name, email: email, phone_number: '555-555-5555' }
+  const admin_id = db('users').returning('id').insert(user)
+  .then(admin_id => {
+    console.log(admin_id);
   })
 })
 
