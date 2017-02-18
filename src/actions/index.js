@@ -34,8 +34,9 @@ export function deleteFlashMessage(timestamp) {
   return { type: types.FLASH_MESSAGE__DELETE, timestamp }
 }
 
-export function adminLogin(newProfile) {
+export function adminLogin(name, email, phone_number, organization_name) {
   return dispatch => {
-    dispatch(setProfile(newProfile))
+    return axios.post('/api/organizations', (name, email, phone_number, organization_name))
+    // dispatch(setProfile(newProfile))
   }
 }

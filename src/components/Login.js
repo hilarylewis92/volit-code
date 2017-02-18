@@ -13,9 +13,10 @@ export class Login extends React.Component {
 
   render() {
     const { auth } = this.props
+    console.log('state from redux', this.state, this.props);
     return (
       <div>
-        <form className='login-form'>
+        <form className='login-form' onSubmit={this.props.adminLogin}>
           <header>
             <h2>
               Welcome to Volit!
