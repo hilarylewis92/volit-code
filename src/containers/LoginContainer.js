@@ -1,7 +1,7 @@
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
-import { adminLogin } from '../actions/index';
-import Login from '../components/Login';
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+import { adminLogin } from '../actions/index'
+import Login from '../components/Login'
 
 function mapStateToProps(state, props) {
   return {
