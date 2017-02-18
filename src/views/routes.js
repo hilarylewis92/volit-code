@@ -8,6 +8,7 @@ import EventManagerContainer from '../containers/EventManagerContainer'
 import Dashboard from '../components/Dashboard'
 import RoleManager from '../components/RoleManager'
 import Volunteers from '../components/Volunteers'
+import OrganizationLogin from '../components/OrganizationLogin'
 
 import AuthService from '../utils/AuthService'
 
@@ -27,7 +28,7 @@ export const makeMainRoutes = () => {
       <Route path="/event-manager" component={EventManagerContainer} onEnter={requireAuth} />
       <Route path="/role-manager" component={RoleManager} onEnter={requireAuth} />
       <Route path="/volunteers" component={Volunteers} onEnter={requireAuth} />
-      <Route path="/login" component={LoginContainer} />
+      <Route path="/login" component={OrganizationLogin} />
     </Route>
   )
 }

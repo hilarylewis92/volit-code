@@ -13,6 +13,7 @@ export class Login extends React.Component {
 
   render() {
     const { auth } = this.props
+    console.log('auth', auth)
     console.log('state from redux', this.state, this.props);
     return (
       <div>
@@ -37,20 +38,13 @@ export class Login extends React.Component {
               type='text'
               id='email'
               placeholder='example@domain.com'/>
-            <label
-              htmlFor='organization'>
-              Organization Name
-            </label>
-            <input
-              type='text'
-              id='organization'
-              placeholder='Habitat for Humanity'/>
           </section>
-        </form>
         <button
+          type='submit'
           onClick={auth.login.bind(this)}>
           Create Account
         </button>
+      </form>
       </div>
     )
   }

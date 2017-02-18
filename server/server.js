@@ -54,6 +54,15 @@ app.get('/api/organizations', (req, res) => {
   })
 })
 
+app.get('/api/checkorg/:name', (req, res) => {
+  const { name } = req.params
+  db('organizations').where('name', name).select()
+  .then((org) => {
+    res.status(200).json(org)
+  })
+  .catch( console.error('blah'))
+});
+
 app.post('/api/organizations', (req, res) => {
   // TODO: how do we get this id? Do we make post request to users for and save id?
   const { name, admin_id } = req.body
