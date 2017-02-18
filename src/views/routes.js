@@ -9,14 +9,15 @@ import Dashboard from '../components/Dashboard'
 import RoleManager from '../components/RoleManager'
 import Volunteers from '../components/Volunteers'
 import OrganizationLogin from '../components/OrganizationLogin'
-
+import SignUp from '../components/SignUp'
+import Login from '../components/Login'
 import AuthService from '../utils/AuthService'
 
 const auth = new AuthService('jSm9RjhcmgxhAPat3avNPZTvnIMZvFl2', 'volit.auth0.com')
 
 const requireAuth = (nextState, replace) => {
   if (!auth.loggedIn()) {
-    replace({ pathname: '/login' })
+    replace({ pathname: '/organization' })
   }
 }
 
@@ -28,7 +29,9 @@ export const makeMainRoutes = () => {
       <Route path="/event-manager" component={EventManagerContainer} onEnter={requireAuth} />
       <Route path="/role-manager" component={RoleManager} onEnter={requireAuth} />
       <Route path="/volunteers" component={Volunteers} onEnter={requireAuth} />
-      <Route path="/login" component={OrganizationLogin} />
+      <Route path="/organization" component={OrganizationLogin} />
+      <Route path="/login" component={Login} />
+      <Route path="/signup" component={SignUp} />
     </Route>
   )
 }

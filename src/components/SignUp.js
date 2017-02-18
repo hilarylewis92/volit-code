@@ -1,7 +1,7 @@
 import React, { PropTypes as T } from 'react'
 import AuthService from '../utils/AuthService'
 
-export class Login extends React.Component {
+export class SignUp extends React.Component {
   static contextTypes = {
     router: T.object
   }
@@ -20,7 +20,7 @@ export class Login extends React.Component {
         <form className='login-form' onSubmit={this.props.adminLogin}>
           <header>
             <h2>
-              Login to your organization.
+              SignUp Your organization
             </h2>
             <p>
               The simplest way to schedule your team of volunteers
@@ -50,4 +50,4 @@ export class Login extends React.Component {
   }
 }
 
-export default Login
+export default SignUp
