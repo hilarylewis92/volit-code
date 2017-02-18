@@ -1,10 +1,15 @@
 import * as types from './ActionTypes'
+import axios from 'axios'
 
 export function addItem(item) {
   return dispatch => {
     dispatch(addFlashMessage(`Successfully added "${item}"!`, 'notification'))
     dispatch(addItemSuccess(item))
   }
+}
+
+export function setProfile(newProfile) {
+  console.log('dispatched')
 }
 
 export function addItemSuccess(item) {
@@ -27,4 +32,15 @@ export function dismissFlashMessage(stamp) {
 
 export function deleteFlashMessage(timestamp) {
   return { type: types.FLASH_MESSAGE__DELETE, timestamp }
+}
+
+export function authorization() {
+
+}
+
+export function adminLogin(name, email, phone_number, organization_name) {
+  return dispatch => {
+    return axios.post('/api/users', (name, email, phone_number, organization_name))
+    // dispatch(setProfile(newProfile))
+  }
 }

@@ -1,6 +1,10 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 
+const environment = process.env.NODE_ENV || 'development';
+const configuration = require('../knexfile')[environment];
+const db = require('knex')(configuration);
+
 const app = express()
 
 app.use(bodyParser.json())
@@ -41,20 +45,60 @@ app.set('port', PORT)
 app.locals.title = 'Volit'
 
 app.get('/api/organizations', (req, res) => {
-  res.status(200).json(app.locals.organizations)
+  db('organizations').select()
+  .then(organizations => {
+    res.status(200).json(organizations)
+  })
+  .catch(error => {
+    console.error('ERROR: in GET request for organizations')
+  })
 })
 
+app.get('/api/checkorg/:name', (req, res) => {
+  const { name } = req.params
+  db('organizations').where('name', name).select()
+  .then((org) => {
+    res.status(200).json(org)
+  })
+  .catch((err) => {
+    console.error(err)
+  })
+});
+
 app.post('/api/organizations', (req, res) => {
+  // TODO: how do we get this id? Do we make post request to users for and save id?
   const { name, admin_id } = req.body
-  //send to database
+  const organization = { name, admin_id }
+  db('organizations').insert(organization)
+  .then(() => {
+    db('organizations').select()
+    .then(organizations => {
+      res.status(200).json(organizations)
+    })
+    .catch(error => {
+      console.error('ERROR: in POST for organizations')
+    })
+  })
 })
 
 app.get('/api/users', (req, res) => {
-  res.status(200).json(app.locals.users)
+  db('users').select()
+  .then(users => {
+    res.status(200).json(users)
+  })
+  .catch(error => {
+    console.error('ERROR: in GET request for users')
+  })
 })
 
-app.get('/api/test', (req, res) => {
-  res.send('Hello World')
+app.post('/api/users', (req, res) => {
+  const { name, email, phone_number, organization_name } = req.body
+
+  const user = { name: name, email: email, phone_number: '555-555-5555' }
+  const admin_id = db('users').returning('id').insert(user)
+  .then(admin_id => {
+    console.log(admin_id);
+  })
 })
 
 app.listen(PORT, () => {

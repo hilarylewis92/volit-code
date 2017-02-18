@@ -1,7 +1,7 @@
 import React, { PropTypes as T } from 'react'
 import AuthService from '../utils/AuthService'
 
-export class Login extends React.Component {
+export class SignUp extends React.Component {
   static contextTypes = {
     router: T.object
   }
@@ -13,24 +13,19 @@ export class Login extends React.Component {
 
   render() {
     const { auth } = this.props
+    console.log('auth', auth)
+    console.log('state from redux', this.state, this.props);
     return (
-      <div className='Login'>
-        <form className='login-form'
-          onSubmit={this.props.adminLogin}>
-          <header className='login-form-header'>
-            <img
-              className='login-form-header-image'
-              src={require('../assets/icons/icon.png')}/>
-            <h2
-              className='login-form-header-title'>
-              Login to your organization.
+      <div>
+        <form className='login-form' onSubmit={this.props.adminLogin}>
+          <header>
+            <h2>
+              SignUp Your organization
             </h2>
-            <p
-              className='login-form-header-branding'>
+            <p>
               The simplest way to schedule your team of volunteers
             </p>
           </header>
-
           <section>
             <p>
               Enter your email and organization name to create an account
@@ -44,15 +39,15 @@ export class Login extends React.Component {
               id='email'
               placeholder='example@domain.com'/>
           </section>
-        </form>
         <button
           type='submit'
           onClick={auth.login.bind(this)}>
           Create Account
         </button>
+      </form>
       </div>
     )
   }
 }
 
-export default Login
+export default SignUp
