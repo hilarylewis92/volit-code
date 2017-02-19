@@ -14,7 +14,7 @@ export class Login extends React.Component {
   render() {
     const { auth } = this.props
     return (
-      <div className='Login'>
+      <div className='login'>
         <form className='login-form'
           onSubmit={this.props.adminLogin}>
           <header className='login-form-header'>
