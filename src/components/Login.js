@@ -21,7 +21,7 @@ export class Login extends React.Component {
             <header className='login-form-header'>
               <img
                 className='login-form-header-image'
-                src={require('../assets/icons/icon.png')}/>
+                src={require('../assets/icons/icon.svg')}/>
               <h2
                 className='login-form-header-title'>
                 Login to your organization.

@@ -1,0 +1,57 @@
+.SideBar {
+  height: 100vh;
+  width: 230px;
+  display: inline-block;
+  float: left;
+  background-color: $dark-blue-text;
+  color: white;
+}
+
+.side-bar-header {
+  margin: 5px;
+  padding: 5px 5px 20px 5px;
+  border-bottom: 1px solid $light-blue-text;
+}
+
+.organization-name {
+  text-align: center;
+  padding: 10px;
+  line-height: 150%;
+}
+
+.side-bar-icon {
+  height: 30px;
+  display: inline-block;
+  float: left;
+  margin-left: 20px;
+}
+
+.side-bar-admin {
+  text-align: center;
+  margin: 7px 30px 0 0;
+}
+
+.link {
+  text-decoration: none;
+  color: white;
+  margin: 40px 10px;
+  span {
+    position: absolute;
+    margin: 10px;
+    font-size: 0.8em;
+    font-weight: 200;
+  }
+}
+
+.link-icon {
+  margin: 0 5px;
+}
+
+.side-bar-item {
+  padding: 10px 0px;
+}
+
+.side-bar-item:hover {
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.2);
+}

@@ -1,23 +1,76 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { Link } from 'react-router'
 
-const SideBar = () => {
-  return (
-    <div>
-      <Link to='/dashboard'>
-        Dashboard
-      </Link>
-      <Link to='/event-manager'>
-        Event Manager
-      </Link>
-      <Link to='/role-manager'>
-        Role Manager
-      </Link>
-      <Link to='/volunteers'>
-        Volunteers
-      </Link>
-    </div>
-  )
-}
+export default class SideBar extends Component{
+  
+  render(){
+    return (
+      <div className='SideBar'>
+        <header
+          className='side-bar-header'>
+          <img
+            className='side-bar-icon'
+            src={require('../assets/icons/icon.svg')}/>
+          <h4
+            className='side-bar-admin'>
+            administrator
+          </h4>
+        </header>
+        <h2
+          className='organization-name'>
+          Organization Name Here
+        </h2>
 
-export default SideBar
+        <ul className='side-bar-links'>
+          <li
+            className='side-bar-item'>
+            <Link
+              className='link'
+              to='/dashboard'>
+              <img
+                className='link-icon'
+                src={require('../assets/icons/dashboard.png')}/>
+              <span>Dashboard</span>
+            </Link>
+          </li>
+
+          <li
+            className='side-bar-item'>
+            <Link
+              className='link'
+              to='/event-manager'>
+              <img
+                className='link-icon'
+                src={require('../assets/icons/event-manager.png')}/>
+              <span>Event Manager</span>
+            </Link>
+          </li>
+
+          <li
+            className='side-bar-item'>
+            <Link
+              className='link'
+              to='/role-manager'>
+              <img
+                className='link-icon'
+                src={require('../assets/icons/role-manager.png')}/>
+              <span>Role Manager</span>
+            </Link>
+          </li>
+
+          <li
+            className='side-bar-item'>
+            <Link
+              className='link'
+              to='/volunteers'>
+              <img
+                className='link-icon'
+                src={require('../assets/icons/volunteer.png')}/>
+              <span>Volunteers</span>
+            </Link>
+          </li>
+        </ul>
+      </div>
+    )
+  }
+}
