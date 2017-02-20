@@ -98,12 +98,9 @@ app.post('/api/users', (req, res) => {
   .then(admin_id => {
     const aid = parseInt(admin_id, 10)
     const organization = { name: organization_name, admin_id: aid}
-    db('organizations').insert(organization)
-    .then(() => {
-      db('organizations').select()
-      .then(organizations => {
-        res.status(200).json(organizations)
-      })
+    db('organizations').returning(['id', 'name', 'admin_id']).insert(organization)
+    .then(organization => {
+      res.status(200).json(organization)
     })
   })
 })

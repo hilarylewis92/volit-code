@@ -25,18 +25,13 @@ export class EventManager extends React.Component {
 
   componentDidMount() {
     const profile = JSON.parse(localStorage.getItem('profile'))
-    const name = profile.name
-    const email = profile.email
-    const organization_name = localStorage.getItem('org_name')
-    axios.post('/api/users', ({name: name, email: email, organization_name: organization_name}))
-    .then(res => {
-      console.log('response from db', res);
-    })
+    const org_name = localStorage.getItem('org_name')
+    this.props.adminLogin(profile, org_name)
   }
 
   logout(){
     this.props.auth.logout()
-    this.context.router.push('/login');
+    this.context.router.push('/organization');
   }
 
   render(){

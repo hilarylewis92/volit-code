@@ -8,8 +8,11 @@ export function addItem(item) {
   }
 }
 
-export function setProfile(newProfile) {
-  console.log('dispatched')
+export function setProfile(res) {
+  return {
+    type: types.ADMIN_LOGIN,
+    res
+  }
 }
 
 export function addItemSuccess(item) {
@@ -38,9 +41,14 @@ export function authorization() {
 
 }
 
-export function adminLogin(name, email, phone_number, organization_name) {
+export function adminLogin(profile, org_name) {
   return dispatch => {
-    return axios.post('/api/users', (name, email, phone_number, organization_name))
-    // dispatch(setProfile(newProfile))
+    const name = profile.name
+    const email = profile.email
+    axios.post('/api/users', ({name: name, email: email, organization_name: org_name}))
+    .then(res => {
+      console.log('response from db', res);
+      dispatch(setProfile(res.data[0]))
+    })
   }
 }

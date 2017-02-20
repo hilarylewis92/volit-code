@@ -19,7 +19,6 @@ export default class AuthService extends EventEmitter {
   }
 
   _doAuthentication(authResult){
-    debugger
     this.setToken(authResult.idToken)
     this.lock.getProfile(authResult.idToken, (error, profile) => {
       if (error) {
@@ -28,7 +27,6 @@ export default class AuthService extends EventEmitter {
         this.setProfile(profile)
       }
     })
-    browserHistory.replace('/event-manager')
   }
 
   login() {
@@ -48,6 +46,7 @@ export default class AuthService extends EventEmitter {
   setProfile(profile) {
     localStorage.setItem('profile', JSON.stringify(profile))
     this.emit('profile_updated', profile)
+    browserHistory.replace('/event-manager')
   }
 
   getProfile() {
