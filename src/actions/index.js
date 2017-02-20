@@ -11,7 +11,8 @@ export function addItem(item) {
 export function setProfile(res) {
   return {
     type: types.ADMIN_LOGIN,
-    res
+    organization: res.organization[0],
+    user: res.user
   }
 }
 
@@ -48,7 +49,7 @@ export function adminLogin(profile, org_name) {
     axios.post('/api/users', ({name: name, email: email, organization_name: org_name}))
     .then(res => {
       console.log('response from db', res);
-      dispatch(setProfile(res.data[0]))
+      dispatch(setProfile(res.data))
     })
   }
 }

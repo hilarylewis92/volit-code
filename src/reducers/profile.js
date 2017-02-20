@@ -1,7 +1,11 @@
 const profile = (state = {}, action) => {
   switch (action.type) {
     case 'ADMIN_LOGIN':
-      return Object.assign({}, state, { org_name: action.res.name, admin_id: action.res.admin_id, org_id: action.res.id })
+      return Object.assign({}, state, {
+        organization: { org_name: action.organization.name, admin_id: action.organization.admin_id, org_id: action.organization.id },
+        user: { name: action.user.name, email: action.user.email, phone_number: action.user.phone_number}
+
+      }, {})
     default:
       return state
   }

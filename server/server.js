@@ -100,7 +100,7 @@ app.post('/api/users', (req, res) => {
     const organization = { name: organization_name, admin_id: aid}
     db('organizations').returning(['id', 'name', 'admin_id']).insert(organization)
     .then(organization => {
-      res.status(200).json(organization)
+      res.status(200).json({ organization, user })
     })
   })
 })
