@@ -1,4 +1,5 @@
 import React, { PropTypes as T } from 'react'
+import axios from 'axios'
 import AuthService from '../utils/AuthService'
 import SideBar from './SideBar'
 import EventList from './EventList'
@@ -19,6 +20,17 @@ export class EventManager extends React.Component {
     }
     props.auth.on('profile_updated', (newProfile) => {
       this.setState({profile: newProfile})
+    })
+  }
+
+  componentDidMount() {
+    const profile = JSON.parse(localStorage.getItem('profile'))
+    const name = profile.name
+    const email = profile.email
+    const organization_name = localStorage.getItem('org_name')
+    axios.post('/api/users', ({name: name, email: email, organization_name: organization_name}))
+    .then(res => {
+      console.log('response from db', res);
     })
   }
 

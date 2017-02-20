@@ -25,7 +25,7 @@ export class OrganizationLogin extends React.Component {
       if(res.data.length) {
         browserHistory.push('/login');
       } else {
-        browserHistory.push('/signup');
+        browserHistory.push(`/signup/${name}`);
       }
     })
     .catch((err) => {

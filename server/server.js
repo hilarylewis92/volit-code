@@ -93,7 +93,7 @@ app.get('/api/users', (req, res) => {
 
 app.post('/api/users', (req, res) => {
   const { name, email, phone_number, organization_name } = req.body
-
+  console.log(name, email, organization_name);
   const user = { name: name, email: email, phone_number: '555-555-5555' }
   const admin_id = db('users').returning('id').insert(user)
   .then(admin_id => {

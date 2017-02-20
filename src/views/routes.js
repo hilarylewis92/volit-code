@@ -31,7 +31,7 @@ export const makeMainRoutes = () => {
       <Route path="/volunteers" component={Volunteers} onEnter={requireAuth} />
       <Route path="/organization" component={OrganizationLogin} />
       <Route path="/login" component={Login} />
-      <Route path="/signup" component={SignUp} />
+      <Route path="/signup/:org_name" component={SignUp} />
     </Route>
   )
 }
