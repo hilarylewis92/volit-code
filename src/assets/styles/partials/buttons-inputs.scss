@@ -7,11 +7,13 @@ button, input {
 }
 
 button {
+  background: $primary-blue;
+  color: white;
   cursor: pointer;
 }
 
 input {
-  border: 1px solid #A8C6DF;
+  border: 1px solid $primary-medium-grey;
   margin-bottom: 25px;
   padding: 10px;
 }
