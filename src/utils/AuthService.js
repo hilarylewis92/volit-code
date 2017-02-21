@@ -20,7 +20,6 @@ export default class AuthService extends EventEmitter {
 
   _doAuthentication(authResult){
     this.setToken(authResult.idToken)
-    browserHistory.replace('/event-manager')
     this.lock.getProfile(authResult.idToken, (error, profile) => {
       if (error) {
         console.log('Error loading the Profile', error)
@@ -47,6 +46,7 @@ export default class AuthService extends EventEmitter {
   setProfile(profile) {
     localStorage.setItem('profile', JSON.stringify(profile))
     this.emit('profile_updated', profile)
+    browserHistory.replace('/event-manager')
   }
 
   getProfile() {

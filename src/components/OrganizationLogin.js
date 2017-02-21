@@ -23,9 +23,9 @@ export class OrganizationLogin extends React.Component {
     axios.get(`/api/checkorg/${name}`)
     .then((res) => {
       if(res.data.length) {
-        browserHistory.push('/login');
+        browserHistory.push(`/login/${name}`);
       } else {
-        browserHistory.push('/signup');
+        browserHistory.push(`/signup/${name}`);
       }
     })
     .catch((err) => {

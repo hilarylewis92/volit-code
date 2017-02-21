@@ -81,6 +81,21 @@ app.post('/api/organizations', (req, res) => {
   })
 })
 
+app.get('/api/user/:email', (req, res) => {
+  const { email } = req.params
+  const user = db('users').where('email', email).select()
+    .then(user => {
+      db('organizations').where('admin_id', user[0].id).select()
+      .then(organization => {
+        res.status(200).json({ user: user[0], organization })
+      })
+    })
+  .catch(err => {
+    console.log('catch')
+    res.sendStatus(404)
+  })
+})
+
 app.get('/api/users', (req, res) => {
   db('users').select()
   .then(users => {
@@ -93,11 +108,15 @@ app.get('/api/users', (req, res) => {
 
 app.post('/api/users', (req, res) => {
   const { name, email, phone_number, organization_name } = req.body
-
   const user = { name: name, email: email, phone_number: '555-555-5555' }
   const admin_id = db('users').returning('id').insert(user)
   .then(admin_id => {
-    console.log(admin_id);
+    const aid = parseInt(admin_id, 10)
+    const organization = { name: organization_name, admin_id: aid}
+    db('organizations').returning(['id', 'name', 'admin_id']).insert(organization)
+    .then(organization => {
+      res.status(200).json({ organization, user })
+    })
   })
 })
 

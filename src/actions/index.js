@@ -8,8 +8,12 @@ export function addItem(item) {
   }
 }
 
-export function setProfile(newProfile) {
-  console.log('dispatched')
+export function setProfile(res) {
+  return {
+    type: types.ADMIN_LOGIN,
+    organization: res.organization[0],
+    user: res.user
+  }
 }
 
 export function addItemSuccess(item) {
@@ -38,9 +42,23 @@ export function authorization() {
 
 }
 
-export function adminLogin(name, email, phone_number, organization_name) {
+export function adminLogin(profile, org_name) {
   return dispatch => {
-    return axios.post('/api/users', (name, email, phone_number, organization_name))
-    // dispatch(setProfile(newProfile))
+    const name = profile.name
+    const email = profile.email
+    checkDbForUser(name, email, org_name, dispatch)
   }
+}
+
+function checkDbForUser(name, email, org_name, dispatch) {
+  axios.get(`/api/user/${email}`)
+  .then(res => {
+    dispatch(setProfile(res.data))
+  })
+  .catch(err => {
+      axios.post('/api/users', ({name: name, email: email, organization_name: org_name}))
+      .then(res => {
+        dispatch(setProfile(res.data))
+      })
+  })
 }

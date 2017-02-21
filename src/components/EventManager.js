@@ -1,4 +1,5 @@
 import React, { PropTypes as T } from 'react'
+import axios from 'axios'
 import AuthService from '../utils/AuthService'
 import SideBar from './SideBar'
 import EventList from './EventList'
@@ -22,9 +23,15 @@ export class EventManager extends React.Component {
     })
   }
 
+  componentDidMount() {
+    const profile = JSON.parse(localStorage.getItem('profile'))
+    const org_name = localStorage.getItem('org_name')
+    this.props.adminLogin(profile, org_name)
+  }
+
   logout(){
     this.props.auth.logout()
-    this.context.router.push('/login');
+    this.context.router.push('/organization');
   }
 
   render(){

@@ -30,8 +30,8 @@ export const makeMainRoutes = () => {
       <Route path="/role-manager" component={RoleManager} onEnter={requireAuth} />
       <Route path="/volunteers" component={Volunteers} onEnter={requireAuth} />
       <Route path="/organization" component={OrganizationLogin} />
-      <Route path="/login" component={Login} />
-      <Route path="/signup" component={SignUp} />
+      <Route path="/login/:org_name" component={Login} />
+      <Route path="/signup/:org_name" component={SignUp} />
     </Route>
   )
 }
