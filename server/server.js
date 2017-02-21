@@ -85,14 +85,14 @@ app.get('/api/user/:email', (req, res) => {
   const { email } = req.params
   const user = db('users').where('email', email).select()
     .then(user => {
-      console.log(user)
       db('organizations').where('admin_id', user[0].id).select()
       .then(organization => {
-        res.status(200).json({ user, organization })
+        res.status(200).json({ user: user[0], organization })
       })
     })
-  .catch(error => {
-    console.error('Error: no user found')
+  .catch(err => {
+    console.log('catch')
+    res.sendStatus(404)
   })
 })
 

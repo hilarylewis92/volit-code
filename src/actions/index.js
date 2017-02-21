@@ -46,22 +46,19 @@ export function adminLogin(profile, org_name) {
   return dispatch => {
     const name = profile.name
     const email = profile.email
-    const user = checkDbForUser(email)
-    if(!user.length) {
-      axios.post('/api/users', ({name: name, email: email, organization_name: org_name}))
-      .then(res => {
-        console.log('response from db', res);
-        dispatch(setProfile(res.data))
-      })
-    } else {
-
-    }
+    checkDbForUser(name, email, org_name, dispatch)
   }
 }
 
-function checkDbForUser(email) {
+function checkDbForUser(name, email, org_name, dispatch) {
   axios.get(`/api/user/${email}`)
   .then(res => {
-    return res.data[0]
+    dispatch(setProfile(res.data))
+  })
+  .catch(err => {
+      axios.post('/api/users', ({name: name, email: email, organization_name: org_name}))
+      .then(res => {
+        dispatch(setProfile(res.data))
+      })
   })
 }
