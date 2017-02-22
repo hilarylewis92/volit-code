@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router'
 
 export default class SideBar extends Component{
-  
+
   render(){
     return (
       <div className='SideBar'>
@@ -10,6 +10,7 @@ export default class SideBar extends Component{
           className='side-bar-header'>
           <img
             className='side-bar-icon'
+            role="presentation"
             src={require('../assets/icons/icon.svg')}/>
           <h4
             className='side-bar-admin'>
@@ -29,6 +30,7 @@ export default class SideBar extends Component{
               to='/dashboard'>
               <img
                 className='link-icon'
+                role="presentation"
                 src={require('../assets/icons/dashboard.png')}/>
               <span>Dashboard</span>
             </Link>
@@ -41,6 +43,7 @@ export default class SideBar extends Component{
               to='/event-manager'>
               <img
                 className='link-icon'
+                role="presentation"
                 src={require('../assets/icons/event-manager.png')}/>
               <span>Event Manager</span>
             </Link>
@@ -53,6 +56,7 @@ export default class SideBar extends Component{
               to='/role-manager'>
               <img
                 className='link-icon'
+                role="presentation"
                 src={require('../assets/icons/role-manager.png')}/>
               <span>Role Manager</span>
             </Link>
@@ -65,6 +69,7 @@ export default class SideBar extends Component{
               to='/volunteers'>
               <img
                 className='link-icon'
+                role="presentation"
                 src={require('../assets/icons/volunteer.png')}/>
               <span>Volunteers</span>
             </Link>

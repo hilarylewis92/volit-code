@@ -11,13 +11,17 @@ export class SignUp extends React.Component {
     auth: T.instanceOf(AuthService)
   }
 
+  componentDidMount() {
+    const org_name = this.props.params.org_name
+    localStorage.setItem('org_name', org_name)
+  }
+
   render() {
     const { auth } = this.props
-    console.log('auth', auth)
-    console.log('state from redux', this.state, this.props);
+
     return (
       <div>
-        <form className='login-form' onSubmit={this.props.adminLogin}>
+        <form className='login-form'>
           <header>
             <h2>
               SignUp Your organization
@@ -39,12 +43,12 @@ export class SignUp extends React.Component {
               id='email'
               placeholder='example@domain.com'/>
           </section>
+        </form>
         <button
           type='submit'
           onClick={auth.login.bind(this)}>
           Create Account
         </button>
-      </form>
       </div>
     )
   }

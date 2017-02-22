@@ -1,9 +1,9 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 
-const environment = process.env.NODE_ENV || 'development';
-const configuration = require('../knexfile')[environment];
-const db = require('knex')(configuration);
+const environment = process.env.NODE_ENV || 'development'
+const configuration = require('../knexfile')[environment]
+const db = require('knex')(configuration)
 
 const app = express()
 
@@ -11,35 +11,6 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
 const PORT = process.env.PORT || 3001
-
-app.locals.organizations = {
-  uid: 393093003,
-  name: 'Tom Cruise Fundraiser',
-  admin_id: 'nick@ilovetomcruise.com'
-}
-
-app.locals.users = {
-  uid: 310200202,
-  name: 'Nick C',
-  email: 'nick@ilovetomcruise.com',
-  phone: '555-555-5555',
-  img: 'mypic.png',
-  organization_id: '393093003'
-}
-
-app.locals.events = {
-  uid: '',
-  name: '',
-  date: '', //date type?
-  description: '',
-  organization_id: ''
-}
-
-app.locals.roles = {
-  role_name: '',
-  user_id: '',
-  event_id: ''
-}
 
 app.set('port', PORT)
 app.locals.title = 'Volit'
@@ -63,7 +34,7 @@ app.get('/api/checkorg/:name', (req, res) => {
   .catch((err) => {
     console.error(err)
   })
-});
+})
 
 app.post('/api/organizations', (req, res) => {
   // TODO: how do we get this id? Do we make post request to users for and save id?
@@ -81,6 +52,21 @@ app.post('/api/organizations', (req, res) => {
   })
 })
 
+app.get('/api/user/:email', (req, res) => {
+  const { email } = req.params
+  const user = db('users').where('email', email).select()
+    .then(user => {
+      db('organizations').where('admin_id', user[0].id).select()
+      .then(organization => {
+        res.status(200).json({ user: user[0], organization })
+      })
+    })
+  .catch(err => {
+    console.log('catch')
+    res.sendStatus(404)
+  })
+})
+
 app.get('/api/users', (req, res) => {
   db('users').select()
   .then(users => {
@@ -93,11 +79,43 @@ app.get('/api/users', (req, res) => {
 
 app.post('/api/users', (req, res) => {
   const { name, email, phone_number, organization_name } = req.body
-
   const user = { name: name, email: email, phone_number: '555-555-5555' }
   const admin_id = db('users').returning('id').insert(user)
   .then(admin_id => {
-    console.log(admin_id);
+    const aid = parseInt(admin_id, 10)
+    const organization = { name: organization_name, admin_id: aid}
+    db('organizations').returning(['id', 'name', 'admin_id']).insert(organization)
+    .then(organization => {
+      res.status(200).json({ organization, user })
+    })
+  })
+})
+
+app.get('/api/events/:organization_id', (req, res) => {
+  const {organization_id} = req.params
+  db('events').where('organization_id', organization_id).select()
+  .then(events => {
+    res.status(200).json(events)
+  })
+  .catch(error => {
+    console.error('ERROR: in GET request for events')
+  })
+})
+
+app.post('/api/events/:organization_id', (req, res) => {
+  const {organization_id} = req.params
+  const { event_name, event_date, event_description, event_address } = req.body
+  const event = { organization_id, event_name, event_description, event_address , event_date}
+
+  db('events').insert(event)
+  .then(() => {
+    db('events').where('organization_id', organization_id).select()
+    .then(events => {
+      res.status(200).json(events)
+    })
+    .catch(error => {
+      console.error('ERROR: in POST for events')
+    })
   })
 })
 

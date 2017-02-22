@@ -11,17 +11,21 @@ export class Login extends React.Component {
     auth: T.instanceOf(AuthService)
   }
 
+  componentDidMount() {
+    const org_name = this.props.params.org_name
+    localStorage.setItem('org_name', org_name)
+  }
+
   render() {
     const { auth } = this.props
     return (
       <div className='login'>
         <div className='login-form-container'>
-          <form className='login-form'
-            onSubmit={this.props.adminLogin}>
+          <form className='login-form'>
             <header className='login-form-header'>
               <img
-                className='login-form-header-image'
-                src={require('../assets/icons/icon-gradient-bg.svg')}/>
+                role="presentation"
+                src={require('../assets/icons/icon.svg')}/>
               <h2
                 className='login-form-header-title'>
                 Login to your organization.

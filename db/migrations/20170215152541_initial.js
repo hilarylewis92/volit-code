@@ -3,12 +3,12 @@ exports.up = function(knex, Promise) {
     knex.schema.createTable('users', function(table) {
         table.increments('id').primary()
         table.string('name')
-        table.string('email')
+        table.string('email').unique()
         table.string('phone_number')
     }),
     knex.schema.createTable('organizations', function(table) {
         table.increments('id').primary()
-        table.string('name')
+        table.string('name').unique()
         table.integer('admin_id')
              .references('id')
              .inTable('users')
@@ -17,6 +17,8 @@ exports.up = function(knex, Promise) {
       table.increments('id').primary()
       table.string('event_name')
       table.date('event_date')
+      table.string('event_description')
+      table.string('event_address')
       table.integer('volunteer_count')
       table.integer('organization_id')
            .references('id')

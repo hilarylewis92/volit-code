@@ -7,7 +7,7 @@ on run argv
       make new window
     end if
 
-    -- Find a tab currently running the debugger
+    -- Find a tab currently running the 
     set found to false
     set theTabIndex to -1
     repeat with theWindow in every window

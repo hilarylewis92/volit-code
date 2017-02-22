@@ -1,7 +1,17 @@
 import React, { Component } from 'react'
 import Modal from 'boron/DropModal'
+import axios from 'axios'
 
 export default class AddEvent extends Component {
+  constructor(){
+    super()
+    this.state = {
+      name: '',
+      description: '',
+      date: '',
+      address: '',
+    }
+  }
 
   showModal() {
     this.refs.modal.show()
@@ -11,64 +21,87 @@ export default class AddEvent extends Component {
     this.refs.modal.hide()
   }
 
-  saveEvent() {
-    //save to database here
+  handleEventSubmit(e) {
+    e.preventDefault()
+    const { name, description, date, address } = this.state
+    const { orgID } = this.props
+    var newEvent = { name, description, date, address }
+    this.props.createEvent(newEvent, orgID)
     this.hideModal()
   }
 
   render() {
     return (
-      <div>
-        <Modal
-          className='modal-card'
-          ref="modal">
-          <form>
-            <h4>Create Event</h4>
+      <Modal
+        className='modal-card'
+        ref="modal">
+        <form
+          onSubmit={this.props.createEvent}>
+          <h4>Create Event</h4>
 
-            <label
-              htmlFor='name'>
-              Event name
-            </label>
-            <input
-              type='text'
-              id='name'
-              placeholder='name'/>
+          <label
+            htmlFor='name'>
+            Event name
+          </label>
+          <input
+            type='text'
+            id='name'
+            onChange={(e) =>
+              this.setState({
+                name: e.target.value
+              })
+            }
+            placeholder='name'/>
 
-            <label
-              htmlFor='description'>
-              Event description
-            </label>
-            <textarea
-              type='text'
-              id='description'
-              placeholder='description'>
-            </textarea>
+          <label
+            htmlFor='description'>
+            Event description
+          </label>
+          <textarea
+            type='text'
+            id='description'
+            onChange={(e) =>
+              this.setState({
+                description: e.target.value
+              })
+            }
+            placeholder='description'>
+          </textarea>
 
-            <label
-              htmlFor='date'>
-              Event date
-            </label>
-            <input
-              type='date'
-              id='date'
-              placeholder='date'/>
+          <label
+            htmlFor='date'>
+            Event date
+          </label>
+          <input
+            type='date'
+            id='date'
+            onChange={(e) =>
+              this.setState({
+                date: e.target.value
+              })
+            }
+            placeholder='date'/>
 
-            <label
-              htmlFor='address'>
-              Event address
-            </label>
-            <input
-              type='text'
-              id='address'
-              placeholder='address'/>
+          <label
+            htmlFor='address'>
+            Event address
+          </label>
+          <input
+            type='text'
+            id='address'
+            onChange={(e) =>
+              this.setState({
+                address: e.target.value
+              })
+            }
+            placeholder='address'/>
 
-            <button
-              onClick={()=>this.saveEvent()}>
-              Save event
-            </button>
-          </form>
-        </Modal>
-      </div>
+          <button
+            onClick={(e) => this.handleEventSubmit(e)}>
+            Save event
+          </button>
+        </form>
+      </Modal>
     )
   }
 }
