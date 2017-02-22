@@ -29,17 +29,13 @@ export class Login extends React.Component {
                 src={require('../assets/icons/icon-gradient-bg.svg')}/>
               <h2
                 className='login-form-header-title'>
-                Login to your organization.
+                Welcome back.
               </h2>
-              <p
-                className='login-form-header-branding'>
-                The simplest way to schedule your team of volunteers
-              </p>
             </header>
 
             <section>
               <p>
-                Enter your email and organization name to create an account
+                Sign into your account using your registered email address.
               </p>
               <label
                 htmlFor='email'>
@@ -55,7 +51,7 @@ export class Login extends React.Component {
             className="create-account-button"
             type='submit'
             onClick={auth.login.bind(this)}>
-            Create Account
+            Login
           </button>
         </div>
       </div>
