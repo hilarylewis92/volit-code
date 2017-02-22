@@ -6,15 +6,30 @@
 }
 
 .event-list-header {
+  margin-bottom: 15px;
   overflow: auto;
   width: 100%;
 
-  .event-list-title {
+  .event-list-header-upcoming {
     float: left;
+  }
+
+  .event-list-title {
+    padding-bottom: 5px;
   }
 
   .event-list-new-event-btn {
     float: right;
     width: 115px;
   }
+}
+
+.event-list-item {
+  background: white;
+  border: $component-shadow;
+  @include border-radius(4px);
+  margin: 15px 0;
+  max-width: 720px;
+  padding: 25px;
+  width: 100%;
 }

@@ -15,9 +15,9 @@ export class EventList extends React.Component {
     const {events, orgID} = this.props
     var event = events.map((event, i)=> {
       return (
-      <li key={i}>
-        <div>{event.event_date}</div>
+      <li className='event-list-item' key={i}>
         <div>{event.event_name}</div>
+        <div>{event.event_date}</div>
         <div>{event.event_description}</div>
         <div>{event.event_address}</div>
       </li>
@@ -28,10 +28,13 @@ export class EventList extends React.Component {
       <div className='event-list-container'>
         <header
           className='event-list-header'>
-          <h2
+          <div className='event-list-header-upcoming'>
+            <h2
             className='event-list-title'>
             Upcoming Events
-          </h2>
+            </h2>
+            <p>You have {events.length} upcoming events.</p>
+          </div>
           <button
             className='event-list-new-event-btn'
             onClick={()=>this.showAddEventForm()}>
