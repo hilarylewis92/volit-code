@@ -25,13 +25,13 @@ export class EventList extends React.Component {
     })
 
     return (
-      <div className='EventList'>
+      <div className='event-list-container'>
         <header
           className='event-list-header'>
-          <h3
+          <h2
             className='event-list-title'>
             Upcoming Events
-          </h3>
+          </h2>
           <button
             className='event-list-new-event-btn'
             onClick={()=>this.showAddEventForm()}>

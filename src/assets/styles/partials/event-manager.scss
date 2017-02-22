@@ -1,0 +1,20 @@
+.event-manager-container {
+  float: right;
+  overflow: auto;
+  padding: 35px;
+  width: calc(100vw - 250px);
+}
+
+.event-list-header {
+  overflow: auto;
+  width: 100%;
+
+  .event-list-title {
+    float: left;
+  }
+
+  .event-list-new-event-btn {
+    float: right;
+    width: 115px;
+  }
+}
