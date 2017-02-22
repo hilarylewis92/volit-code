@@ -18,7 +18,7 @@
   max-width: 600px;
   position: relative;
   top: 50%;
-  transform: translateY(-50%);
+  transform: perspective(1px) translateY(-50%);
 
   label, input, button {
     width: 80%;
@@ -42,7 +42,7 @@
   .login-form-header-image {
     height: 60px;
     position: relative;
-    bottom: 35px;
+    bottom: 31px;
   }
 
   h2 {
