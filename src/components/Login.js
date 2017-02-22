@@ -26,7 +26,7 @@ export class Login extends React.Component {
               <img
                 className='login-form-header-image'
                 role="presentation"
-                src={require('../assets/icons/icon-gradient-bg.svg')}/>
+                src={require('../assets/icons/icon-gradient-bg.svg')} />
               <h2
                 className='login-form-header-title'>
                 Welcome back.
@@ -39,7 +39,7 @@ export class Login extends React.Component {
               </p>
               <label
                 htmlFor='email'>
-                Your email
+                Email
               </label>
               <input
                 type='text'

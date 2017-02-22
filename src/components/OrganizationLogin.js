@@ -48,7 +48,7 @@ export class OrganizationLogin extends React.Component {
               </h2>
               <p
                 className='login-form-header-branding'>
-                The simplest way to schedule your team of volunteers
+                The simplest way to schedule your team of volunteers.
               </p>
             </header>
 
@@ -69,7 +69,7 @@ export class OrganizationLogin extends React.Component {
               type='submit'
               onClick={(e) => this.checkOrganizationName(e)}>
               Continue
-              </button> 
+              </button>
             </section>
           </form>
          </div>
