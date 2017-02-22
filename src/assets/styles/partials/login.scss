@@ -1,6 +1,4 @@
 .login {
-  background: url('../images/volit_login_background.png') no-repeat center center fixed;
-  @include background-size(cover);
   height: 100vh;
   padding-left: 2rem;
   padding-right: 2rem;
@@ -13,20 +11,18 @@
   border: $component-shadow;
   @include border-radius(8px);
   box-shadow: 0px 1px 4px rgba(44, 64, 90, .21);
-  color: $light-blue-text;
+  color: $primary-medium-grey;
   margin: 0 auto;
   max-width: 600px;
   position: relative;
   top: 50%;
-  transform: translateY(-50%);
+  transform: perspective(1px) translateY(-50%);
 
   label, input, button {
     width: 80%;
   }
 
   button {
-    background-color: $green-button;
-    color: white;
     margin-bottom: 50px;
   }
 
@@ -39,16 +35,21 @@
 }
 
 .login-form-header {
-  border-bottom: 1px solid #D8E5EE;
+  border-bottom: 1px solid $secondary-tan;
 
   .login-form-header-image {
     height: 60px;
     position: relative;
-    bottom: 35px;
+    bottom: 31px;
+  }
+
+  .login-form-header-title {
+    color: $primary-dark-grey;
+    margin-bottom: 35px;
   }
 
   h2 {
-    color: $dark-blue-text;
+    color: $primary-dark-grey;
   }
 
   p {

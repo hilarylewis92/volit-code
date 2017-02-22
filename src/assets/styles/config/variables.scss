@@ -1,15 +1,25 @@
 /* colors */
-$background: #ECF5FD;
-$light-blue-text: #8DABC4;
-$dark-blue-text: #2C405A;
-$green-button: #4ECE3D;
-$light-blue-hover: #B9D8FF;
+/* primary colors */
+$primary-yellow: #F99E22;
+$primary-red: #EF4247; /*use only as error state */
+$primary-blue: #3C6A8C;
+$primary-light-grey: #FEFEFC;
+$primary-medium-grey: #99959B;
+$primary-dark-grey: #484849;
+
+/* secondary colors */
+$secondary-light-grey: #F1F0F2;
+$secondary-tan: #E8E1D9;
+
 
 /* fonts */
+$header-copy: 'Poppins', sans-serif;
 $body-copy: 'Helvetica', sans-serif;
 
+
 /* drop-shadows */
-$component-shadow: 1px solid rgba(183, 210, 229, .8);
+$component-shadow: 1px solid rgba(72, 71, 73, .3);
+
 
 /* mixins */
 @mixin border-radius($radius) {
@@ -24,4 +34,12 @@ $component-shadow: 1px solid rgba(183, 210, 229, .8);
      -moz-background-size: $size;
       -ms-background-size: $size;
           background-size: $size;
+}
+
+@mixin background($color1, $color2) {
+  background: $color1;
+    background: -webkit-linear-gradient(left, $color1, $color2);
+    background: -o-linear-gradient(right, $color1, $color2);
+    background: -moz-linear-gradient(right, $color1, $color2);
+    background: linear-gradient(to right, $color1, $color2);
 }
