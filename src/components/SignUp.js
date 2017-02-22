@@ -18,8 +18,7 @@ export class SignUp extends React.Component {
 
   render() {
     const { auth } = this.props
-    console.log('auth', auth)
-    console.log('state from redux', this.state, this.props);
+
     return (
       <div>
         <form className='login-form'>
@@ -44,12 +43,12 @@ export class SignUp extends React.Component {
               id='email'
               placeholder='example@domain.com'/>
           </section>
-      </form>
-      <button
-        type='submit'
-        onClick={auth.login.bind(this)}>
-        Create Account
-      </button>
+        </form>
+        <button
+          type='submit'
+          onClick={auth.login.bind(this)}>
+          Create Account
+        </button>
       </div>
     )
   }

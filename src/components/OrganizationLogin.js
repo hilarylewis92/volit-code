@@ -1,12 +1,12 @@
 import React from 'react'
 import axios from 'axios'
-import { browserHistory } from 'react-router';
+import { browserHistory } from 'react-router'
 
 export class OrganizationLogin extends React.Component {
   constructor() {
     super()
     this.state = {
-      organization: ''
+      organization: '',
     }
   }
 
@@ -25,7 +25,7 @@ export class OrganizationLogin extends React.Component {
       if(res.data.length) {
         browserHistory.push(`/login/${name}`);
       } else {
-        browserHistory.push(`/signup/${name}`);
+        browserHistory.push(`/signup/${name}`)
       }
     })
     .catch((err) => {

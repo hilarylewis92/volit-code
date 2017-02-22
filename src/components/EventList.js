@@ -2,13 +2,28 @@ import React, { PropTypes as T } from 'react'
 import AddEvent from './AddEvent'
 
 export class EventList extends React.Component {
+  componentDidMount() {
+    const { orgID } = this.props
+    this.props.getAllEvents(orgID)
+  }
+
   showAddEventForm() {
     this.refs.modal.showModal()
   }
 
   render(){
-    var eventMonthCount=5
-    var eventYearCount=35
+    const {events, orgID} = this.props
+    var event = events.map((event, i)=> {
+      return (
+      <li key={i}>
+        <div>{event.event_date}</div>
+        <div>{event.event_name}</div>
+        <div>{event.event_description}</div>
+        <div>{event.event_address}</div>
+      </li>
+      )
+    })
+
     return (
       <div className='EventList'>
         <header
@@ -22,24 +37,15 @@ export class EventList extends React.Component {
             onClick={()=>this.showAddEventForm()}>
             New Event
           </button>
-          <span
-            className='event-list-count'>
-            {eventMonthCount} events this month,
-            {eventYearCount} events this year
-          </span>
         </header>
 
-        <ul
-          className='event-list-date'>
-          <span>date of event</span>
-          <li
-            className='event-list-list-item'>
-            <h5>title of event</h5>
-            <p>description of event</p>
-          </li>
+        <ul>
+          {event}
         </ul>
 
         <AddEvent
+          createEvent={this.props.createEvent}
+          orgID={orgID}
           ref='modal'
         />
       </div>

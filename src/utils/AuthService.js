@@ -9,7 +9,7 @@ export default class AuthService extends EventEmitter {
 
     this.lock = new Auth0Lock(clientId, domain, {
       auth: {
-        redirectUrl: `${window.location.origin}/login`,
+        redirectUrl: `${window.location.origin}/organization`,
         responseType: 'token'
       }
     })
@@ -34,8 +34,9 @@ export default class AuthService extends EventEmitter {
   }
 
   logout() {
-    localStorage.removeItem('id_token');
-    localStorage.removeItem('profile');
+    localStorage.removeItem('id_token')
+    localStorage.removeItem('profile')
+    localStorage.removeItem('org_name')
   }
 
   loggedIn() {

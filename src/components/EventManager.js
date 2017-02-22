@@ -1,5 +1,4 @@
 import React, { PropTypes as T } from 'react'
-import axios from 'axios'
 import AuthService from '../utils/AuthService'
 import SideBar from './SideBar'
 import EventList from './EventList'
@@ -13,14 +12,11 @@ export class EventManager extends React.Component {
     auth: T.instanceOf(AuthService)
   }
 
-  constructor(props, context) {
+  constructor(props, context, events) {
     super(props, context)
     this.state = {
       profile: props.auth.getProfile()
     }
-    props.auth.on('profile_updated', (newProfile) => {
-      this.setState({profile: newProfile})
-    })
   }
 
   componentDidMount() {
@@ -31,17 +27,34 @@ export class EventManager extends React.Component {
 
   logout(){
     this.props.auth.logout()
-    this.context.router.push('/organization');
+    this.context.router.push('/organization')
   }
 
   render(){
-    const { profile } = this.state
+    const { events, createEvent, profile, getAllEvents } = this.props
+
+    let data
+    if(profile.organization) {
+      data = (
+        <EventList
+          orgID={profile.organization.org_id}
+          createEvent={createEvent}
+          events={events}
+          getAllEvents={getAllEvents}
+          />
+      )
+    } else {
+      data = (
+        <div>loading...</div>
+      )
+    }
+
     return (
       <div>
         <SideBar />
         <div>
-          <EventList />
-          <p>Logged in as: <span>{profile.name}</span></p>
+          {data}
+          <p>Logged in as: <span>{this.state.profile.name}</span></p>
           <button
             onClick={this.logout.bind(this)}>
             Logout
