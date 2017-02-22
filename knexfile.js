@@ -25,7 +25,7 @@ module.exports = {
 
   production: {
     client: 'pg',
-    connection: process.env.DATABASE_URL,
+    connection: process.env.ELEPHANTSQL_URL,
     migrations: {
       directory: './db/migrations'
     },
