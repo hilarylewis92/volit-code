@@ -1,5 +1,4 @@
 import React, { PropTypes as T } from 'react'
-import SideBarContainer from '../containers/SideBarContainer'
 
 export class Container extends React.Component {
   static contextTypes = {
@@ -16,7 +15,6 @@ export class Container extends React.Component {
 
     return (
       <div>
-        <SideBarContainer />
         <div className="wrapper">{children}</div>
       </div>
     )

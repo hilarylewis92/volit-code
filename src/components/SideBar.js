@@ -1,16 +1,10 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router'
+import { Link, BrowserHistory } from 'react-router'
 import AuthService from '../utils/AuthService'
 
 export default class SideBar extends Component {
-  logout() {
-    this.props.auth.logout()
-    this.context.router.push('/organization')
-  }
-
   render(){
-    const { events, profile } = this.props
-    console.log(this.props);
+    const { events, profile, auth } = this.props
     return (
       <div className='side-bar'>
         <header
@@ -83,10 +77,12 @@ export default class SideBar extends Component {
           </Link>
         </ul>
         <p>Logged in as: <span>{profile.user && profile.user.name}</span></p>
-        <button
-          onClick={this.logout.bind(this)}>
-          Logout
-        </button>
+        <Link to="/organization">
+          <button
+            onClick={auth.logout.bind(this)}>
+            Logout
+          </button>
+        </Link>
       </div>
     )
   }
