@@ -1,5 +1,6 @@
 import React, { PropTypes as T } from 'react'
 import AddEvent from './AddEvent'
+import moment from 'moment'
 
 export class EventList extends React.Component {
   componentDidMount() {
@@ -14,10 +15,12 @@ export class EventList extends React.Component {
   render(){
     const {events, orgID} = this.props
     var event = events.map((event, i)=> {
+      let date = moment(event.event_date).format('MMM Do YYYY')
+
       return (
       <li className='event-list-item' key={i}>
         <h3>{event.event_name}</h3>
-        <p>{event.event_date}</p>
+        <p>{date}</p>
         <p>{event.event_description}</p>
         <p>{event.event_address}</p>
       </li>
