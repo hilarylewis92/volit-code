@@ -16,11 +16,24 @@ export class EventList extends React.Component {
     this.refs.modal.showModal()
   }
 
+  shortenDescription(description) {
+    if (description.length > 250) {
+      return description.substring(0, 250) + "..."
+    } else {
+      return description
+    }
+  }
+
+  formatDate(date) {
+    return moment(date).format('MMM Do YYYY')
+  }
+
   render(){
     const {events, orgID} = this.props
 
     var event = events.map((event, i)=> {
-      let date = moment(event.event_date).format('MMM Do YYYY')
+      let date = this.formatDate(event.event_date)
+      let description = this.shortenDescription(event.event_description)
 
       return (
         <li

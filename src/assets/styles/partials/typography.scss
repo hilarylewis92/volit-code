@@ -1,4 +1,5 @@
 body {
+  color: $primary-dark-grey;
   font-family: $body-copy;
   font-size: 100%;
   letter-spacing: 0.025em;
@@ -18,4 +19,9 @@ p {
   font-size: 1em;
   font-weight: 300;
   line-height: 1.25em;
+}
+
+a {
+  color: $primary-yellow;
+  font-size: 14px;
 }
