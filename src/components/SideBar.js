@@ -6,7 +6,7 @@ export default class SideBar extends Component{
   render(){
     const { events, profile } = this.props
     return (
-      <div className='SideBar'>
+      <div className='side-bar'>
         <header
           className='side-bar-header'>
           <img

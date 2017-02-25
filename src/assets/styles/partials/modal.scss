@@ -1,0 +1,52 @@
+div.modal {
+  background: white;
+  border: $component-shadow;
+  @include border-radius(8px);
+  box-shadow: 0px 1px 4px rgba(44, 64, 90, .21);
+  color: $primary-medium-grey;
+  max-width: 500px;
+  width: 90% !important;
+  text-align: center;
+
+  .modal-title {
+    border-bottom: 1px solid $secondary-tan;
+    color: $primary-dark-grey;
+    padding: 35px;
+  }
+
+  .modal-label {
+    margin-left: 50px;
+
+    &[for="name"] {
+      margin-top: 25px;
+    }
+  }
+
+  .modal-input {
+    width: 80%;
+  }
+
+  .modal-split-input {
+    display: inline-block;
+    width: 38%;
+
+    input {
+      width: 100%;
+    }
+
+    label {
+      margin-left: 0px;
+    }
+  }
+
+  .modal-date {
+    margin-right: 15px;
+  }
+
+  button {
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 25px;
+    width: 115px;
+  }
+}
