@@ -1,6 +1,5 @@
 import React, { PropTypes as T } from 'react'
 import AuthService from '../utils/AuthService'
-import SideBarContainer from '../containers/SideBarContainer'
 import EventList from './EventList'
 
 export class EventManager extends React.Component {
@@ -12,22 +11,10 @@ export class EventManager extends React.Component {
     auth: T.instanceOf(AuthService)
   }
 
-  constructor(props, context, events) {
-    super(props, context)
-    this.state = {
-      profile: props.auth.getProfile()
-    }
-  }
-
   componentDidMount() {
     const profile = JSON.parse(localStorage.getItem('profile'))
     const org_name = localStorage.getItem('org_name')
     this.props.adminLogin(profile, org_name)
-  }
-
-  logout(){
-    this.props.auth.logout()
-    this.context.router.push('/organization')
   }
 
   render(){
@@ -51,14 +38,8 @@ export class EventManager extends React.Component {
 
     return (
       <div className="dashboard-container">
-        <SideBarContainer />
         <div className="event-manager-container">
           {data}
-          <p>Logged in as: <span>{this.state.profile.name}</span></p>
-          <button
-            onClick={this.logout.bind(this)}>
-            Logout
-          </button>
         </div>
       </div>
     )
