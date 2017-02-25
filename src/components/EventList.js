@@ -1,6 +1,5 @@
 import React, { PropTypes as T } from 'react'
 import { Link } from 'react-router'
-import axios from 'axios'
 import moment from 'moment'
 
 import AddEvent from './AddEvent'
@@ -28,42 +27,48 @@ export class EventList extends React.Component {
     return moment(date).format('MMM Do YYYY')
   }
 
-  render(){
+  render() {
     const {events, orgID} = this.props
 
     var event = events.map((event, i)=> {
+      const todaysDate = Date.now()
+      let eventDate = new Date(event.event_date).getTime()
       let date = this.formatDate(event.event_date)
       let description = this.shortenDescription(event.event_description)
 
-      return (
-        <li
-          className='event-list-item'
-          key={i}
-          id={event.id}>
-          <h3
-            className='event-list-title'>
-            {event.event_name}
-          </h3>
-          <p
-            className='event-list-date'>
-            {date}
-          </p>
-          <p
-            className='event-list-description'>
-            {description}
-          </p>
-          <address className='event-list-address'>
-            <a
-              target='blank'
-              href={`http://maps.google.com/?q=${event.event_address}`}>
-              {event.event_address}
-            </a>
-          </address>
-          <Link to={`event-manager/${event.id}`}>
-            <button>view event</button>
-          </Link>
-        </li>
-      )
+      if (todaysDate <= eventDate) {
+        return (
+          <li
+            className='event-list-item'
+            key={i}
+            id={event.id}>
+            <h3
+              className='event-list-title'>
+              {event.event_name}
+            </h3>
+            <p
+              className='event-list-date'>
+              {date}
+            </p>
+            <p
+              className='event-list-description'>
+              {description}
+            </p>
+            <address className='event-list-address'>
+              <a
+                target='blank'
+                href={`http://maps.google.com/?q=${event.event_address}`}>
+                {event.event_address}
+              </a>
+            </address>
+            <Link to={`event-manager/${event.id}`}>
+              <button>view event</button>
+            </Link>
+          </li>
+        )
+      } else {
+        return null
+      }
     })
 
     return (
