@@ -16,10 +16,10 @@ export class EventList extends React.Component {
     var event = events.map((event, i)=> {
       return (
       <li className='event-list-item' key={i}>
-        <div>{event.event_name}</div>
-        <div>{event.event_date}</div>
-        <div>{event.event_description}</div>
-        <div>{event.event_address}</div>
+        <h3>{event.event_name}</h3>
+        <p>{event.event_date}</p>
+        <p>{event.event_description}</p>
+        <p>{event.event_address}</p>
       </li>
       )
     })

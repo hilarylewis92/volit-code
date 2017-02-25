@@ -1,12 +1,13 @@
 .event-manager-container {
   float: right;
   overflow: auto;
-  padding: 35px;
+  padding: 75px 45px;
   width: calc(100vw - 250px);
 }
 
 .event-list-header {
   margin-bottom: 15px;
+  max-width: 720px;
   overflow: auto;
   width: 100%;
 
