@@ -1,7 +1,7 @@
 .event-manager-container {
   float: right;
   overflow: auto;
-  padding: 75px 45px;
+  padding: 85px 55px;
   width: calc(100vw - 250px);
 }
 
@@ -15,7 +15,7 @@
     float: left;
   }
 
-  .event-list-title {
+  .event-list-upcoming {
     padding-bottom: 5px;
   }
 
@@ -34,4 +34,12 @@
   max-width: 720px;
   padding: 25px;
   width: 100%;
+
+  .event-list-date {
+    font-size: 0.8em;
+  }
+
+  .event-list-description {
+    margin: 15px 0;
+  }
 }

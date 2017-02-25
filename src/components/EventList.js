@@ -19,10 +19,10 @@ export class EventList extends React.Component {
 
       return (
       <li className='event-list-item' key={i}>
-        <h3>{event.event_name}</h3>
-        <p>{date}</p>
-        <p>{event.event_description}</p>
-        <p>{event.event_address}</p>
+        <h3 className='event-list-title'>{event.event_name}</h3>
+        <p className='event-list-date'>{date}</p>
+        <p className='event-list-description'>{event.event_description}</p>
+        <address className='event-list-address'>{event.event_address}</address>
       </li>
       )
     })
@@ -33,7 +33,7 @@ export class EventList extends React.Component {
           className='event-list-header'>
           <div className='event-list-header-upcoming'>
             <h2
-            className='event-list-title'>
+            className='event-list-upcoming'>
             Upcoming Events
             </h2>
             <p>You have {events.length} upcoming events.</p>
