@@ -1,6 +1,6 @@
 import React, { PropTypes as T } from 'react'
-
 import SideBar from './SideBar'
+import moment from 'moment'
 
 export class Event extends React.Component {
   constructor(){
@@ -24,6 +24,10 @@ export class Event extends React.Component {
     this.props.createRole(role, eventID)
   }
 
+  formatDate(date) {
+    return moment(date).format('MMM Do YYYY')
+  }
+
   render(){
     const { events } = this.props
     const eventID = this.props.params.event_id
@@ -33,22 +37,28 @@ export class Event extends React.Component {
         return event
     })
 
+    const date = this.formatDate(singleEvent.event_date)
+
     return (
       <div>
         <SideBar />
         <div className="event-manager-container">
-          <div>
+          <h2>
             {singleEvent.event_name}
-          </div>
-          <div>
-            {singleEvent.event_date}
-          </div>
-          <div>
+          </h2>
+          <p>
+            {date}
+          </p>
+          <p>
             {singleEvent.event_description}
-          </div>
-          <div>
-            {singleEvent.event_address}
-          </div>
+          </p>
+          <address className='event-list-address'>
+            <a
+              target='blank'
+              href={`http://maps.google.com/?q=${singleEvent.event_address}`}>
+              {singleEvent.event_address}
+            </a>
+          </address>
 
           <input
             type='text'
