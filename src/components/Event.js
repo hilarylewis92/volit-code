@@ -29,8 +29,9 @@ export class Event extends React.Component {
   }
 
   render(){
-    const { events } = this.props
+    const { events, roles } = this.props
     const eventID = this.props.params.event_id
+
 
     const singleEvent = events.find(event => {
       if (event.id === parseInt(eventID))
@@ -38,6 +39,14 @@ export class Event extends React.Component {
     })
 
     const date = this.formatDate(singleEvent.event_date)
+
+    const role = roles.map((role, i) => {
+      return (
+        <li key={role.id}>
+          {role.role_name}
+        </li>
+      )
+    })
 
     return (
       <div>
@@ -73,6 +82,9 @@ export class Event extends React.Component {
             onClick={(e) => this.handleAddRoles(e)}>
             add roles
           </button>
+          <ul>
+            {role}
+          </ul>
         </div>
       </div>
     )
