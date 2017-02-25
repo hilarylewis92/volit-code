@@ -15,7 +15,8 @@ exports.seed = function(knex, Promise) {
           phone_number: '2295586767'
         }),
         knex('users').insert({
-          id: 3, name: "Alex",
+          id: 3,
+          name: "Alex",
           email: 'hehe@gmail.com',
           phone_number: '5840982254'
         })

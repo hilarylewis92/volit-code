@@ -3,7 +3,7 @@ exports.seed = function(knex, Promise) {
     .then(function () {
       return Promise.all([
         knex('events').insert({
-          id: 1,
+          id: 100,
           event_name: 'Ice Cream Social',
           event_date: '2017-08-15',
           event_description: 'Cool ice cream social to donate to a charity',
@@ -12,7 +12,7 @@ exports.seed = function(knex, Promise) {
           organization_id: 1
         }),
         knex('events').insert({
-          id: 2,
+          id: 200,
           event_name: 'Foam Party',
           event_date: '2017-07-23',
           event_description: 'A fun foam party to help kids in need',
