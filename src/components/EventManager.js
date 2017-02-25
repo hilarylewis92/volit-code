@@ -1,6 +1,6 @@
 import React, { PropTypes as T } from 'react'
 import AuthService from '../utils/AuthService'
-import SideBar from './SideBar'
+import SideBarContainer from '../containers/SideBarContainer'
 import EventList from './EventList'
 
 export class EventManager extends React.Component {
@@ -51,7 +51,7 @@ export class EventManager extends React.Component {
 
     return (
       <div>
-        <SideBar />
+        <SideBarContainer />
         <div>
           {data}
           <p>Logged in as: <span>{this.state.profile.name}</span></p>

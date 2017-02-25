@@ -4,6 +4,7 @@ import { Link } from 'react-router'
 export default class SideBar extends Component{
 
   render(){
+    const { events, profile } = this.props
     return (
       <div className='SideBar'>
         <header
@@ -19,7 +20,7 @@ export default class SideBar extends Component{
         </header>
         <h2
           className='organization-name'>
-          Organization Name Here
+          {profile.organization && profile.organization.org_name}
         </h2>
 
         <ul className='side-bar-links'>
