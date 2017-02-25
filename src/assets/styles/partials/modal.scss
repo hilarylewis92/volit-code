@@ -1,0 +1,20 @@
+.modal {
+  background: white;
+  border: $component-shadow;
+  @include border-radius(8px);
+  box-shadow: 0px 1px 4px rgba(44, 64, 90, .21);
+  color: $primary-medium-grey;
+  text-align: center;
+
+  .modal-title {
+    color: $primary-dark-grey;
+  }
+
+  .modal-label {
+    margin-left: 50px;
+  }
+
+  .modal-input {
+    width: 80%;
+  }
+}

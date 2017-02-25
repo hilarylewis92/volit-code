@@ -33,17 +33,19 @@ export default class AddEvent extends Component {
   render() {
     return (
       <Modal
-        className='modal-card'
+        className='modal'
         ref="modal">
         <form
           onSubmit={this.props.createEvent}>
-          <h4>Create Event</h4>
+          <h2 className='modal-title'>Create Event</h2>
 
           <label
+            className='modal-label'
             htmlFor='name'>
             Event name
           </label>
           <input
+            className='modal-input'
             type='text'
             id='name'
             onChange={(e) =>
@@ -54,10 +56,12 @@ export default class AddEvent extends Component {
             placeholder='name'/>
 
           <label
+            className='modal-label'
             htmlFor='description'>
             Event description
           </label>
           <textarea
+            className='modal-input modal-text-area'
             type='text'
             id='description'
             onChange={(e) =>
@@ -69,6 +73,7 @@ export default class AddEvent extends Component {
           </textarea>
 
           <label
+            className='modal-label'
             htmlFor='date'>
             Event date
           </label>
@@ -83,6 +88,7 @@ export default class AddEvent extends Component {
             placeholder='date'/>
 
           <label
+            className='modal-label'
             htmlFor='address'>
             Event address
           </label>

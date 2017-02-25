@@ -22,7 +22,12 @@ export class EventList extends React.Component {
         <h3 className='event-list-title'>{event.event_name}</h3>
         <p className='event-list-date'>{date}</p>
         <p className='event-list-description'>{event.event_description}</p>
-        <address className='event-list-address'>{event.event_address}</address>
+        <address className='event-list-address'>
+          <a
+            target='blank' href={`http://maps.google.com/?q=${event.event_address}`}>
+            {event.event_address}
+          </a>
+        </address>
       </li>
       )
     })
