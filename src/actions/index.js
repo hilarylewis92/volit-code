@@ -16,6 +16,13 @@ export function setEvents(res) {
   }
 }
 
+export function setRoles(res) {
+  return {
+    type: types.CREATE_ROLE,
+    res,
+  }
+}
+
 export function adminLogin(profile, org_name) {
   return (dispatch) => {
     const name = profile.name
@@ -66,6 +73,17 @@ export function getAllEvents(organization_id) {
     axios.get(`/api/events/${organization_id}`)
     .then(res => {
       dispatch(setEvents(res.data))
+    })
+  }
+}
+
+export function createRole(role, event_id) {
+  return (dispatch) => {
+    axios.post(`/api/roles/${event_id}`, ({
+      role_name: role
+    }))
+    .then(res => {
+      dispatch(setRoles(res.data))
     })
   }
 }

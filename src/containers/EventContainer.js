@@ -1,16 +1,17 @@
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { adminLogin, createEvent, getAllEvents } from '../actions/index'
+import { createRole } from '../actions/index'
 import Event from '../components/Event'
 
 function mapStateToProps(state, props) {
   return {
     events: state.events,
+    roles: state.roles,
   }
 }
-//
-// function mapDispatchToProps(dispatch) {
-//   return bindActionCreators({ getAllEvents }, dispatch)
-// }
 
-export default connect(mapStateToProps, null)(Event)
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ createRole }, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Event)
