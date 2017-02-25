@@ -119,7 +119,9 @@ app.post('/api/events/:organization_id', (req, res) => {
   })
 })
 
-app.get('/api/roles', (req, res) => {
+app.get('/api/roles/:event_id', (req, res) => {
+  console.log(req.params)
+
   db('roles').select()
   .then(roles => {
     res.status(200).json(roles)

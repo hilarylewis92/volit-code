@@ -1,4 +1,6 @@
 import React, { PropTypes as T } from 'react'
+import { browserHistory } from 'react-router'
+
 import AddEvent from './AddEvent'
 
 export class EventList extends React.Component {
@@ -11,15 +13,35 @@ export class EventList extends React.Component {
     this.refs.modal.showModal()
   }
 
+  routeToEvent(e) {
+    const { id } = e.target.closest('li')
+    // this.props.getSingleEvent(id)
+    browserHistory.push(`/event-manager/${id}`)
+    debugger
+  }
+
   render(){
     const {events, orgID} = this.props
+
     var event = events.map((event, i)=> {
       return (
-      <li className='event-list-item' key={i}>
-        <div>{event.event_name}</div>
-        <div>{event.event_date}</div>
-        <div>{event.event_description}</div>
-        <div>{event.event_address}</div>
+      <li
+        className='event-list-item'
+        key={i}
+        id={event.id}
+        onClick={(e) => this.routeToEvent(e)}>
+        <div>
+          {event.event_name}
+        </div>
+        <div>
+          {event.event_date}
+        </div>
+        <div>
+          {event.event_description}
+        </div>
+        <div>
+          {event.event_address}
+        </div>
       </li>
       )
     })
