@@ -50,7 +50,7 @@ export class EventList extends React.Component {
           </p>
           <p
             className='event-list-description'>
-            {event.event_description}
+            {description}
           </p>
           <address className='event-list-address'>
             <a
