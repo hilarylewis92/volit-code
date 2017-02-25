@@ -120,7 +120,7 @@ app.post('/api/events/:organization_id', (req, res) => {
 })
 
 app.get('/api/roles/:event_id', (req, res) => {
-  console.log(req.params)
+  console.log('req.params', req.params)
 
   db('roles').select()
   .then(roles => {

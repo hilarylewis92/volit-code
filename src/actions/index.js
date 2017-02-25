@@ -69,12 +69,3 @@ export function getAllEvents(organization_id) {
     })
   }
 }
-
-export function getSingleEvent(event_id) {
-  return (dispatch) => {
-    axios.get(`/api/roles/${event_id}`)
-    .then(res => {
-      dispatch(setEvents(res.data))
-    })
-  }
-}

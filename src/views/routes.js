@@ -30,7 +30,7 @@ export const makeMainRoutes = () => {
       <IndexRedirect to="/event-manager" />
       <Route path="/dashboard" component={Dashboard} onEnter={requireAuth} />
       <Route path="/event-manager" component={EventManagerContainer} onEnter={requireAuth} />
-      <Route path="/event-manager/:event_name" component={Event} onEnter={requireAuth} />
+      <Route path="/event-manager/:event_id" component={Event} onEnter={requireAuth} />
       <Route path="/role-manager" component={RoleManager} onEnter={requireAuth} />
       <Route path="/volunteers" component={Volunteers} onEnter={requireAuth} />
       <Route path="/organization" component={OrganizationLogin} />

@@ -15,9 +15,7 @@ export class EventList extends React.Component {
 
   routeToEvent(e) {
     const { id } = e.target.closest('li')
-    // this.props.getSingleEvent(id)
     browserHistory.push(`/event-manager/${id}`)
-    debugger
   }
 
   render(){

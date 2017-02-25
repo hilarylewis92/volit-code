@@ -1,12 +1,15 @@
 import React, { PropTypes as T } from 'react'
+import axios from 'axios'
 
 import SideBar from './SideBar'
 
 export class Event extends React.Component {
   componentDidMount() {
     debugger
-    // const { orgID } = this.props
-    // this.props.getAllEvents(orgID)
+    axios.get(`/api/roles/${id}`)
+    .then(res => {
+      console.log(res);
+    })
   }
 
   render(){
@@ -25,7 +28,7 @@ export class Event extends React.Component {
     return (
       <div className='event-container'>
         <SideBar />
-        In event 
+        In event
       </div>
     )
   }

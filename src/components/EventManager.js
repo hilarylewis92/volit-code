@@ -32,7 +32,7 @@ export class EventManager extends React.Component {
   }
 
   render(){
-    const { events, createEvent, profile, getAllEvents, getSingleEvent } = this.props
+    const { events, createEvent, profile, getAllEvents } = this.props
 
     let data
     if(profile.organization) {
@@ -42,7 +42,6 @@ export class EventManager extends React.Component {
           createEvent={createEvent}
           events={events}
           getAllEvents={getAllEvents}
-          getSingleEvent={getSingleEvent}
         />
       )
     } else {
