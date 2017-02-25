@@ -17,7 +17,7 @@ exports.up = function(knex, Promise) {
       table.increments('id').primary()
       table.string('event_name')
       table.date('event_date')
-      table.string('event_description')
+      table.text('event_description')
       table.string('event_address')
       table.integer('volunteer_count')
       table.integer('organization_id')
