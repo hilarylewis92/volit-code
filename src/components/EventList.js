@@ -27,6 +27,24 @@ export class EventList extends React.Component {
     return moment(date).format('MMM Do YYYY')
   }
 
+  upcomingEventCount(events) {
+    let count = 0
+    const todaysDate = Date.now()
+
+    events.forEach(function(event) {
+      let eventDate = new Date(event.event_date).getTime()
+
+      if (todaysDate <= eventDate) {
+        return count++
+      } else {
+        return count
+      }
+    })
+
+    console.log(count)
+    return count
+  }
+
   render() {
     const {events, orgID} = this.props
 
@@ -80,7 +98,7 @@ export class EventList extends React.Component {
             className='event-list-upcoming'>
             Upcoming Events
             </h2>
-            <p>You have {events.length} upcoming events.</p>
+            <p>You have {this.upcomingEventCount(events)} upcoming events.</p>
           </div>
           <button
             className='event-list-new-event-btn'
