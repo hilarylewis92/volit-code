@@ -120,14 +120,14 @@ app.post('/api/events/:organization_id', (req, res) => {
 })
 
 app.get('/api/roles/:event_id', (req, res) => {
-  console.log('req.params', req.params)
+  const {event_id} = req.params
 
-  db('roles').select()
+  db('roles').where('event_id', event_id).select()
   .then(roles => {
     res.status(200).json(roles)
   })
   .catch(error => {
-    console.error('ERROR: in GET request for organizations')
+    console.error('ERROR: in GET request for events')
   })
 })
 

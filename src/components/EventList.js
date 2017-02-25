@@ -1,7 +1,9 @@
 import React, { PropTypes as T } from 'react'
-import { browserHistory } from 'react-router'
+import { Link } from 'react-router'
+import axios from 'axios'
 
 import AddEvent from './AddEvent'
+import Event from './Event'
 
 export class EventList extends React.Component {
   componentDidMount() {
@@ -13,33 +15,29 @@ export class EventList extends React.Component {
     this.refs.modal.showModal()
   }
 
-  routeToEvent(e) {
-    const { id } = e.target.closest('li')
-    browserHistory.push(`/event-manager/${id}`)
-  }
-
   render(){
     const {events, orgID} = this.props
 
     var event = events.map((event, i)=> {
       return (
-      <li
-        className='event-list-item'
-        key={i}
-        id={event.id}
-        onClick={(e) => this.routeToEvent(e)}>
-        <div>
-          {event.event_name}
-        </div>
-        <div>
-          {event.event_date}
-        </div>
-        <div>
-          {event.event_description}
-        </div>
-        <div>
-          {event.event_address}
-        </div>
+        <li
+          className='event-list-item'
+          key={i}
+          id={event.id}>
+          <Link to={`event-manager/${event.id}`}>
+          <div>
+            {event.event_name}
+          </div>
+          <div>
+            {event.event_date}
+          </div>
+          <div>
+            {event.event_description}
+          </div>
+          <div>
+            {event.event_address}
+          </div>
+        </Link>
       </li>
       )
     })
