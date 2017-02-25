@@ -12,16 +12,29 @@ export class EventList extends React.Component {
     this.refs.modal.showModal()
   }
 
+  shortenDescription(description) {
+    if (description.length > 250) {
+      return description.substring(0, 250) + "..."
+    } else {
+      return description
+    }
+  }
+
+  formatDate(date) {
+    return moment(date).format('MMM Do YYYY')
+  }
+
   render(){
     const {events, orgID} = this.props
     var event = events.map((event, i)=> {
-      let date = moment(event.event_date).format('MMM Do YYYY')
+      let date = this.formatDate(event.event_date)
+      let description = this.shortenDescription(event.event_description)
 
       return (
       <li className='event-list-item' key={i}>
         <h3 className='event-list-title'>{event.event_name}</h3>
         <p className='event-list-date'>{date}</p>
-        <p className='event-list-description'>{event.event_description}</p>
+        <p className='event-list-description'>{description}</p>
         <address className='event-list-address'>
           <a
             target='blank' href={`http://maps.google.com/?q=${event.event_address}`}>
