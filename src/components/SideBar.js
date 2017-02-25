@@ -24,57 +24,57 @@ export default class SideBar extends Component{
         </h2>
 
         <ul className='side-bar-links'>
-          <li
-            className='side-bar-item'>
-            <Link
-              className='link'
-              to='/dashboard'>
-              <img
-                className='link-icon'
-                role="presentation"
-                src={require('../assets/icons/dashboard.png')}/>
-              <span>Dashboard</span>
-            </Link>
-          </li>
+          <Link
+            className='link'
+            to='/dashboard'>
+            <li
+              className='side-bar-item'>
+                <img
+                  className='link-icon'
+                  role="presentation"
+                  src={require('../assets/icons/dashboard.png')}/>
+                <span>Dashboard</span>
+            </li>
+          </Link>
 
-          <li
-            className='side-bar-item'>
-            <Link
-              className='link'
-              to='/event-manager'>
-              <img
-                className='link-icon'
-                role="presentation"
-                src={require('../assets/icons/event-manager.png')}/>
-              <span>Event Manager</span>
-            </Link>
-          </li>
+          <Link
+            className='link'
+            to='/event-manager'>
+            <li
+              className='side-bar-item'>
+                <img
+                  className='link-icon'
+                  role="presentation"
+                  src={require('../assets/icons/event-manager.png')}/>
+                <span>Event Manager</span>
+            </li>
+          </Link>
 
-          <li
-            className='side-bar-item'>
-            <Link
-              className='link'
-              to='/role-manager'>
-              <img
-                className='link-icon'
-                role="presentation"
-                src={require('../assets/icons/role-manager.png')}/>
-              <span>Role Manager</span>
-            </Link>
-          </li>
+          <Link
+            className='link'
+            to='/role-manager'>
+            <li
+              className='side-bar-item'>
+                <img
+                  className='link-icon'
+                  role="presentation"
+                  src={require('../assets/icons/role-manager.png')}/>
+                <span>Role Manager</span>
+            </li>
+          </Link>
 
-          <li
-            className='side-bar-item'>
-            <Link
-              className='link'
-              to='/volunteers'>
-              <img
-                className='link-icon'
-                role="presentation"
-                src={require('../assets/icons/volunteer.png')}/>
-              <span>Volunteers</span>
-            </Link>
-          </li>
+          <Link
+            className='link'
+            to='/volunteers'>
+            <li
+              className='side-bar-item'>
+                <img
+                  className='link-icon'
+                  role="presentation"
+                  src={require('../assets/icons/volunteer.png')}/>
+                <span>Volunteers</span>
+            </li>
+          </Link>
         </ul>
       </div>
     )

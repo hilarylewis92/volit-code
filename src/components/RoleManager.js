@@ -1,10 +1,10 @@
 import React from 'react'
-import SideBar from './SideBar'
+import SideBarContainer from '../containers/SideBarContainer'
 
 const RoleManager = () => {
   return (
     <div>
-      <SideBar />
+      <SideBarContainer />
       Role Manager
     </div>
   )

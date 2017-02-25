@@ -1,10 +1,10 @@
 import React from 'react'
-import SideBar from './SideBar'
+import SideBarContainer from '../containers/SideBarContainer'
 
 const Volunteers = () => {
   return (
     <div>
-      <SideBar />
+      <SideBarContainer />
       Volunteers
     </div>
   )
