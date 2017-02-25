@@ -56,6 +56,7 @@ export function createEvent(event, organization_id) {
       event_address: address,
     }))
     .then(res => {
+      console.log('response', res.data)
       dispatch(setEvents(res.data))
     })
   }
