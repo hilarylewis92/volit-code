@@ -1,0 +1,45 @@
+.event-manager-container {
+  float: right;
+  overflow: auto;
+  padding: 85px 55px;
+  width: calc(100vw - 250px);
+}
+
+.event-list-header {
+  margin-bottom: 15px;
+  max-width: 720px;
+  overflow: auto;
+  width: 100%;
+
+  .event-list-header-upcoming {
+    float: left;
+  }
+
+  .event-list-upcoming {
+    padding-bottom: 5px;
+  }
+
+  .event-list-new-event-btn {
+    float: right;
+    margin-top: 5px;
+    width: 115px;
+  }
+}
+
+.event-list-item {
+  background: white;
+  border: $component-shadow;
+  @include border-radius(4px);
+  margin: 15px 0;
+  max-width: 720px;
+  padding: 25px;
+  width: 100%;
+
+  .event-list-date {
+    font-size: 0.8em;
+  }
+
+  .event-list-description {
+    margin: 15px 0;
+  }
+}

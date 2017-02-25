@@ -50,9 +50,9 @@ export class EventManager extends React.Component {
     }
 
     return (
-      <div>
+      <div className="dashboard-container">
         <SideBar />
-        <div>
+        <div className="event-manager-container">
           {data}
           <p>Logged in as: <span>{this.state.profile.name}</span></p>
           <button
