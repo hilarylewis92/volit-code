@@ -88,3 +88,12 @@ export function createRole(role, event_id) {
     })
   }
 }
+
+export function getAllRoles(event_id) {
+  return (dispatch) => {
+    axios.get(`/api/roles/${event_id}`)
+    .then(res => {
+      dispatch(setRoles(res.data))
+    })
+  }
+}
