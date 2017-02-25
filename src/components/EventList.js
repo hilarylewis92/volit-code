@@ -1,6 +1,10 @@
 import React, { PropTypes as T } from 'react'
-import AddEvent from './AddEvent'
+import { Link } from 'react-router'
+import axios from 'axios'
 import moment from 'moment'
+
+import AddEvent from './AddEvent'
+import Event from './Event'
 
 export class EventList extends React.Component {
   componentDidMount() {
@@ -14,21 +18,38 @@ export class EventList extends React.Component {
 
   render(){
     const {events, orgID} = this.props
+
     var event = events.map((event, i)=> {
       let date = moment(event.event_date).format('MMM Do YYYY')
 
       return (
-      <li className='event-list-item' key={i}>
-        <h3 className='event-list-title'>{event.event_name}</h3>
-        <p className='event-list-date'>{date}</p>
-        <p className='event-list-description'>{event.event_description}</p>
-        <address className='event-list-address'>
-          <a
-            target='blank' href={`http://maps.google.com/?q=${event.event_address}`}>
-            {event.event_address}
-          </a>
-        </address>
-      </li>
+        <li
+          className='event-list-item'
+          key={i}
+          id={event.id}>
+          <h3
+            className='event-list-title'>
+            {event.event_name}
+          </h3>
+          <p
+            className='event-list-date'>
+            {date}
+          </p>
+          <p
+            className='event-list-description'>
+            {event.event_description}
+          </p>
+          <address className='event-list-address'>
+            <a
+              target='blank'
+              href={`http://maps.google.com/?q=${event.event_address}`}>
+              {event.event_address}
+            </a>
+          </address>
+          <Link to={`event-manager/${event.id}`}>
+            <button>view event</button>
+          </Link>
+        </li>
       )
     })
 

@@ -3,14 +3,9 @@ exports.seed = function(knex, Promise) {
     .then(function () {
       return Promise.all([
         knex('organizations').insert({
-          id: 1,
+          id: 100,
           name: "Richard Spencer Punching Fund",
-          admin_id: 1
-        }),
-        knex('organizations').insert({
-          id: 2,
-          name: "Tom Cruise Fundraiser",
-          admin_id: 2
+          admin_id: 10
         })
       ])
     })
