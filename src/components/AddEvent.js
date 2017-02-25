@@ -72,35 +72,39 @@ export default class AddEvent extends Component {
             placeholder='description'>
           </textarea>
 
-          <label
-            className='modal-label'
-            htmlFor='date'>
-            Event date
-          </label>
-          <input
-            type='date'
-            id='date'
-            onChange={(e) =>
-              this.setState({
-                date: e.target.value
-              })
-            }
-            placeholder='date'/>
+          <div className='modal-split-input modal-date'>
+            <label
+              className='modal-label'
+              htmlFor='date'>
+              Event date
+            </label>
+            <input
+              type='date'
+              id='date'
+              onChange={(e) =>
+                this.setState({
+                  date: e.target.value
+                })
+              }
+              placeholder='date'/>
+          </div>
 
-          <label
-            className='modal-label'
-            htmlFor='address'>
-            Event address
-          </label>
-          <input
-            type='text'
-            id='address'
-            onChange={(e) =>
-              this.setState({
-                address: e.target.value
-              })
-            }
-            placeholder='address'/>
+          <div className='modal-split-input modal-address'>
+            <label
+              className='modal-label'
+              htmlFor='address'>
+              Event address
+            </label>
+            <input
+              type='text'
+              id='address'
+              onChange={(e) =>
+                this.setState({
+                  address: e.target.value
+                })
+              }
+              placeholder='address'/>
+            </div>
 
           <button
             onClick={(e) => this.handleEventSubmit(e)}>
