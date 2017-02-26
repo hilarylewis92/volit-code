@@ -86,7 +86,7 @@ export class Event extends React.Component {
             placeholder='add role'/>
           <button
             onClick={(e) => this.handleAddRoles(e)}>
-            add roles
+            add role
           </button>
           <ul>
             {role}
