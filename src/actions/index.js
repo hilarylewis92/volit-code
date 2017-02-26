@@ -33,20 +33,30 @@ export function adminLogin(profile, org_name) {
 }
 
 function checkDbForUser(name, email, org_name, dispatch) {
-  axios.get(`/api/user/${email}`)
+  axios.get(`/api/user/${email}/${org_name}`)
   .then(res => {
-    dispatch(setProfile(res.data))
-  })
-  .catch(err => {
-    axios.post('/api/users', ({
-      name,
-      email,
-      organization_name: org_name
-    }))
-    .then(res => {
+    if(res.data.user.email && res.data.organization.length) {
       dispatch(setProfile(res.data))
-    })
+    } else {
+        if(!res.data.user.email) {
+          axios.post('/api/users', ({
+            name,
+            email,
+            organization_name: org_name
+          }))
+          .then(res => {
+            dispatch(setProfile(res.data))
+          })
+        }
+        if(!res.data.organization.name) {
+          axios.post(`/api/organizations/${res.data.user.id}`, { org_name, user: res.data.user})
+          .then(res => {
+            dispatch(setProfile(res.data))
+          })
+        }
+      }
   })
+  .catch(err => console.error('ERROR...', err))
 }
 
 export function createEvent(event, organization_id) {

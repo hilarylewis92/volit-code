@@ -29,7 +29,7 @@ export class OrganizationLogin extends React.Component {
       }
     })
     .catch((err) => {
-      console.error(err)
+      console.error('ERROR: in checkOrganizationName function ', err)
     })
   }
 
