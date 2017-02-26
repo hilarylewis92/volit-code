@@ -1,4 +1,5 @@
 import * as types from './ActionTypes'
+import { browserHistory } from 'react-router'
 import axios from 'axios'
 
 export function setProfile(res) {
@@ -39,6 +40,7 @@ function checkDbForUser(name, email, org_name, dispatch) {
       dispatch(setProfile(res.data))
     } else {
         if(!res.data.user.email) {
+          console.log('in the user thingy');
           axios.post('/api/users', ({
             name,
             email,
@@ -49,14 +51,22 @@ function checkDbForUser(name, email, org_name, dispatch) {
           })
         }
         if(!res.data.organization.name) {
+          console.log('in the organization thingy');
           axios.post(`/api/organizations/${res.data.user.id}`, { org_name, user: res.data.user})
           .then(res => {
             dispatch(setProfile(res.data))
           })
+          .catch(err => {
+            alert('ERROR in signin process. Wrong email or organization name')
+            browserHistory.push('/organization')
+            localStorage.clear()
+          })
         }
       }
   })
-  .catch(err => console.error('ERROR...', err))
+  .catch(err => {
+    console.error('ERROR...', err)
+  })
 }
 
 export function createEvent(event, organization_id) {

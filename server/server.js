@@ -62,7 +62,10 @@ app.post('/api/organizations/:admin_id', (req, res) => {
       res.status(201).json({ user, organization })
     })
   })
-  .catch(err => console.error('ERROR IN /api/organizations/:admin_id', err))
+  .catch(err => {
+    console.error('ERROR IN /api/organizations/:admin_id', err)
+    res.sendStatus(404)
+  })
 })
 
 app.get('/api/user/:email/:org_name', (req, res) => {
@@ -74,9 +77,9 @@ app.get('/api/user/:email/:org_name', (req, res) => {
         res.status(200).json({ user: user[0], organization })
       })
     })
-  .catch(err => {
-    res.sendStatus(404)
-  })
+    .catch(err => {
+      res.sendStatus(404)
+    })
 })
 
 app.get('/api/users', (req, res) => {
