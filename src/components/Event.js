@@ -16,6 +16,7 @@ export class Event extends React.Component {
     this.setState ({
       eventID
     })
+    this.props.getAllRoles(eventID)
   }
 
   handleAddRoles(e) {
@@ -32,7 +33,6 @@ export class Event extends React.Component {
     const { events, roles } = this.props
     const eventID = this.props.params.event_id
 
-
     const singleEvent = events.find(event => {
       if (event.id === parseInt(eventID))
         return event
@@ -40,9 +40,15 @@ export class Event extends React.Component {
 
     const date = this.formatDate(singleEvent.event_date)
 
-    const role = roles.map((role, i) => {
+    const eventRoles = roles.filter(role => {
+      if(role.event_id === parseInt(eventID))
+      return role
+    })
+
+    const role = eventRoles.map((role, i) => {
       return (
-        <li key={role.id}>
+        <li
+          key={i}>
           {role.role_name}
         </li>
       )
