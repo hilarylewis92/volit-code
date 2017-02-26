@@ -1,5 +1,5 @@
 import React, { PropTypes as T } from 'react'
-import SideBar from './SideBar'
+import SideBarContainer from '../containers/SideBarContainer'
 import moment from 'moment'
 
 export class Event extends React.Component {
@@ -29,7 +29,7 @@ export class Event extends React.Component {
   }
 
   render(){
-    const { events } = this.props
+    const { events, auth } = this.props
     const eventID = this.props.params.event_id
 
     const singleEvent = events.find(event => {
@@ -41,7 +41,7 @@ export class Event extends React.Component {
 
     return (
       <div>
-        <SideBar />
+        <SideBarContainer auth={auth} />
         <div className="event-manager-container">
           <h2>
             {singleEvent.event_name}
