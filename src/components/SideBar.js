@@ -35,7 +35,6 @@ class SideBar extends React.Component {
                 <span>Dashboard</span>
             </li>
           </Link>
-
           <Link
             className='link'
             to='/event-manager'>
@@ -48,7 +47,6 @@ class SideBar extends React.Component {
                 <span>Event Manager</span>
             </li>
           </Link>
-
           <Link
             className='link'
             to='/role-manager'>
@@ -61,7 +59,6 @@ class SideBar extends React.Component {
                 <span>Role Manager</span>
             </li>
           </Link>
-
           <Link
             className='link'
             to='/volunteers'>
@@ -75,13 +72,16 @@ class SideBar extends React.Component {
             </li>
           </Link>
         </ul>
-        <p>Logged in as: <span>{profile.user && profile.user.name}</span></p>
-        <Link to="/organization">
+        <section className='profile-container'>
+          <Link to='/organization'>
           <button
-            onClick={auth.logout.bind(this)}>
+            onClick={auth.logout.bind(this)}
+            className='logout-btn'>
             Logout
           </button>
         </Link>
+        <span>{profile.user && profile.user.name}</span>
+        </section>
       </div>
     )
   }

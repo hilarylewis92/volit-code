@@ -22,7 +22,7 @@
 }
 
 .side-bar-item {
-  height: 60px;
+  height: 52px;
 }
 
 .side-bar-icon {
@@ -60,4 +60,19 @@
 .side-bar-item:hover {
   cursor: pointer;
   background: rgba(255, 255, 255, 0.2);
+}
+
+.profile-container {
+  border-top: 1px solid $primary-medium-grey;
+  position: absolute;
+  bottom: 50px;
+  width: 100%;
+}
+
+.logout-btn {
+  height: 50px;
+  border-radius: 10px;
+  margin-top: 25px;
+  margin-left: 25px;
+  margin-right: 10px;
 }
