@@ -1,8 +1,7 @@
-import React, { Component } from 'react'
-import { Link, BrowserHistory } from 'react-router'
-import AuthService from '../utils/AuthService'
+import React, { PropTypes } from 'react'
+import { Link } from 'react-router'
 
-export default class SideBar extends Component {
+class SideBar extends React.Component {
   render(){
     const { events, profile, auth } = this.props
     return (
@@ -87,3 +86,11 @@ export default class SideBar extends Component {
     )
   }
 }
+
+SideBar.propTypes = {
+  auth: PropTypes.object.isRequired,
+  profile: PropTypes.object.isRequired,
+  events: PropTypes.array
+}
+
+export default SideBar

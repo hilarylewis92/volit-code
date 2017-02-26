@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { PropTypes } from 'react'
 import SideBarContainer from '../containers/SideBarContainer'
 
 class Dashboard extends React.Component {
@@ -11,6 +11,10 @@ class Dashboard extends React.Component {
       </div>
     )
   }
+}
+
+Dashboard.propTypes = {
+  auth: PropTypes.object.isRequired
 }
 
 export default Dashboard

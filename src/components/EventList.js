@@ -1,4 +1,4 @@
-import React, { PropTypes as T } from 'react'
+import React, { PropTypes } from 'react'
 import AddEvent from './AddEvent'
 import moment from 'moment'
 
@@ -13,7 +13,7 @@ export class EventList extends React.Component {
   }
 
   render(){
-    const {events, orgID} = this.props
+    const { events, orgID } = this.props
     var event = events.map((event, i)=> {
       let date = moment(event.event_date).format('MMM Do YYYY')
 
@@ -62,6 +62,13 @@ export class EventList extends React.Component {
       </div>
     )
   }
+}
+
+EventList.propTypes = {
+  orgID: PropTypes.number,
+  getAllEvents: PropTypes.func.isRequired,
+  events: PropTypes.array.isRequired,
+  createEvent: PropTypes.func.isRequired
 }
 
 export default EventList
