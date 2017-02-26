@@ -103,7 +103,7 @@ app.get('/api/events/:organization_id', (req, res) => {
 })
 
 app.post('/api/events/:organization_id', (req, res) => {
-  const {organization_id} = req.params
+  const { organization_id } = req.params
   const { event_name, event_date, event_description, event_address } = req.body
   const event = { organization_id, event_name, event_description, event_address , event_date}
 
@@ -112,6 +112,35 @@ app.post('/api/events/:organization_id', (req, res) => {
     db('events').where('organization_id', organization_id).select()
     .then(events => {
       res.status(200).json(events)
+    })
+    .catch(error => {
+      console.error('ERROR: in POST for events')
+    })
+  })
+})
+
+app.get('/api/roles/:event_id', (req, res) => {
+  const { event_id } = req.params
+
+  db('roles').where('event_id', event_id).select()
+  .then(roles => {
+    res.status(200).json(roles)
+  })
+  .catch(error => {
+    console.error('ERROR: in GET request for events')
+  })
+})
+
+app.post('/api/roles/:event_id', (req, res) => {
+  const { event_id } = req.params
+  const { role_name } = req.body
+  const role = { role_name, event_id }
+
+  db('roles').insert(role)
+  .then(() => {
+    db('roles').where('event_id', event_id).select()
+    .then(roles => {
+      res.status(200).json(roles)
     })
     .catch(error => {
       console.error('ERROR: in POST for events')

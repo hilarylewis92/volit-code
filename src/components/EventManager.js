@@ -1,5 +1,6 @@
 import React, { PropTypes as T } from 'react'
 import AuthService from '../utils/AuthService'
+
 import SideBar from './SideBar'
 import EventList from './EventList'
 
@@ -41,7 +42,7 @@ export class EventManager extends React.Component {
           createEvent={createEvent}
           events={events}
           getAllEvents={getAllEvents}
-          />
+        />
       )
     } else {
       data = (
@@ -54,7 +55,9 @@ export class EventManager extends React.Component {
         <SideBar />
         <div className="event-manager-container">
           {data}
-          <p>Logged in as: <span>{this.state.profile.name}</span></p>
+          <p>
+            Logged in as: <span>{this.state.profile.name}</span>
+          </p>
           <button
             onClick={this.logout.bind(this)}>
             Logout

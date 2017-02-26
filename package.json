@@ -45,6 +45,7 @@
     "mocha": "^3.0.2",
     "moment": "^2.17.1",
     "node-sass": "^3.10.1",
+    "nodemon": "^1.11.0",
     "object-assign": "4.1.0",
     "opn": "4.0.2",
     "path-exists": "3.0.0",
@@ -84,7 +85,7 @@
     "redux-thunk": "^2.2.0"
   },
   "scripts": {
-    "start": "concurrently \"node scripts/start.js\" \"npm run server\"",
+    "start": "concurrently \"nodemon scripts/start.js\" \"npm run server\"",
     "server": "node server/server.js",
     "build": "node scripts/build.js",
     "test": "jest --watch --env=jsdom",
