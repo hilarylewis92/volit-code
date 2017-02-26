@@ -1,9 +1,7 @@
 import React, { PropTypes } from 'react'
-import { Link } from 'react-router'
-import moment from 'moment'
-
-import AddEvent from './AddEvent'
-import Event from './Event'
+import { Link }             from 'react-router'
+import moment               from 'moment'
+import AddEvent             from './AddEvent'
 
 export class EventList extends React.Component {
   componentDidMount() {
@@ -46,8 +44,7 @@ export class EventList extends React.Component {
 
   render() {
     const {events, orgID} = this.props
-
-    var event = events.map((event, i)=> {
+    let event = events.map((event, i)=> {
       const todaysDate = Date.now()
       let eventDate = new Date(event.event_date).getTime()
       let date = this.formatDate(event.event_date)
