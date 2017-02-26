@@ -24,7 +24,7 @@ class AddEvent extends React.Component {
     e.preventDefault()
     const { name, description, date, address } = this.state
     const { orgID } = this.props
-    var newEvent = { name, description, date, address }
+    const newEvent = { name, description, date, address }
     this.props.createEvent(newEvent, orgID)
     this.hideModal()
   }

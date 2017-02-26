@@ -63,7 +63,6 @@ export function createEvent(event, organization_id) {
       event_address: address,
     }))
     .then(res => {
-      console.log('response', res.data)
       dispatch(setEvents(res.data))
     })
   }
@@ -83,6 +82,15 @@ export function createRole(role, event_id) {
     axios.post(`/api/roles/${event_id}`, ({
       role_name: role
     }))
+    .then(res => {
+      dispatch(setRoles(res.data))
+    })
+  }
+}
+
+export function getAllRoles(event_id) {
+  return (dispatch) => {
+    axios.get(`/api/roles/${event_id}`)
     .then(res => {
       dispatch(setRoles(res.data))
     })
