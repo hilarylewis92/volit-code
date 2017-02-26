@@ -1,14 +1,20 @@
-import React from 'react'
-import SideBar from './SideBar'
+import React, { PropTypes } from 'react'
+import SideBarContainer from '../containers/SideBarContainer'
 
-const Dashboard = () => {
-
+class Dashboard extends React.Component {
+  render() {
+    const { auth } = this.props
     return (
       <div>
-        <SideBar />
+        <SideBarContainer auth={auth} />
         Dashboard
       </div>
     )
   }
+}
+
+Dashboard.propTypes = {
+  auth: PropTypes.object.isRequired
+}
 
 export default Dashboard

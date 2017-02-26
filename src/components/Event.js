@@ -1,5 +1,5 @@
-import React, { PropTypes as T } from 'react'
-import SideBar from './SideBar'
+import React, { PropTypes } from 'react'
+import SideBarContainer from '../containers/SideBarContainer'
 import moment from 'moment'
 
 export class Event extends React.Component {
@@ -30,18 +30,19 @@ export class Event extends React.Component {
   }
 
   render(){
-    const { events, roles } = this.props
+    const { events, roles, auth } = this.props
+
     const eventID = this.props.params.event_id
 
     const singleEvent = events.find(event => {
-      if (event.id === parseInt(eventID))
+      if (event.id === parseInt(eventID, 10))
         return event
     })
 
     const date = this.formatDate(singleEvent.event_date)
 
     const eventRoles = roles.filter(role => {
-      if(role.event_id === parseInt(eventID))
+      if(role.event_id === parseInt(eventID, 10))
       return role
     })
 
@@ -56,7 +57,7 @@ export class Event extends React.Component {
 
     return (
       <div>
-        <SideBar />
+        <SideBarContainer auth={auth} />
         <div className="event-manager-container">
           <h2>
             {singleEvent.event_name}
@@ -95,6 +96,14 @@ export class Event extends React.Component {
       </div>
     )
   }
+}
+
+Event.propTypes = {
+  auth: PropTypes.object.isRequired,
+  events: PropTypes.array.isRequired,
+  roles: PropTypes.array.isRequired,
+  createRole: PropTypes.func.isRequired,
+  getAllRoles: PropTypes.func.isRequired
 }
 
 export default Event

@@ -1,13 +1,20 @@
-import React from 'react'
-import SideBar from './SideBar'
+import React, { PropTypes } from 'react'
+import SideBarContainer from '../containers/SideBarContainer'
 
-const RoleManager = () => {
-  return (
-    <div>
-      <SideBar />
-      Role Manager
-    </div>
-  )
+class RoleManager extends React.Component {
+  render() {
+    const { auth } = this.props
+    return (
+      <div>
+        <SideBarContainer auth={auth} />
+        Role Manager
+      </div>
+    )
+  }
+}
+
+RoleManager.propTypes = {
+  auth: PropTypes.object.isRequired
 }
 
 export default RoleManager

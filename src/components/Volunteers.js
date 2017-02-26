@@ -1,13 +1,20 @@
-import React from 'react'
-import SideBar from './SideBar'
+import React, { PropTypes } from 'react'
+import SideBarContainer from '../containers/SideBarContainer'
 
-const Volunteers = () => {
-  return (
-    <div>
-      <SideBar />
-      Volunteers
-    </div>
-  )
+class Volunteers extends React.Component {
+  render() {
+    const { auth } = this.props
+    return (
+      <div>
+        <SideBarContainer auth={auth} />
+        Volunteers
+      </div>
+    )
+  }
+}
+
+Volunteers.propTypes = {
+  auth: PropTypes.object.isRequired
 }
 
 export default Volunteers

@@ -1,8 +1,7 @@
-import React, { Component } from 'react'
+import React, { PropTypes } from 'react'
 import Modal from 'boron/DropModal'
-import axios from 'axios'
 
-export default class AddEvent extends Component {
+class AddEvent extends React.Component {
   constructor(){
     super()
     this.state = {
@@ -115,3 +114,10 @@ export default class AddEvent extends Component {
     )
   }
 }
+
+AddEvent.propTypes = {
+  createEvent: PropTypes.func.isRequired,
+  orgID: PropTypes.number.isRequired
+}
+
+export default AddEvent

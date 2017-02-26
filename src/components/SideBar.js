@@ -1,9 +1,9 @@
-import React, { Component } from 'react'
+import React, { PropTypes } from 'react'
 import { Link } from 'react-router'
 
-export default class SideBar extends Component{
-
+class SideBar extends React.Component {
   render(){
+    const { events, profile, auth } = this.props
     return (
       <div className='side-bar'>
         <header
@@ -19,63 +19,78 @@ export default class SideBar extends Component{
         </header>
         <h2
           className='organization-name'>
-          Organization Name Here
+          {profile.organization && profile.organization.org_name}
         </h2>
 
         <ul className='side-bar-links'>
-          <li
-            className='side-bar-item'>
-            <Link
-              className='link'
-              to='/dashboard'>
-              <img
-                className='link-icon'
-                role="presentation"
-                src={require('../assets/icons/dashboard.png')}/>
-              <span>Dashboard</span>
-            </Link>
-          </li>
-
-          <li
-            className='side-bar-item'>
-            <Link
-              className='link'
-              to='/event-manager'>
-              <img
-                className='link-icon'
-                role="presentation"
-                src={require('../assets/icons/event-manager.png')}/>
-              <span>Event Manager</span>
-            </Link>
-          </li>
-
-          <li
-            className='side-bar-item'>
-            <Link
-              className='link'
-              to='/role-manager'>
-              <img
-                className='link-icon'
-                role="presentation"
-                src={require('../assets/icons/role-manager.png')}/>
-              <span>Role Manager</span>
-            </Link>
-          </li>
-
-          <li
-            className='side-bar-item'>
-            <Link
-              className='link'
-              to='/volunteers'>
-              <img
-                className='link-icon'
-                role="presentation"
-                src={require('../assets/icons/volunteer.png')}/>
-              <span>Volunteers</span>
-            </Link>
-          </li>
+          <Link
+            className='link'
+            to='/dashboard'>
+            <li
+              className='side-bar-item'>
+                <img
+                  className='link-icon'
+                  role="presentation"
+                  src={require('../assets/icons/dashboard.png')}/>
+                <span>Dashboard</span>
+            </li>
+          </Link>
+          <Link
+            className='link'
+            to='/event-manager'>
+            <li
+              className='side-bar-item'>
+                <img
+                  className='link-icon'
+                  role="presentation"
+                  src={require('../assets/icons/event-manager.png')}/>
+                <span>Event Manager</span>
+            </li>
+          </Link>
+          <Link
+            className='link'
+            to='/role-manager'>
+            <li
+              className='side-bar-item'>
+                <img
+                  className='link-icon'
+                  role="presentation"
+                  src={require('../assets/icons/role-manager.png')}/>
+                <span>Role Manager</span>
+            </li>
+          </Link>
+          <Link
+            className='link'
+            to='/volunteers'>
+            <li
+              className='side-bar-item'>
+                <img
+                  className='link-icon'
+                  role="presentation"
+                  src={require('../assets/icons/volunteer.png')}/>
+                <span>Volunteers</span>
+            </li>
+          </Link>
         </ul>
+        <section className='profile-container'>
+          <Link to='/organization'>
+          <button
+            onClick={auth.logout.bind(this)}
+            className='logout-btn'>
+            Logout
+          </button>
+        </Link>
+        <span>{profile.user && profile.user.name}</span>
+        </section>
       </div>
     )
   }
 }
+
+SideBar.propTypes = {
+  auth: PropTypes.object.isRequired,
+  profile: PropTypes.object.isRequired,
+  events: PropTypes.array
+}
+
+export default SideBar

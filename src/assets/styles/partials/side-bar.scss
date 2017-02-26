@@ -14,9 +14,15 @@
 }
 
 .organization-name {
-  text-align: center;
-  padding: 10px;
+  color: $white;
+  font-weight: 200;
   line-height: 150%;
+  margin: 16px 0;
+  text-align: center;
+}
+
+.side-bar-item {
+  height: 52px;
 }
 
 .side-bar-icon {
@@ -32,27 +38,43 @@
   text-align: left;
 }
 
+.link-icon {
+  margin-left: 30px;
+  margin-right: 10px;
+}
+
 .link {
   text-decoration: none;
   color: white;
   margin: 40px 10px;
+
   span {
-    position: absolute;
-    margin: 10px;
     font-size: 0.8em;
     font-weight: 200;
+    margin-top: 10px;
+    position: relative;
+    top: -20px;
   }
-}
-
-.link-icon {
-  margin: 0 5px;
-}
-
-.side-bar-item {
-  padding: 10px 0px;
 }
 
 .side-bar-item:hover {
   cursor: pointer;
   background: rgba(255, 255, 255, 0.2);
+}
+
+.profile-container {
+  border-top: 1px solid $primary-medium-grey;
+  position: absolute;
+  bottom: 50px;
+  width: 100%;
+}
+
+.logout-btn {
+  height: 50px;
+  border-radius: 10px;
+  margin-top: 25px;
+  margin-left: 20px;
+  margin-right: 10px;
+  padding: 0px;
+  width: 60px;
 }

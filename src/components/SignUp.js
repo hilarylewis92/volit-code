@@ -1,14 +1,9 @@
-import React, { PropTypes as T } from 'react'
+import React, { PropTypes } from 'react'
 import AuthService from '../utils/AuthService'
 
-export class SignUp extends React.Component {
+class SignUp extends React.Component {
   static contextTypes = {
-    router: T.object
-  }
-
-  static propTypes = {
-    location: T.object,
-    auth: T.instanceOf(AuthService)
+    router: PropTypes.object
   }
 
   componentDidMount() {
@@ -55,6 +50,10 @@ export class SignUp extends React.Component {
       </div>
     )
   }
+}
+
+SignUp.propTypes = {
+  auth: PropTypes.instanceOf(AuthService),
 }
 
 export default SignUp

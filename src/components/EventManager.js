@@ -1,23 +1,11 @@
-import React, { PropTypes as T } from 'react'
+import React, { PropTypes } from 'react'
 import AuthService from '../utils/AuthService'
-
-import SideBar from './SideBar'
 import EventList from './EventList'
+import SideBarContainer from '../containers/SideBarContainer'
 
-export class EventManager extends React.Component {
+class EventManager extends React.Component {
   static contextTypes = {
-    router: T.object
-  }
-
-  static propTypes = {
-    auth: T.instanceOf(AuthService)
-  }
-
-  constructor(props, context, events) {
-    super(props, context)
-    this.state = {
-      profile: props.auth.getProfile()
-    }
+    router: PropTypes.object
   }
 
   componentDidMount() {
@@ -26,13 +14,8 @@ export class EventManager extends React.Component {
     this.props.adminLogin(profile, org_name)
   }
 
-  logout(){
-    this.props.auth.logout()
-    this.context.router.push('/organization')
-  }
-
   render(){
-    const { events, createEvent, profile, getAllEvents } = this.props
+    const { events, createEvent, profile, getAllEvents, auth } = this.props
 
     let data
     if(profile.organization) {
@@ -52,20 +35,22 @@ export class EventManager extends React.Component {
 
     return (
       <div className="dashboard-container">
-        <SideBar />
+        <SideBarContainer auth={auth} />
         <div className="event-manager-container">
           {data}
-          <p>
-            Logged in as: <span>{this.state.profile.name}</span>
-          </p>
-          <button
-            onClick={this.logout.bind(this)}>
-            Logout
-          </button>
         </div>
       </div>
     )
   }
+}
+
+EventManager.propTypes = {
+  events: PropTypes.array,
+  createEvent: PropTypes.func.isRequired,
+  profile: PropTypes.object.isRequired,
+  getAllEvents: PropTypes.func.isRequired,
+  adminLogin: PropTypes.func.isRequired,
+  auth: PropTypes.instanceOf(AuthService)
 }
 
 export default EventManager

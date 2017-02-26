@@ -7,6 +7,7 @@ function mapStateToProps(state, props) {
   return {
     events: state.events,
     roles: state.roles,
+    auth: props.auth
   }
 }
 
