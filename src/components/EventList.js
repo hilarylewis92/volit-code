@@ -1,6 +1,9 @@
 import React, { PropTypes } from 'react'
-import AddEvent from './AddEvent'
+import { Link } from 'react-router'
 import moment from 'moment'
+
+import AddEvent from './AddEvent'
+import Event from './Event'
 
 export class EventList extends React.Component {
   componentDidMount() {
@@ -12,24 +15,77 @@ export class EventList extends React.Component {
     this.refs.modal.showModal()
   }
 
-  render(){
-    const { events, orgID } = this.props
-    var event = events.map((event, i)=> {
-      let date = moment(event.event_date).format('MMM Do YYYY')
+  shortenDescription(description) {
+    if (description.length > 250) {
+      return description.substring(0, 250) + "..."
+    } else {
+      return description
+    }
+  }
 
-      return (
-      <li className='event-list-item' key={i}>
-        <h3 className='event-list-title'>{event.event_name}</h3>
-        <p className='event-list-date'>{date}</p>
-        <p className='event-list-description'>{event.event_description}</p>
-        <address className='event-list-address'>
-          <a
-            target='blank' href={`http://maps.google.com/?q=${event.event_address}`}>
-            {event.event_address}
-          </a>
-        </address>
-      </li>
-      )
+  formatDate(date) {
+    return moment(date).format('MMM Do YYYY')
+  }
+
+  upcomingEventCount(events) {
+    let count = 0
+    const todaysDate = Date.now()
+
+    events.forEach(function(event) {
+      let eventDate = new Date(event.event_date).getTime()
+
+      if (todaysDate <= eventDate) {
+        return count++
+      } else {
+        return count
+      }
+    })
+
+    return count
+  }
+
+  render() {
+    const {events, orgID} = this.props
+
+    var event = events.map((event, i)=> {
+      const todaysDate = Date.now()
+      let eventDate = new Date(event.event_date).getTime()
+      let date = this.formatDate(event.event_date)
+      let description = this.shortenDescription(event.event_description)
+
+      if (todaysDate <= eventDate) {
+        return (
+          <li
+            className='event-list-item'
+            key={i}
+            id={event.id}>
+            <h3
+              className='event-list-title'>
+              {event.event_name}
+            </h3>
+            <p
+              className='event-list-date'>
+              {date}
+            </p>
+            <p
+              className='event-list-description'>
+              {description}
+            </p>
+            <address className='event-list-address'>
+              <a
+                target='blank'
+                href={`http://maps.google.com/?q=${event.event_address}`}>
+                {event.event_address}
+              </a>
+            </address>
+            <Link to={`event-manager/${event.id}`}>
+              <button>view event</button>
+            </Link>
+          </li>
+        )
+      } else {
+        return null
+      }
     })
 
     return (
@@ -41,7 +97,7 @@ export class EventList extends React.Component {
             className='event-list-upcoming'>
             Upcoming Events
             </h2>
-            <p>You have {events.length} upcoming events.</p>
+            <p>You have {this.upcomingEventCount(events)} upcoming events.</p>
           </div>
           <button
             className='event-list-new-event-btn'

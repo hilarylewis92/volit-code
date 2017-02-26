@@ -23,7 +23,7 @@ export class OrganizationLogin extends React.Component {
     axios.get(`/api/checkorg/${name}`)
     .then((res) => {
       if(res.data.length) {
-        browserHistory.push(`/login/${name}`);
+        browserHistory.push(`/login/${name}`)
       } else {
         browserHistory.push(`/signup/${name}`)
       }
@@ -57,18 +57,19 @@ export class OrganizationLogin extends React.Component {
               Enter your organization name to get started.
               </p>
               <label
-              htmlFor='organization'>
-              Organization name
+                htmlFor='organization'>
+                Organization name
               </label>
               <input
-              type='text'
-              id='organization'
-              placeholder='Habitat for Humanity'
-              onChange={(e) => this.updateOrganizationName(e)}/>
+                type='text'
+                id='organization'
+                placeholder='Habitat for Humanity'
+                onChange={(e) => this.updateOrganizationName(e)}
+              />
               <button
-              type='submit'
-              onClick={(e) => this.checkOrganizationName(e)}>
-              Continue
+                type='submit'
+                onClick={(e) => this.checkOrganizationName(e)}>
+                Continue
               </button>
             </section>
           </form>

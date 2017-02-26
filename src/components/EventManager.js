@@ -25,7 +25,7 @@ class EventManager extends React.Component {
           createEvent={createEvent}
           events={events}
           getAllEvents={getAllEvents}
-          />
+        />
       )
     } else {
       data = (

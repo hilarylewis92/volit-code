@@ -7,10 +7,12 @@ import EventManagerContainer from '../containers/EventManagerContainer'
 import DashboardContainer from '../containers/DashboardContainer'
 import RoleManagerContainer from '../containers/RoleManagerContainer'
 import VolunteersContainer from '../containers/VolunteersContainer'
+import EventContainer from '../containers/EventContainer'
 
 import OrganizationLogin from '../components/OrganizationLogin'
 import SignUp from '../components/SignUp'
 import Login from '../components/Login'
+
 
 import AuthService from '../utils/AuthService'
 
@@ -28,6 +30,7 @@ export const makeMainRoutes = () => {
       <IndexRedirect to="/event-manager" />
       <Route path="/dashboard" component={DashboardContainer} onEnter={requireAuth} />
       <Route path="/event-manager" component={EventManagerContainer} onEnter={requireAuth} />
+      <Route path="/event-manager/:event_id" component={EventContainer} onEnter={requireAuth}/>
       <Route path="/role-manager" component={RoleManagerContainer} onEnter={requireAuth} />
       <Route path="/volunteers" component={VolunteersContainer} onEnter={requireAuth} />
       <Route path="/organization" component={OrganizationLogin} />

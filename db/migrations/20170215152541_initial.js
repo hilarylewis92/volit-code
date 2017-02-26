@@ -17,12 +17,19 @@ exports.up = function(knex, Promise) {
       table.increments('id').primary()
       table.string('event_name')
       table.date('event_date')
-      table.string('event_description')
+      table.text('event_description')
       table.string('event_address')
       table.integer('volunteer_count')
       table.integer('organization_id')
            .references('id')
            .inTable('organizations')
+    }),
+    knex.schema.createTable('roles', function(table) {
+      table.increments('id').primary()
+      table.string('role_name')
+      table.integer('event_id')
+           .references('id')
+           .inTable('events')
     })
   ])
 }
@@ -31,7 +38,8 @@ exports.down = function(knex, Promise) {
   return Promise.all([
       knex.schema.dropTable('events'),
       knex.schema.dropTable('organizations'),
-      knex.schema.dropTable('users')
+      knex.schema.dropTable('users'),
+      knex.schema.dropTable('roles')
     ])
 
 }
