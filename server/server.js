@@ -25,7 +25,7 @@ app.get('/api/organizations', (req, res) => {
   })
 })
 
-app.get('/api/checkorg/:name', (req, res) => {
+app.get('/api/org_check/:name', (req, res) => {
   const { name } = req.params
   db('organizations').where('name', name).select()
   .then((org) => {
@@ -37,14 +37,13 @@ app.get('/api/checkorg/:name', (req, res) => {
 })
 
 app.post('/api/organizations', (req, res) => {
-  // TODO: how do we get this id? Do we make post request to users for and save id?
   const { name, admin_id } = req.body
   const organization = { name, admin_id }
   db('organizations').insert(organization)
   .then(() => {
     db('organizations').select()
     .then(organizations => {
-      res.status(200).json(organizations)
+      res.status(201).json(organizations)
     })
     .catch(error => {
       console.error('ERROR: in POST for organizations')
@@ -52,19 +51,35 @@ app.post('/api/organizations', (req, res) => {
   })
 })
 
-app.get('/api/user/:email', (req, res) => {
-  const { email } = req.params
+app.post('/api/organizations/:admin_id', (req, res) => {
+  const { admin_id } = req.params
+  const { org_name, user } = req.body
+  const organization = { name: org_name, admin_id }
+  db('organizations').insert(organization)
+  .then(() => {
+    db('organizations').where('name', org_name).select()
+    .then(organization => {
+      res.status(201).json({ user, organization })
+    })
+  })
+  .catch(err => {
+    console.error('ERROR IN /api/organizations/:admin_id', err)
+    res.sendStatus(404)
+  })
+})
+
+app.get('/api/user/:email/:org_name', (req, res) => {
+  const { email, org_name } = req.params
   const user = db('users').where('email', email).select()
     .then(user => {
-      db('organizations').where('admin_id', user[0].id).select()
+      db('organizations').where('name', org_name).andWhere('admin_id', user[0].id).select()
       .then(organization => {
         res.status(200).json({ user: user[0], organization })
       })
     })
-  .catch(err => {
-    console.log('catch')
-    res.sendStatus(404)
-  })
+    .catch(err => {
+      res.sendStatus(404)
+    })
 })
 
 app.get('/api/users', (req, res) => {

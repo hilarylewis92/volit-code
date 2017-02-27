@@ -1,4 +1,5 @@
 import * as types from './ActionTypes'
+import { browserHistory } from 'react-router'
 import axios from 'axios'
 
 export function setProfile(res) {
@@ -28,24 +29,46 @@ export function adminLogin(profile, org_name) {
     const name = profile.name
     const email = profile.email
 
-    checkDbForUser(name, email, org_name, dispatch)
+    checkDbForOrgAndUser(name, email, org_name, dispatch)
   }
 }
 
-function checkDbForUser(name, email, org_name, dispatch) {
-  axios.get(`/api/user/${email}`)
+function checkDbForOrgAndUser(name, email, org_name, dispatch) {
+  axios.get(`/api/user/${email}/${org_name}`)
+  .then(res => {
+    if(res.data.user.email && res.data.organization.length) {
+      dispatch(setProfile(res.data))
+    } else {
+        if(!res.data.organization.name) {
+          addOrgToDb(res, org_name, dispatch)
+        }
+      }
+  })
+  .catch(err => {
+    addUserAndOrgToDb(name, email, org_name, dispatch)
+  })
+}
+
+function addUserAndOrgToDb(name, email, org_name, dispatch) {
+  axios.post('/api/users', ({
+    name,
+    email,
+    organization_name: org_name
+  }))
+  .then(res => {
+    dispatch(setProfile(res.data))
+  })
+}
+
+function addOrgToDb(res, org_name, dispatch) {
+  axios.post(`/api/organizations/${res.data.user.id}`, { org_name, user: res.data.user})
   .then(res => {
     dispatch(setProfile(res.data))
   })
   .catch(err => {
-    axios.post('/api/users', ({
-      name,
-      email,
-      organization_name: org_name
-    }))
-    .then(res => {
-      dispatch(setProfile(res.data))
-    })
+    alert('ERROR in signin process. Wrong email or organization name')
+    browserHistory.push('/organization')
+    localStorage.clear()
   })
 }
 
