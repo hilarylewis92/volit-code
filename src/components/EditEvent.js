@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react'
 import Modal from 'boron/DropModal'
+import moment from 'moment'
 
 class EditEvent extends React.Component {
   constructor(){
@@ -22,6 +23,7 @@ class EditEvent extends React.Component {
 
   componentDidMount() {
     const { id, event_name, event_date, event_description, event_address, organization_id } = this.props.event
+    // const date = moment(event_date).format('MMDDYYYY')
 
     this.setState({
       id: id,
@@ -37,7 +39,7 @@ class EditEvent extends React.Component {
     e.preventDefault()
     const { id, name, description, date, address, orgID } = this.state
     const newEvent = { id, name, description, date, address }
-    
+
     this.props.editEvent(newEvent, orgID)
     this.hideModal()
   }
