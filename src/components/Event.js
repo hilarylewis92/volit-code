@@ -2,6 +2,8 @@ import React, { PropTypes } from 'react'
 import SideBarContainer from '../containers/SideBarContainer'
 import moment from 'moment'
 
+import EditEvent from './EditEvent'
+
 export class Event extends React.Component {
   constructor(){
     super()
@@ -19,10 +21,13 @@ export class Event extends React.Component {
     this.props.getAllRoles(eventID)
   }
 
-  handleAddRoles(e) {
-    e.preventDefault()
+  handleAddRoles() {
     const { role, eventID } = this.state
     this.props.createRole(role, eventID)
+  }
+
+  showAddEventForm() {
+    this.refs.editModal.showModal()
   }
 
   formatDate(date) {
@@ -86,12 +91,21 @@ export class Event extends React.Component {
             }
             placeholder='add role'/>
           <button
-            onClick={(e) => this.handleAddRoles(e)}>
+            onClick={() => this.handleAddRoles()}>
             add role
+          </button>
+          <button
+            onClick={()=>this.showAddEventForm()}>
+            edit event
           </button>
           <ul>
             {role}
           </ul>
+
+          <EditEvent
+            eventID={this.state.eventID}
+            ref='editModal'
+          />
         </div>
       </div>
     )

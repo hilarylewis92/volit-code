@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react'
 import Modal from 'boron/DropModal'
 
-class AddEvent extends React.Component {
+class EditEvent extends React.Component {
   constructor(){
     super()
     this.state = {
@@ -21,22 +21,22 @@ class AddEvent extends React.Component {
   }
 
   handleEventSubmit(e) {
-    e.preventDefault()
-    const { name, description, date, address } = this.state
-    const { orgID } = this.props
-    const newEvent = { name, description, date, address }
-    this.props.createEvent(newEvent, orgID)
-    this.hideModal()
+    // e.preventDefault()
+    // const { name, description, date, address } = this.state
+    // const { orgID } = this.props
+    // const newEvent = { name, description, date, address }
+    // this.props.createEvent(newEvent, orgID)
+    // this.hideModal()
   }
 
   render() {
     return (
       <Modal
         className='modal'
-        ref="editModal">
+        ref="modal">
         <form
-          onSubmit={this.props.createEvent}>
-          <h2 className='modal-title'>Create Event</h2>
+          >
+          <h2 className='modal-title'>Edit Event</h2>
 
           <label
             className='modal-label'
@@ -115,9 +115,9 @@ class AddEvent extends React.Component {
   }
 }
 
-AddEvent.propTypes = {
+EditEvent.propTypes = {
   createEvent: PropTypes.func.isRequired,
   orgID: PropTypes.number.isRequired
 }
 
-export default AddEvent
+export default EditEvent
