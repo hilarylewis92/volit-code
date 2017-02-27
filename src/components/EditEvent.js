@@ -13,11 +13,22 @@ class EditEvent extends React.Component {
   }
 
   showModal() {
-    this.refs.modal.show()
+    this.refs.editModal.show()
   }
 
   hideModal(){
-    this.refs.modal.hide()
+    this.refs.editModal.hide()
+  }
+
+  componentDidMount() {
+    const { id, event_name, event_date, event_description, event_address } = this.props.event
+
+    this.setState({
+      name: event_name || '',
+      description: event_description || '',
+      date: event_date || '',
+      address: event_address || '',
+    })
   }
 
   handleEventSubmit(e) {
@@ -36,12 +47,11 @@ class EditEvent extends React.Component {
   }
 
   render() {
-    const { id, event_name, event_date, event_description, event_address } = this.props.event
-
+    const { name, description, date, address } = this.state
     return (
       <Modal
         className='modal'
-        ref="modal">
+        ref="editModal">
         <form
           >
           <h2 className='modal-title'>Edit Event</h2>
@@ -55,7 +65,7 @@ class EditEvent extends React.Component {
             className='modal-input'
             type='text'
             id='name'
-            value={event_name}
+            value={name}
             onChange={(e) =>
               this.setState({
                 name: e.target.value
@@ -71,7 +81,7 @@ class EditEvent extends React.Component {
             className='modal-input modal-text-area'
             type='text'
             id='description'
-            value={event_description}
+            value={description}
             onChange={(e) =>
               this.setState({
                 description: e.target.value
@@ -88,7 +98,7 @@ class EditEvent extends React.Component {
             <input
               type='date'
               id='date'
-              value={event_date}
+              value={date}
               onChange={(e) =>
                 this.setState({
                   date: e.target.value
@@ -105,6 +115,7 @@ class EditEvent extends React.Component {
             <input
               type='text'
               id='address'
+              value={address}
               onChange={(e) =>
                 this.setState({
                   address: e.target.value

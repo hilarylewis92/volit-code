@@ -33,7 +33,7 @@ class AddEvent extends React.Component {
     return (
       <Modal
         className='modal'
-        ref="editModal">
+        ref="modal">
         <form
           onSubmit={this.props.createEvent}>
           <h2 className='modal-title'>Create Event</h2>
