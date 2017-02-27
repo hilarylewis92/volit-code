@@ -29,43 +29,46 @@ export function adminLogin(profile, org_name) {
     const name = profile.name
     const email = profile.email
 
-    checkDbForUser(name, email, org_name, dispatch)
+    checkDbForOrgAndUser(name, email, org_name, dispatch)
   }
 }
 
-function checkDbForUser(name, email, org_name, dispatch) {
+function checkDbForOrgAndUser(name, email, org_name, dispatch) {
   axios.get(`/api/user/${email}/${org_name}`)
   .then(res => {
     if(res.data.user.email && res.data.organization.length) {
       dispatch(setProfile(res.data))
     } else {
-        if(!res.data.user.email) {
-          console.log('in the user thingy');
-          axios.post('/api/users', ({
-            name,
-            email,
-            organization_name: org_name
-          }))
-          .then(res => {
-            dispatch(setProfile(res.data))
-          })
-        }
         if(!res.data.organization.name) {
-          console.log('in the organization thingy');
-          axios.post(`/api/organizations/${res.data.user.id}`, { org_name, user: res.data.user})
-          .then(res => {
-            dispatch(setProfile(res.data))
-          })
-          .catch(err => {
-            alert('ERROR in signin process. Wrong email or organization name')
-            browserHistory.push('/organization')
-            localStorage.clear()
-          })
+          addOrgToDb(res, org_name, dispatch)
         }
       }
   })
   .catch(err => {
-    console.error('ERROR...', err)
+    addUserAndOrgToDb(name, email, org_name, dispatch)
+  })
+}
+
+function addUserAndOrgToDb(name, email, org_name, dispatch) {
+  axios.post('/api/users', ({
+    name,
+    email,
+    organization_name: org_name
+  }))
+  .then(res => {
+    dispatch(setProfile(res.data))
+  })
+}
+
+function addOrgToDb(res, org_name, dispatch) {
+  axios.post(`/api/organizations/${res.data.user.id}`, { org_name, user: res.data.user})
+  .then(res => {
+    dispatch(setProfile(res.data))
+  })
+  .catch(err => {
+    alert('ERROR in signin process. Wrong email or organization name')
+    browserHistory.push('/organization')
+    localStorage.clear()
   })
 }
 
