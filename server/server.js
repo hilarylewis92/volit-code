@@ -25,7 +25,7 @@ app.get('/api/organizations', (req, res) => {
   })
 })
 
-app.get('/api/checkorg/:name', (req, res) => {
+app.get('/api/org_check/:name', (req, res) => {
   const { name } = req.params
   db('organizations').where('name', name).select()
   .then((org) => {
