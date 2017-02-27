@@ -2,7 +2,7 @@ import profile from '../../src/reducers/profile.js';
 import * as types from '../../src/actions/ActionTypes';
 
 describe('the profile reducer', () => {
-  it('should return the initial state of an empty array', () => {
+  it('should return the initial state of an empty object', () => {
     const initialState = {}
     const action = {}
     const nextState = profile(initialState, action);

@@ -11,11 +11,11 @@ describe('the event reducer', () => {
   })
 
   it('should not pass if initial state type does not match returned state', () => {
-    const initialState = {}
+    const initialState = []
     const action = {}
     const nextState = events(initialState, action)
 
-    expect(nextState).not.toEqual([])
+    expect(nextState).not.toEqual({})
   })
 
   it('should handle an CREATE_EVENT action', () => {
