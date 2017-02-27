@@ -60,6 +60,21 @@ export class Event extends React.Component {
       )
     })
 
+    let data
+    if(singleEvent.id) {
+      data = (
+        <EditEvent
+          eventID={this.state.eventID}
+          event={singleEvent}
+          ref='editModal'
+        />
+      )
+    } else {
+      data = (
+        <div>loading...</div>
+      )
+    }
+
     return (
       <div>
         <SideBarContainer auth={auth} />
@@ -101,12 +116,8 @@ export class Event extends React.Component {
           <ul>
             {role}
           </ul>
-
-          <EditEvent
-            eventID={this.state.eventID}
-            ref='editModal'
-          />
         </div>
+        {data}
       </div>
     )
   }

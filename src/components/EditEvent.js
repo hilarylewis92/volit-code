@@ -21,7 +21,7 @@ class EditEvent extends React.Component {
   }
 
   handleEventSubmit(e) {
-    // e.preventDefault()
+    e.preventDefault()
     // const { name, description, date, address } = this.state
     // const { orgID } = this.props
     // const newEvent = { name, description, date, address }
@@ -29,7 +29,15 @@ class EditEvent extends React.Component {
     // this.hideModal()
   }
 
+  handleDeleteEvent(e) {
+    e.preventDefault()
+    if(confirm('Are you sure you want to delete this event?')) {
+    }
+  }
+
   render() {
+    const { id, event_name, event_date, event_description, event_address } = this.props.event
+
     return (
       <Modal
         className='modal'
@@ -47,12 +55,12 @@ class EditEvent extends React.Component {
             className='modal-input'
             type='text'
             id='name'
+            value={event_name}
             onChange={(e) =>
               this.setState({
                 name: e.target.value
               })
-            }
-            placeholder='name'/>
+            }/>
 
           <label
             className='modal-label'
@@ -63,12 +71,12 @@ class EditEvent extends React.Component {
             className='modal-input modal-text-area'
             type='text'
             id='description'
+            value={event_description}
             onChange={(e) =>
               this.setState({
                 description: e.target.value
               })
-            }
-            placeholder='description'>
+            }>
           </textarea>
 
           <div className='modal-split-input modal-date'>
@@ -80,12 +88,12 @@ class EditEvent extends React.Component {
             <input
               type='date'
               id='date'
+              value={event_date}
               onChange={(e) =>
                 this.setState({
                   date: e.target.value
                 })
-              }
-              placeholder='date'/>
+              }/>
           </div>
 
           <div className='modal-split-input modal-address'>
@@ -101,13 +109,16 @@ class EditEvent extends React.Component {
                 this.setState({
                   address: e.target.value
                 })
-              }
-              placeholder='address'/>
+              }/>
             </div>
+          <button
+            onClick={(e) => this.handleDeleteEvent(e)}>
+            Delete event
+          </button>
 
           <button
             onClick={(e) => this.handleEventSubmit(e)}>
-            Save event
+            Save changes
           </button>
         </form>
       </Modal>
@@ -115,9 +126,5 @@ class EditEvent extends React.Component {
   }
 }
 
-EditEvent.propTypes = {
-  createEvent: PropTypes.func.isRequired,
-  orgID: PropTypes.number.isRequired
-}
 
 export default EditEvent
