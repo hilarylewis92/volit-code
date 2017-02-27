@@ -37,14 +37,6 @@ export class Login extends React.Component {
               <p>
                 Sign into your account using your registered email address.
               </p>
-              <label
-                htmlFor='email'>
-                Email
-              </label>
-              <input
-                type='text'
-                id='email'
-                placeholder='example@domain.com'/>
             </section>
           </form>
           <button

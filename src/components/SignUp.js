@@ -34,16 +34,8 @@ export class SignUp extends React.Component {
             </header>
             <section>
               <p>
-                Enter your email address to create an account.
+                We don't recognize that organization. Sign up to create a new organization account.
               </p>
-              <label
-                htmlFor='email'>
-                Email
-              </label>
-              <input
-                type='text'
-                id='email'
-                placeholder='example@domain.com'/>
             </section>
           </form>
           <button
