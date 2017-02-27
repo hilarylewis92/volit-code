@@ -23,12 +23,26 @@ describe('the roles reducer', () => {
     const action = {
       type: types.CREATE_ROLE,
       res: [
-          { role_name: 'sound guy', event_id: 2 }, { role_name: 'singer', event_id: 2 }
+          { id: 1, role_name: 'sound guy', event_id: 2 }, { id: 2, role_name: 'singer', event_id: 2 }
       ]
     }
     const nextState = roles(initialState, action)
 
-    expect(nextState)
-  });
+    expect(nextState.length).toEqual(2)
+    expect(nextState[0].id).toEqual(1)
+    expect(nextState[0].event_id).toEqual(2)
+    expect(nextState[1].id).toEqual(2)
+  })
 
-});
+  it('should have the correct number of items in role state after CREATE_ROLE action', () => {
+    const initialState = []
+    const action = {
+      type: types.CREATE_ROLE,
+      res: [
+          { id: 1, role_name: 'sound guy', event_id: 2 }, { id: 2, role_name: 'singer', event_id: 2 }
+      ]
+    }
+    const nextState = roles(initialState, action)
+    expect(nextState.length).toEqual(2)
+  })
+})
