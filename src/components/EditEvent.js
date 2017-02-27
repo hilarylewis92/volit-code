@@ -21,9 +21,11 @@ class EditEvent extends React.Component {
   }
 
   componentDidMount() {
-    const { id, event_name, event_date, event_description, event_address } = this.props.event
+    const { id, event_name, event_date, event_description, event_address, organization_id } = this.props.event
 
     this.setState({
+      id: id,
+      orgID: organization_id,
       name: event_name || '',
       description: event_description || '',
       date: event_date || '',
@@ -33,11 +35,11 @@ class EditEvent extends React.Component {
 
   handleEventSubmit(e) {
     e.preventDefault()
-    // const { name, description, date, address } = this.state
-    // const { orgID } = this.props
-    // const newEvent = { name, description, date, address }
-    // this.props.createEvent(newEvent, orgID)
-    // this.hideModal()
+    const { id, name, description, date, address, orgID } = this.state
+    const newEvent = { id, name, description, date, address }
+    
+    this.props.editEvent(newEvent, orgID)
+    this.hideModal()
   }
 
   handleDeleteEvent(e) {
