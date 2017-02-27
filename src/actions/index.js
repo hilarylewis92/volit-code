@@ -69,22 +69,23 @@ export function createEvent(event, organization_id) {
 }
 
 export function editEvent(event, organization_id) {
-  debugger;
-  // const name = event.name
-  // const description = event.description
-  // const date = event.date
-  // const address = event.address
-  //
+  const name = event.name
+  const description = event.description
+  const date = event.date
+  const address = event.address
+  const id = event.id
+
   return (dispatch) => {
-    axios.patch(`/api/events/${organization_id}`, ({
+    axios.put(`/api/events/${organization_id}`, ({
+      id: id,
       event_name: name,
       event_description: description,
       event_date: date,
       event_address: address,
     }))
-  //   .then(res => {
-  //     dispatch(setEvents(res.data))
-  //   })
+    .then(res => {
+      dispatch(setEvents(res.data))
+    })
   }
 }
 

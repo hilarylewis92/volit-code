@@ -35,7 +35,7 @@ export class Event extends React.Component {
   }
 
   render(){
-    const { events, roles, auth } = this.props
+    const { events, roles, auth, editEvent } = this.props
 
     const eventID = this.props.params.event_id
 
@@ -67,6 +67,7 @@ export class Event extends React.Component {
           eventID={this.state.eventID}
           event={singleEvent}
           ref='editModal'
+          editEvent={editEvent}
         />
       )
     } else {
