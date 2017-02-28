@@ -86,7 +86,7 @@ export class EventList extends React.Component {
               </a>
             </address>
             <Link to={`event-manager/${event.id}`}>
-              <button>view event</button>
+              <button>View Event</button>
             </Link>
           </li>
         )
@@ -98,16 +98,16 @@ export class EventList extends React.Component {
     return (
       <div className='event-list-container'>
         <header
-          className='event-list-header'>
-          <div className='event-list-header-upcoming'>
+          className='event-manager-header'>
+          <div className='event-manager-header-upcoming'>
             <h2
-            className='event-list-upcoming'>
+            className='event-manager-upcoming'>
             Upcoming Events
             </h2>
             <p>You have {this.upcomingEventCount(events)} upcoming events.</p>
           </div>
           <button
-            className='event-list-new-event-btn'
+            className='event-manager-new-event-btn'
             onClick={()=>this.showAddEventForm()}>
             New Event
           </button>

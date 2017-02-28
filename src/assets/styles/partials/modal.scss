@@ -9,6 +9,10 @@ div.modal {
   text-align: center;
   width: 90% !important;
 
+  form {
+    margin-top: 40px;
+  }
+
   .modal-title {
     border-bottom: 1px solid $secondary-tan;
     color: $primary-dark-grey;
@@ -53,5 +57,9 @@ div.modal {
     display: block;
     margin: 0 auto;
     margin-bottom: 25px;
+  }
+
+  .modal-delete-btn {
+    background: $primary-red;
   }
 }
