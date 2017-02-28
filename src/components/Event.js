@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react'
-import SideBarContainer from '../containers/SideBarContainer'
+import SideBar from '../components/SideBar'
 import moment from 'moment'
+import { Link } from 'react-router'
 
 import EditEvent from './EditEvent'
 
@@ -30,12 +31,13 @@ export class Event extends React.Component {
   }
 
   handleAddQty(e) {
+    e.preventDefault()
     const { id } = e.target
     const { eventID } = this.state
     const { roles } = this.props
 
     const newRole = roles.find(role => {
-      if(role.id === parseInt(id))
+      if(role.id === parseInt(id, 10))
       return role.role_qty += 1
     })
     const newRoleCount = newRole.role_qty
@@ -43,6 +45,7 @@ export class Event extends React.Component {
   }
 
   handleSubtractQty(e) {
+    e.preventDefault()
     const { id } = e.target
     const { eventID } = this.state
     const { roles } = this.props
@@ -89,29 +92,37 @@ export class Event extends React.Component {
       return role
     })
 
-    const role = eventRoles.map((role, i) => {
+    const sortedRoles = eventRoles.sort((a, b) => {
+      let eventA = parseInt(a.id, 10)
+      let eventB = parseInt(b.id, 10)
+      return eventA - eventB
+    })
+
+    const role = sortedRoles.map((role, i) => {
       let id = role.id
       let name = role.role_name
       let qty = role.role_qty
       return (
         <li
           key={i}>
-          <div>{name}</div>
-          <div>{qty}</div>
+          <p className='role-title'>{name}: {qty}</p>
           <button
+            className='role-add-btn'
             id={id}
             onClick={(e) => this.handleAddQty(e)}>
             +
           </button>
           <button
+            className='role-subtract-btn'
             id={id}
             onClick={(e) => this.handleSubtractQty(e)}>
             -
           </button>
           <button
+            className='role-delete-btn'
             id={id}
             onClick={(e) => this.handleDeleteRole(e)}>
-            x
+            <div id={id}>+</div>
           </button>
         </li>
       )
@@ -136,65 +147,84 @@ export class Event extends React.Component {
 
     return (
       <div>
-        <SideBarContainer auth={auth} />
-        <div className="event-manager-container">
-          <h2>
-            {singleEvent.event_name}
-          </h2>
-          <p>
-            {date}
-          </p>
-          <p>
+        <SideBar auth={auth} />
+        <div className='event-manager-container'>
+          <header className='event-manager-header'>
+            <div className='event-manager-header-title'>
+              <h2 className='event-manager-title'>
+              {singleEvent.event_name}
+              </h2>
+              <p className='event-manager-date'>
+              {date}
+              </p>
+            </div>
+            <button
+              className='event-manager-edit-btn'
+              onClick={() => this.showAddEventForm()}>
+              Edit Event
+            </button>
+          </header>
+
+          <section className='event-description-container'>
+            <h6>Event Description:</h6>
+            <p className='event-description-copy'>
             {singleEvent.event_description}
-          </p>
-          <address className='event-list-address'>
+            </p>
+            <h6>Event Address:</h6>
+            <address className='event-list-address'>
             <a
-              target='blank'
-              href={`http://maps.google.com/?q=${singleEvent.event_address}`}>
-              {singleEvent.event_address}
+            target='blank'
+            href={`http://maps.google.com/?q=${singleEvent.event_address}`}>
+            {singleEvent.event_address}
             </a>
-          </address>
-
-          <h6>Volunteers Needed</h6>
-
-          <label
-            className='modal-label'
-            htmlFor='role'>
-            Volunteer Role
-          </label>
-          <input
-            type='text'
-            id='role'
-            onChange={(e) => this.setState({ role: e.target.value })}
-            value={this.state.role}
-          />
-
-          <label
-            className='modal-label'
-            htmlFor='qty'>
-            Qty
-          </label>
-          <input
-            type='number'
-            id='qty'
-            onChange={(e) =>this.setState({ qty: e.target.value })}
-            value={this.state.qty}
-          />
-
-          <button
-            onClick={() => this.handleAddRoles()}>
-            Add Role
-          </button>
-
-          <button
-            onClick={() => this.showAddEventForm()}>
-            edit event
-          </button>
-          <ul>
+            </address>
+            <h6>Volunteers Needed:</h6>
+            <ul>
             {role}
-          </ul>
+            </ul>
+
+            <div className='role-split-input'>
+              <label
+                className='modal-label'
+                htmlFor='role'>
+                Volunteer Role
+              </label>
+              <input
+                className='add-role-input'
+                type='text'
+                id='role'
+                onChange={(e) => this.setState({ role: e.target.value })}
+                value={this.state.role}
+              />
+            </div>
+            <div className='role-split-input'>
+              <label
+                className='modal-label qty-label'
+                htmlFor='qty'>
+                Qty
+              </label>
+              <input
+                className='add-role-qty-input'
+                type='number'
+                id='qty'
+                onChange={(e) =>this.setState({ qty: e.target.value })}
+                value={this.state.qty}
+              />
+            </div>
+            <button
+              className='add-role-btn'
+              onClick={() => this.handleAddRoles()}>
+              Add Role
+            </button>
+          </section>
+          <Link
+            to='/event-manager'
+            className='back-btn'>
+            <p>Back to All Events &raquo;</p>
+          </Link>
+
         </div>
-        {data}
+         {data}
       </div>
     )
   }

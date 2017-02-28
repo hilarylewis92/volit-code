@@ -27,7 +27,7 @@ const requireAuth = (nextState, replace) => {
 export const makeMainRoutes = () => {
   return (
     <Route path="/" component={Container} auth={auth}>
-      <IndexRedirect to="/event-manager" />
+      <IndexRedirect to="/event-manager" auth={auth} />
       <Route path="/dashboard" component={DashboardContainer} onEnter={requireAuth} />
       <Route path="/event-manager" component={EventManagerContainer} onEnter={requireAuth} />
       <Route path="/event-manager/:event_id" component={EventContainer} onEnter={requireAuth}/>

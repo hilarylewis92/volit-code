@@ -45,6 +45,7 @@ function checkDbForOrgAndUser(name, email, picture, org_name, dispatch) {
   })
   .catch(err => {
     addUserAndOrgToDb(name, email, picture, org_name, dispatch)
+    console.error('ERROR: ', err)
   })
 }
 
@@ -58,6 +59,12 @@ function addUserAndOrgToDb(name, email, picture, org_name, dispatch) {
   .then(res => {
     dispatch(setProfile(res.data))
   })
+  .catch(err => {
+    console.error('ERROR: ', err)
+    alert('ERROR in signin process. Wrong email or organization name')
+    browserHistory.push('/organization')
+    localStorage.clear()
+  })
 }
 
 function addOrgToDb(res, org_name, dispatch) {
@@ -66,6 +73,7 @@ function addOrgToDb(res, org_name, dispatch) {
     dispatch(setProfile(res.data))
   })
   .catch(err => {
+    console.error('ERROR: ', err)
     alert('ERROR in signin process. Wrong email or organization name')
     browserHistory.push('/organization')
     localStorage.clear()

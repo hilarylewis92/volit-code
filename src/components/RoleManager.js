@@ -1,12 +1,12 @@
 import React, { PropTypes } from 'react'
-import SideBarContainer from '../containers/SideBarContainer'
+import SideBar from '../components/SideBar'
 
 class RoleManager extends React.Component {
   render() {
-    const { auth } = this.props
+    const { auth, profile } = this.props
     return (
       <div>
-        <SideBarContainer auth={auth} />
+        <SideBar profile={profile} auth={auth} />
         Role Manager
       </div>
     )

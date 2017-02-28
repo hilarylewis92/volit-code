@@ -1,12 +1,12 @@
 import React, { PropTypes } from 'react'
-import SideBarContainer from '../containers/SideBarContainer'
+import SideBar from '../components/SideBar'
 
 class Volunteers extends React.Component {
   render() {
     const { auth } = this.props
     return (
       <div>
-        <SideBarContainer auth={auth} />
+        <SideBar auth={auth} />
         Volunteers
       </div>
     )

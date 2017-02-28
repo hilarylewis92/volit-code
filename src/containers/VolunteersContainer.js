@@ -3,7 +3,9 @@ import Volunteers from '../components/Volunteers'
 
 function mapStateToProps(state, props) {
   return {
-    auth: props.auth
+    auth: props.auth,
+    profile: state.profile,
+    events: state.events
   }
 }
 

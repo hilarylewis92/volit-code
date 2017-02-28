@@ -24,6 +24,7 @@ if(environment === "production") {
     res.sendFile('/build/index.html')
   })
 }
+
 app.get('/api/organizations', (req, res) => {
   db('organizations').select()
   .then(organizations => {
@@ -104,10 +105,16 @@ app.get('/api/users', (req, res) => {
 })
 
 app.post('/api/users', (req, res) => {
-  const { name, email, phone_number, organization_name, picture } = req.body
-  const user = { name: name, email: email, phone_number: '555-555-5555', picture: picture }
-  const admin_id = db('users').returning('id').insert(user)
+  const {
+    name, email,
+    phone_number, organization_name,
+    picture } = req.body
 
+  const user = {
+    name, email,
+    phone_number: '555-555-5555', picture }
+
+  db('users').returning('id').insert(user)
   .then(admin_id => {
     const aid = parseInt(admin_id, 10)
     const organization = { name: organization_name, admin_id: aid }
@@ -117,7 +124,7 @@ app.post('/api/users', (req, res) => {
       res.status(200).json({ organization, user })
     })
     .catch(error => {
-      console.error('ERROR: in POST request for users')
+      console.error('ERROR: in POST request for users', error)
     })
   })
 })
@@ -135,8 +142,15 @@ app.get('/api/events/:organization_id', (req, res) => {
 
 app.post('/api/events/:organization_id', (req, res) => {
   const { organization_id } = req.params
-  const { event_name, event_date, event_description, event_address } = req.body
-  const event = { organization_id, event_name, event_description, event_address , event_date}
+  const {
+    event_name, event_date,
+    event_description, event_address
+  } = req.body
+  const event = {
+    organization_id, event_name,
+    event_description, event_address,
+    event_date
+  }
 
   db('events').insert(event)
   .then(() => {
@@ -258,3 +272,5 @@ if(!module.parent) {
     console.log(`${app.locals.title} is running on ${app.get('port')}`)
   })
 }
+
+module.exports = app

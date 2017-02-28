@@ -117,14 +117,15 @@ class EditEvent extends React.Component {
             />
           </div>
           <button
-            onClick={(e) => this.handleDeleteEvent(e)}>
-            Delete event
-          </button>
-
-          <button
+            className='modal-save-btn'
             disabled={name && description && date && address ? false : true}
             onClick={(e) => this.handleEventSubmit(e)}>
-            Save changes
+            Save Changes
+          </button>
+          <button
+          className='modal-delete-btn'
+          onClick={(e) => this.handleDeleteEvent(e)}>
+          Delete Event
           </button>
         </form>
       </Modal>
