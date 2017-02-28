@@ -41,6 +41,19 @@ export class Event extends React.Component {
     this.props.addRoleQty(newRoleCount, id, eventID)
   }
 
+  handleSubtractQty(e) {
+    const { id } = e.target
+    const { eventID } = this.state
+    const { roles } = this.props
+
+    const newRole = roles.find(role => {
+      if(role.id === parseInt(id))
+      return role.role_qty -= 1
+    })
+    const newRoleCount = newRole.role_qty
+    this.props.addRoleQty(newRoleCount, id, eventID)
+  }
+
   handleDeleteRole(e) {
     const { id } = e.target
     const { eventID } = this.state
