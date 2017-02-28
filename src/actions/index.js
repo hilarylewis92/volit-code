@@ -124,16 +124,20 @@ export function getAllEvents(organization_id) {
 export function deleteEvent(id, organization_id) {
   return (dispatch) => {
     axios.delete(`/api/events/${organization_id}/${id}`)
-    // .then(res => {
-    //   dispatch(setEvents(res.data))
-    // })
+    .then(res => {
+      dispatch(setEvents(res.data))
+    })
   }
 }
 
 export function createRole(role, event_id) {
+  const name = role.role
+  const qty = role.qty
+
   return (dispatch) => {
     axios.post(`/api/roles/${event_id}`, ({
-      role_name: role
+      role_name: name,
+      role_qty: qty,
     }))
     .then(res => {
       dispatch(setRoles(res.data))
@@ -144,6 +148,24 @@ export function createRole(role, event_id) {
 export function getAllRoles(event_id) {
   return (dispatch) => {
     axios.get(`/api/roles/${event_id}`)
+    .then(res => {
+      dispatch(setRoles(res.data))
+    })
+  }
+}
+
+export function addRoleQty(qty, id, event_id) {
+  return (dispatch) => {
+    axios.patch(`/api/roles/${event_id}/${id}`, {qty})
+    .then(res => {
+      dispatch(setRoles(res.data))
+    })
+  }
+}
+
+export function deleteRole(id, event_id) {
+  return (dispatch) => {
+    axios.delete(`/api/roles/${event_id}/${id}`)
     .then(res => {
       dispatch(setRoles(res.data))
     })

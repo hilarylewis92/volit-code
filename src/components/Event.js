@@ -9,6 +9,7 @@ export class Event extends React.Component {
     super()
     this.state = {
       role: '',
+      qty: '',
       eventID: '',
     }
   }
@@ -22,8 +23,46 @@ export class Event extends React.Component {
   }
 
   handleAddRoles() {
-    const { role, eventID } = this.state
-    this.props.createRole(role, eventID)
+    const { role, qty, eventID } = this.state
+    const newRole = {role, qty}
+    this.props.createRole(newRole, eventID)
+    this.setState({ role: '', qty: '' })
+  }
+
+  handleAddQty(e) {
+    const { id } = e.target
+    const { eventID } = this.state
+    const { roles } = this.props
+
+    const newRole = roles.find(role => {
+      if(role.id === parseInt(id))
+      return role.role_qty += 1
+    })
+    const newRoleCount = newRole.role_qty
+    this.props.addRoleQty(newRoleCount, id, eventID)
+  }
+
+  handleSubtractQty(e) {
+    const { id } = e.target
+    const { eventID } = this.state
+    const { roles } = this.props
+
+    const newRole = roles.find(role => {
+      if(role.id === parseInt(id, 10))
+      if(role.role_qty > 1) {
+        return role.role_qty -= 1
+      } else {
+        return role.role_qty
+      }
+    })
+    const newRoleCount = newRole.role_qty
+    this.props.addRoleQty(newRoleCount, id, eventID)
+  }
+
+  handleDeleteRole(e) {
+    const { id } = e.target
+    const { eventID } = this.state
+    this.props.deleteRole(id, eventID)
   }
 
   showAddEventForm() {
@@ -36,7 +75,6 @@ export class Event extends React.Component {
 
   render(){
     const { events, roles, auth, editEvent, deleteEvent } = this.props
-
     const eventID = this.props.params.event_id
 
     const singleEvent = events.find(event => {
@@ -52,10 +90,29 @@ export class Event extends React.Component {
     })
 
     const role = eventRoles.map((role, i) => {
+      let id = role.id
+      let name = role.role_name
+      let qty = role.role_qty
       return (
         <li
           key={i}>
-          {role.role_name}
+          <div>{name}</div>
+          <div>{qty}</div>
+          <button
+            id={id}
+            onClick={(e) => this.handleAddQty(e)}>
+            +
+          </button>
+          <button
+            id={id}
+            onClick={(e) => this.handleSubtractQty(e)}>
+            -
+          </button>
+          <button
+            id={id}
+            onClick={(e) => this.handleDeleteRole(e)}>
+            x
+          </button>
         </li>
       )
     })
@@ -98,21 +155,39 @@ export class Event extends React.Component {
             </a>
           </address>
 
+          <h6>Volunteers Needed</h6>
+
+          <label
+            className='modal-label'
+            htmlFor='role'>
+            Volunteer Role
+          </label>
           <input
             type='text'
             id='role'
-            onChange={(e) =>
-              this.setState({
-                role: e.target.value
-              })
-            }
-            placeholder='add role'/>
+            onChange={(e) => this.setState({ role: e.target.value })}
+            value={this.state.role}
+          />
+
+          <label
+            className='modal-label'
+            htmlFor='qty'>
+            Qty
+          </label>
+          <input
+            type='number'
+            id='qty'
+            onChange={(e) =>this.setState({ qty: e.target.value })}
+            value={this.state.qty}
+          />
+
           <button
             onClick={() => this.handleAddRoles()}>
-            add role
+            Add Role
           </button>
+
           <button
-            onClick={()=>this.showAddEventForm()}>
+            onClick={() => this.showAddEventForm()}>
             edit event
           </button>
           <ul>

@@ -39,6 +39,7 @@ app.get('/api/org_check/:name', (req, res) => {
 app.post('/api/organizations', (req, res) => {
   const { name, admin_id } = req.body
   const organization = { name, admin_id }
+
   db('organizations').insert(organization)
   .then(() => {
     db('organizations').select()
@@ -55,6 +56,7 @@ app.post('/api/organizations/:admin_id', (req, res) => {
   const { admin_id } = req.params
   const { org_name, user } = req.body
   const organization = { name: org_name, admin_id }
+
   db('organizations').insert(organization)
   .then(() => {
     db('organizations').where('name', org_name).select()
@@ -96,12 +98,17 @@ app.post('/api/users', (req, res) => {
   const { name, email, phone_number, organization_name, picture } = req.body
   const user = { name: name, email: email, phone_number: '555-555-5555', picture: picture }
   const admin_id = db('users').returning('id').insert(user)
+
   .then(admin_id => {
     const aid = parseInt(admin_id, 10)
-    const organization = { name: organization_name, admin_id: aid}
+    const organization = { name: organization_name, admin_id: aid }
+
     db('organizations').returning(['id', 'name', 'admin_id']).insert(organization)
     .then(organization => {
       res.status(200).json({ organization, user })
+    })
+    .catch(error => {
+      console.error('ERROR: in POST request for users')
     })
   })
 })
@@ -181,14 +188,14 @@ app.get('/api/roles/:event_id', (req, res) => {
     res.status(200).json(roles)
   })
   .catch(error => {
-    console.error('ERROR: in GET request for events')
+    console.error('ERROR: in GET request for roles')
   })
 })
 
 app.post('/api/roles/:event_id', (req, res) => {
   const { event_id } = req.params
-  const { role_name } = req.body
-  const role = { role_name, event_id }
+  const { role_name, role_qty } = req.body
+  const role = { role_name, role_qty, event_id }
 
   db('roles').insert(role)
   .then(() => {
@@ -197,11 +204,48 @@ app.post('/api/roles/:event_id', (req, res) => {
       res.status(200).json(roles)
     })
     .catch(error => {
-      console.error('ERROR: in POST for events')
+      console.error('ERROR: in POST for roles')
     })
   })
 })
 
-app.listen(PORT, () => {
-  console.log(`${app.locals.title} is running on ${app.get('port')}`)
+app.patch('/api/roles/:event_id/:id', (req, res) => {
+  const { event_id, id } = req.params
+  const { qty } = req.body
+
+  db('roles').where('event_id', event_id)
+              .andWhere('id', id)
+              .update('role_qty', qty)
+  .then(() => {
+    db('roles').where('event_id', event_id).select()
+    .then(roles => {
+      res.status(200).json(roles)
+    })
+  })
+  .catch(error => {
+    console.error('ERROR: in DELETE for roles')
+  })
 })
+
+app.delete('/api/roles/:event_id/:id', (req, res) => {
+  const { event_id, id } = req.params
+
+  db('roles').where('event_id', event_id)
+              .andWhere('id', id).first()
+              .del()
+  .then(() => {
+    db('roles').where('event_id', event_id).select()
+    .then(roles => {
+      res.status(200).json(roles)
+    })
+  })
+  .catch(error => {
+    console.error('ERROR: in DELETE for roles')
+  })
+})
+
+if(!module.parent) {
+  app.listen(PORT, () => {
+    console.log(`${app.locals.title} is running on ${app.get('port')}`)
+  })
+}

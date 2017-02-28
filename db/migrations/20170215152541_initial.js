@@ -28,6 +28,7 @@ exports.up = function(knex, Promise) {
     knex.schema.createTable('roles', function(table) {
       table.increments('id').primary()
       table.string('role_name')
+      table.integer('role_qty')
       table.integer('event_id')
            .references('id')
            .inTable('events')
