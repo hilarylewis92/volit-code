@@ -4,7 +4,6 @@ import { Link } from 'react-router'
 class SideBar extends React.Component {
   render(){
     const { events, profile, auth } = this.props
-    console.log(profile)
     return (
       <div className='side-bar'>
         <header
