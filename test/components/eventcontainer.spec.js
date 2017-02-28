@@ -3,7 +3,6 @@ import { Provider } from 'react-redux';
 import { mount, wrapper } from 'enzyme';
 
 import EventManagerContainer from '../../src/containers/EventManagerContainer.js';
-import SideBarContainer from '../../src/containers/SideBarContainer';
 import EventList from '../../src/components/EventList';
 let sinon = require('sinon');
 
@@ -23,7 +22,6 @@ const storeFake = (state) => {
 describe('EventManagerContainer', function() {
 
     it('should render', () => {
-      let Component
 
       const store = storeFake({
         profile: {
@@ -44,10 +42,6 @@ describe('EventManagerContainer', function() {
           event_address: "1052 Lipan St",
           volunteer_count: null,
           organization_id: 5
-        },
-        auth: {
-          logout:
-            sinon.spy()
         }
       });
 
@@ -60,7 +54,7 @@ describe('EventManagerContainer', function() {
       let yay = wrapper.find(EventList);
 
 
-      console.log(store.auth);
+      console.log(store)
 		expect(yay.length).toBeTruthy();
 	});
 })

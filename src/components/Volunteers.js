@@ -3,10 +3,10 @@ import SideBar from '../components/SideBar'
 
 class Volunteers extends React.Component {
   render() {
-    const { auth } = this.props
+    const { auth, profile } = this.props
     return (
       <div>
-        <SideBar auth={auth} />
+        <SideBar profile={profile} auth={auth}  />
         Volunteers
       </div>
     )
@@ -14,7 +14,8 @@ class Volunteers extends React.Component {
 }
 
 Volunteers.propTypes = {
-  auth: PropTypes.object.isRequired
+  auth: PropTypes.object.isRequired,
+  profile: PropTypes.object.isRequired
 }
 
 export default Volunteers
