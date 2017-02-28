@@ -209,7 +209,7 @@ app.post('/api/roles/:event_id', (req, res) => {
   })
 })
 
-app.delete('/api/events/:event_id/:id', (req, res) => {
+app.delete('/api/roles/:event_id/:id', (req, res) => {
   const { event_id, id } = req.params
 
   db('roles').where('event_id', event_id)

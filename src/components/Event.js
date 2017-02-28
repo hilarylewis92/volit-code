@@ -32,7 +32,7 @@ export class Event extends React.Component {
     e.preventDefault()
     const { id } = e.target
     const { eventID } = this.state
-    debugger
+
     this.props.deleteRole(id, eventID)
   }
 
