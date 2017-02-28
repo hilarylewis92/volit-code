@@ -17,10 +17,14 @@ class SideBar extends React.Component {
             administrator
           </h4>
         </header>
-        <h2
-          className='organization-name'>
-          {profile.organization && profile.organization.org_name}
-        </h2>
+        <Link
+          className='link'
+          to='/event-manager'>
+          <h2
+            className='organization-name'>
+            {profile.organization && profile.organization.org_name}
+          </h2>
+        </Link>
 
         <ul className='side-bar-links'>
           <Link
@@ -73,14 +77,14 @@ class SideBar extends React.Component {
           </Link>
         </ul>
         <section className='profile-container'>
+          <p>You are logged in as:<br/>{profile.user && profile.user.name}</p>
           <Link to='/organization'>
-          <button
-            onClick={auth.logout.bind(this)}
-            className='logout-btn'>
-            Logout
-          </button>
-        </Link>
-        <span>{profile.user && profile.user.name}</span>
+            <button
+              onClick={auth.logout.bind(this)}
+              className='logout-btn'>
+              Logout &raquo;
+            </button>
+          </Link>
         </section>
       </div>
     )

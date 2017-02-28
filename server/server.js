@@ -134,6 +134,45 @@ app.post('/api/events/:organization_id', (req, res) => {
   })
 })
 
+app.put('/api/events/:organization_id', (req, res) => {
+  const { organization_id } = req.params
+  const { event_name, event_date, event_description, event_address, id } = req.body
+  const event = { event_name, event_description, event_address, event_date}
+
+  db('events').where('organization_id', organization_id)
+              .andWhere('id', id).first()
+              .update(event)
+
+  .then(() => {
+    db('events').where('organization_id', organization_id)
+                .andWhere('id', id).select()
+
+    .then(evt => {
+      res.status(200).json(evt)
+    })
+  })
+  .catch(error => {
+    console.error('ERROR: in PUT for events')
+  })
+})
+
+app.delete('/api/events/:organization_id/:id', (req, res) => {
+  const { organization_id, id } = req.params
+
+  db('events').where('organization_id', organization_id)
+              .andWhere('id', id).first()
+              .del()
+  .then(() => {
+    db('events').where('organization_id', organization_id).select()
+    .then(events => {
+      res.status(200).json(events)
+    })
+  })
+  .catch(error => {
+    console.error('ERROR: in DELETE for events')
+  })
+})
+
 app.get('/api/roles/:event_id', (req, res) => {
   const { event_id } = req.params
 
