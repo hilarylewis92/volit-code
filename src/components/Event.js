@@ -28,6 +28,14 @@ export class Event extends React.Component {
     this.props.createRole(newRole, eventID)
   }
 
+  handleDeleteRole(e) {
+    e.preventDefault()
+    const { id } = e.target
+    const { eventID } = this.state
+    debugger
+    this.props.deleteRole(id, eventID)
+  }
+
   showAddEventForm() {
     this.refs.editModal.showModal()
   }
@@ -54,12 +62,17 @@ export class Event extends React.Component {
     })
 
     const role = eventRoles.map((role, i) => {
+      let id = role.id
       return (
         <li
           key={i}>
           <div>{role.role_name}</div>
           <div>{role.role_qty}</div>
-          <button>x</button>
+          <button
+            id={id}
+            onClick={(e) => this.handleDeleteRole(e)}>
+            x
+          </button>
         </li>
       )
     })

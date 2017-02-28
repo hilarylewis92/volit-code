@@ -153,3 +153,12 @@ export function getAllRoles(event_id) {
     })
   }
 }
+
+export function deleteRole(id, event_id) {
+  return (dispatch) => {
+    axios.delete(`/api/roles/${event_id}/${id}`)
+    .then(res => {
+      dispatch(setRoles(res.data))
+    })
+  }
+}
