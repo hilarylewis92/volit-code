@@ -56,6 +56,7 @@ class EditEvent extends React.Component {
 
   render() {
     const { name, description, date, address } = this.state
+    
     return (
       <Modal
         className='modal'
@@ -136,6 +137,7 @@ class EditEvent extends React.Component {
           </button>
 
           <button
+            disabled={name && description && date && address ? false : true}
             onClick={(e) => this.handleEventSubmit(e)}>
             Save changes
           </button>
