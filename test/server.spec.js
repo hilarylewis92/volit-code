@@ -5,7 +5,7 @@ const request = require('supertest')
 const app = require('../server/server.js');
 
 describe('server tests', () => {
-  it('/api/organizations', (done) => {
+  xit('/api/organizations', (done) => {
     request(app)
     .get('/api/organizations')
     .expect(200)
