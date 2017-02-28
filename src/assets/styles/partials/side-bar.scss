@@ -3,7 +3,7 @@
   color: white;
   float: left;
   height: 100vh;
-  min-height: 600px;
+  min-height: 550px;
   position: fixed;
   width: 250px;
 }
@@ -65,21 +65,31 @@
 
 .profile-container {
   border-top: 1px solid $primary-medium-grey;
-  bottom: 30px;
+  bottom: -8px;
+  padding: 30px;
   position: absolute;
   width: 100%;
 
-  p {
-    margin: 15px 20px;
+  .profile-user-info {
+    display: inline-block;
+    font-size: 0.75em;
     word-wrap: break-word;
-    font-size: 0.8em;
+  }
+
+  .profile-user-name {
+    padding-bottom: 5px;
+  }
+
+  .profile-avatar {
+    margin-right: 10px;
+    width: 48px;
+    @include border-radius(12px)
   }
 
   .logout-btn {
-    background: none;
     color: $secondary-tan;
-    font-size: 0.8em;
-    margin-left: 20px;
+    font-size: 1em;
     padding: 0;
+    text-decoration: none;
   }
 }

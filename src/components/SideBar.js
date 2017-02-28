@@ -78,18 +78,22 @@ class SideBar extends React.Component {
           </Link>
         </ul>
         <section className='profile-container'>
-        <img
-          className='profile-icon profile-avatar'
-          role="presentation"
-          src={profile.user && profile.user.picture} />
-          <p>You are logged in as:<br/>{profile.user && profile.user.name}</p>
-          <Link to='/organization'>
-            <button
-              onClick={auth.logout.bind(this)}
-              className='logout-btn'>
-              Logout &raquo;
-            </button>
+          <img
+            className='profile-icon profile-avatar'
+            role="presentation"
+            src={profile.user && profile.user.picture} />
+          <div className='profile-user-info'>
+          <p
+          className='profile-user-name'>
+          You are logged in as:<br/>{profile.user && profile.user.name}
+          </p>
+          <Link
+            to='/organization'
+            onClick={auth.logout.bind(this)}
+            className='logout-btn'>
+            <p>Logout &raquo;</p>
           </Link>
+          </div>
         </section>
       </div>
     )
