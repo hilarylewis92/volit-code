@@ -9,6 +9,7 @@ export class Event extends React.Component {
     super()
     this.state = {
       role: '',
+      qty: '',
       eventID: '',
     }
   }
@@ -22,8 +23,9 @@ export class Event extends React.Component {
   }
 
   handleAddRoles() {
-    const { role, eventID } = this.state
-    this.props.createRole(role, eventID)
+    const { role, qty, eventID } = this.state
+    const newRole = {role, qty}
+    this.props.createRole(newRole, eventID)
   }
 
   showAddEventForm() {
@@ -55,7 +57,9 @@ export class Event extends React.Component {
       return (
         <li
           key={i}>
-          {role.role_name}
+          <div>{role.role_name}</div>
+          <div>{role.role_qty}</div>
+          <button>x</button>
         </li>
       )
     })
@@ -98,21 +102,37 @@ export class Event extends React.Component {
             </a>
           </address>
 
+          <h6>Volunteers Needed</h6>
+
+          <label
+            className='modal-label'
+            htmlFor='role'>
+            Volunteer Role
+          </label>
           <input
             type='text'
             id='role'
-            onChange={(e) =>
-              this.setState({
-                role: e.target.value
-              })
-            }
-            placeholder='add role'/>
+            onChange={(e) => this.setState({ role: e.target.value })}
+          />
+
+          <label
+            className='modal-label'
+            htmlFor='qty'>
+            Qty
+          </label>
+          <input
+            type='number'
+            id='qty'
+            onChange={(e) =>this.setState({ qty: e.target.value })}
+          />
+
           <button
             onClick={() => this.handleAddRoles()}>
-            add role
+            Add Role
           </button>
+
           <button
-            onClick={()=>this.showAddEventForm()}>
+            onClick={() => this.showAddEventForm()}>
             edit event
           </button>
           <ul>

@@ -187,8 +187,8 @@ app.get('/api/roles/:event_id', (req, res) => {
 
 app.post('/api/roles/:event_id', (req, res) => {
   const { event_id } = req.params
-  const { role_name } = req.body
-  const role = { role_name, event_id }
+  const { role_name, role_qty } = req.body
+  const role = { role_name, role_qty, event_id }
 
   db('roles').insert(role)
   .then(() => {

@@ -5,7 +5,8 @@ exports.seed = function(knex, Promise) {
         knex('roles').insert({
           id: 10000,
           role_name: 'Painter',
-          event_id: 1000
+          role_qty: 12,
+          event_id: 1000,
         })
       ])
     })

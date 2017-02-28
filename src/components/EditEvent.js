@@ -56,15 +56,12 @@ class EditEvent extends React.Component {
 
   render() {
     const { name, description, date, address } = this.state
-    
+
     return (
       <Modal
         className='modal'
         ref="editModal">
-        <form
-          >
-          <h2 className='modal-title'>Edit Event</h2>
-
+        <form>
           <label
             className='modal-label'
             htmlFor='name'>
@@ -75,11 +72,8 @@ class EditEvent extends React.Component {
             type='text'
             id='name'
             value={name}
-            onChange={(e) =>
-              this.setState({
-                name: e.target.value
-              })
-            }/>
+            onChange={(e) => this.setState({ name: e.target.value })}
+          />
 
           <label
             className='modal-label'
@@ -91,11 +85,7 @@ class EditEvent extends React.Component {
             type='text'
             id='description'
             value={description}
-            onChange={(e) =>
-              this.setState({
-                description: e.target.value
-              })
-            }>
+            onChange={(e) => this.setState({ description: e.target.value })}>
           </textarea>
 
           <div className='modal-split-input modal-date'>
@@ -109,10 +99,8 @@ class EditEvent extends React.Component {
               id='date'
               value={date}
               onChange={(e) =>
-                this.setState({
-                  date: e.target.value
-                })
-              }/>
+                this.setState({ date: e.target.value })}
+            />
           </div>
 
           <div className='modal-split-input modal-address'>
@@ -125,12 +113,9 @@ class EditEvent extends React.Component {
               type='text'
               id='address'
               value={address}
-              onChange={(e) =>
-                this.setState({
-                  address: e.target.value
-                })
-              }/>
-            </div>
+              onChange={(e) => this.setState({ address: e.target.value })}
+            />
+          </div>
           <button
             onClick={(e) => this.handleDeleteEvent(e)}>
             Delete event
