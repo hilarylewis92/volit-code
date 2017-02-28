@@ -4,9 +4,10 @@ div.modal {
   @include border-radius(8px);
   box-shadow: 0px 1px 4px rgba(44, 64, 90, .21);
   color: $primary-medium-grey;
+  max-height: 100vh;
   max-width: 500px;
-  width: 90% !important;
   text-align: center;
+  width: 90% !important;
 
   .modal-title {
     border-bottom: 1px solid $secondary-tan;
@@ -24,6 +25,11 @@ div.modal {
 
   .modal-input {
     width: 80%;
+  }
+
+  .modal-text-area {
+    max-height: 200px;
+    max-width: 80%;
   }
 
   .modal-split-input {

@@ -3,6 +3,7 @@ exports.up = function(knex, Promise) {
     knex.schema.createTable('users', function(table) {
         table.increments('id').primary()
         table.string('name')
+        table.string('picture')
         table.string('email').unique()
         table.string('phone_number')
     }),
@@ -27,6 +28,7 @@ exports.up = function(knex, Promise) {
     knex.schema.createTable('roles', function(table) {
       table.increments('id').primary()
       table.string('role_name')
+      table.integer('role_qty')
       table.integer('event_id')
            .references('id')
            .inTable('events')

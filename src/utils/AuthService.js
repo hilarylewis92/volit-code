@@ -29,6 +29,7 @@ export default class AuthService extends EventEmitter {
         console.log('Error loading the Profile', error)
       } else {
         this.setProfile(profile)
+        browserHistory.replace('/event-manager')
       }
     })
   }
@@ -52,7 +53,6 @@ export default class AuthService extends EventEmitter {
   setProfile(profile) {
     localStorage.setItem('profile', JSON.stringify(profile))
     this.emit('profile_updated', profile)
-    browserHistory.replace('/event-manager')
   }
 
   getProfile() {

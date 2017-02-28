@@ -26,14 +26,13 @@ export function setRoles(res) {
 
 export function adminLogin(profile, org_name) {
   return (dispatch) => {
-    const name = profile.name
-    const email = profile.email
+    const { name, email, picture } = profile
 
-    checkDbForOrgAndUser(name, email, org_name, dispatch)
+    checkDbForOrgAndUser(name, email, picture, org_name, dispatch)
   }
 }
 
-function checkDbForOrgAndUser(name, email, org_name, dispatch) {
+function checkDbForOrgAndUser(name, email, picture, org_name, dispatch) {
   axios.get(`/api/user/${email}/${org_name}`)
   .then(res => {
     if(res.data.user.email && res.data.organization.length) {
@@ -45,14 +44,15 @@ function checkDbForOrgAndUser(name, email, org_name, dispatch) {
       }
   })
   .catch(err => {
-    addUserAndOrgToDb(name, email, org_name, dispatch)
+    addUserAndOrgToDb(name, email, picture, org_name, dispatch)
   })
 }
 
-function addUserAndOrgToDb(name, email, org_name, dispatch) {
+function addUserAndOrgToDb(name, email, picture, org_name, dispatch) {
   axios.post('/api/users', ({
     name,
     email,
+    picture,
     organization_name: org_name
   }))
   .then(res => {
@@ -124,16 +124,20 @@ export function getAllEvents(organization_id) {
 export function deleteEvent(id, organization_id) {
   return (dispatch) => {
     axios.delete(`/api/events/${organization_id}/${id}`)
-    // .then(res => {
-    //   dispatch(setEvents(res.data))
-    // })
+    .then(res => {
+      dispatch(setEvents(res.data))
+    })
   }
 }
 
 export function createRole(role, event_id) {
+  const name = role.role
+  const qty = role.qty
+
   return (dispatch) => {
     axios.post(`/api/roles/${event_id}`, ({
-      role_name: role
+      role_name: name,
+      role_qty: qty,
     }))
     .then(res => {
       dispatch(setRoles(res.data))
@@ -144,6 +148,24 @@ export function createRole(role, event_id) {
 export function getAllRoles(event_id) {
   return (dispatch) => {
     axios.get(`/api/roles/${event_id}`)
+    .then(res => {
+      dispatch(setRoles(res.data))
+    })
+  }
+}
+
+export function addRoleQty(qty, id, event_id) {
+  return (dispatch) => {
+    axios.patch(`/api/roles/${event_id}/${id}`, {qty})
+    .then(res => {
+      dispatch(setRoles(res.data))
+    })
+  }
+}
+
+export function deleteRole(id, event_id) {
+  return (dispatch) => {
+    axios.delete(`/api/roles/${event_id}/${id}`)
     .then(res => {
       dispatch(setRoles(res.data))
     })

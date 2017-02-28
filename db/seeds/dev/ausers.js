@@ -5,8 +5,9 @@ exports.seed = function(knex, Promise) {
         knex('users').insert({
           id: 10,
           name: "Meeka",
-          email: 'haha@gmail.com',
-          phone_number: '3439944857'
+          email: 'test@gmail.com',
+          phone_number: '555-555-5555',
+          picture: '<div className="user-avatar"><div>'
         })
       ])
     })

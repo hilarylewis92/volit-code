@@ -9,6 +9,9 @@ class AddEvent extends React.Component {
       description: '',
       date: '',
       address: '',
+      role: '',
+      qty: '',
+      roles: [],
     }
   }
 
@@ -37,79 +40,63 @@ class AddEvent extends React.Component {
         ref="modal">
         <form
           onSubmit={this.props.createEvent}>
-          <h2 className='modal-title'>Create Event</h2>
-
           <label
             className='modal-label'
             htmlFor='name'>
-            Event name
+            Event Name
           </label>
           <input
             className='modal-input'
             type='text'
             id='name'
-            onChange={(e) =>
-              this.setState({
-                name: e.target.value
-              })
-            }
-            placeholder='name'/>
+            onChange={(e) => this.setState({ name: e.target.value })}
+          />
 
           <label
             className='modal-label'
             htmlFor='description'>
-            Event description
+            Event Description
           </label>
           <textarea
             className='modal-input modal-text-area'
             type='text'
             id='description'
             onChange={(e) =>
-              this.setState({
-                description: e.target.value
-              })
-            }
-            placeholder='description'>
+              this.setState({ description: e.target.value })}
+          >
           </textarea>
 
           <div className='modal-split-input modal-date'>
             <label
               className='modal-label'
               htmlFor='date'>
-              Event date
+              Event Date
             </label>
             <input
               type='date'
               id='date'
-              onChange={(e) =>
-                this.setState({
-                  date: e.target.value
-                })
-              }
-              placeholder='date'/>
+              onChange={(e) => this.setState({ date: e.target.value })}
+            />
           </div>
 
           <div className='modal-split-input modal-address'>
             <label
               className='modal-label'
               htmlFor='address'>
-              Event address
+              Event Address
             </label>
             <input
               type='text'
               id='address'
-              onChange={(e) =>
-                this.setState({
-                  address: e.target.value
-                })
-              }
-              placeholder='address'/>
-            </div>
+              onChange={(e) => this.setState({ address: e.target.value })}
+              placeholder='address, city, state'
+            />
+          </div>
 
           <button
             disabled={name && description && date && address ? false : true}
             onClick={(e) => this.handleEventSubmit(e)}>
-            Save event
+            Save Event
           </button>
         </form>
       </Modal>
