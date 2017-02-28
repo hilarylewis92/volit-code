@@ -33,11 +33,12 @@ export class Event extends React.Component {
     const { eventID } = this.state
     const { roles } = this.props
 
-    const newRoleCount = roles.reduce(role => {
+    const newRole = roles.find(role => {
       if(role.id === parseInt(id))
-      return role.role_qty = role.role_qty + 1
+      return role.role_qty += 1
     })
-    debugger
+    const newRoleCount = newRole.role_qty
+    this.props.addRoleQty(newRoleCount, id, eventID)
   }
 
   handleDeleteRole(e) {

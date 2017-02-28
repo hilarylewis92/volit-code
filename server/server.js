@@ -209,6 +209,24 @@ app.post('/api/roles/:event_id', (req, res) => {
   })
 })
 
+app.patch('/api/roles/:event_id/:id', (req, res) => {
+  const { event_id, id } = req.params
+  const { qty } = req.body
+
+  db('roles').where('event_id', event_id)
+              .andWhere('id', id)
+              .update('role_qty', qty)
+  .then(() => {
+    db('roles').where('event_id', event_id).select()
+    .then(roles => {
+      res.status(200).json(roles)
+    })
+  })
+  .catch(error => {
+    console.error('ERROR: in DELETE for roles')
+  })
+})
+
 app.delete('/api/roles/:event_id/:id', (req, res) => {
   const { event_id, id } = req.params
 

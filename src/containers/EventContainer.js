@@ -1,6 +1,6 @@
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { createRole, getAllRoles, editEvent, deleteEvent, deleteRole} from '../actions/index'
+import { createRole, getAllRoles, editEvent, deleteEvent, deleteRole, addRoleQty} from '../actions/index'
 import Event from '../components/Event'
 
 function mapStateToProps(state, props) {
@@ -12,7 +12,7 @@ function mapStateToProps(state, props) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ createRole, getAllRoles, editEvent, deleteEvent, deleteRole }, dispatch)
+  return bindActionCreators({ createRole, getAllRoles, editEvent, deleteEvent, deleteRole, addRoleQty }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Event)

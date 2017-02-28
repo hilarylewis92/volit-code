@@ -154,6 +154,15 @@ export function getAllRoles(event_id) {
   }
 }
 
+export function addRoleQty(qty, id, event_id) {
+  return (dispatch) => {
+    axios.patch(`/api/roles/${event_id}/${id}`, {qty})
+    .then(res => {
+      dispatch(setRoles(res.data))
+    })
+  }
+}
+
 export function deleteRole(id, event_id) {
   return (dispatch) => {
     axios.delete(`/api/roles/${event_id}/${id}`)
