@@ -14,4 +14,5 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators({ adminLogin, createEvent, getAllEvents, deleteEvent }, dispatch)
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(EventManager)
+const EventManagerContainer = connect(mapStateToProps, mapDispatchToProps)(EventManager)
+export default EventManagerContainer;
