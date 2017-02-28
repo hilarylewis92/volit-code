@@ -46,6 +46,7 @@ class SignUp extends React.Component {
 
 SignUp.propTypes = {
   auth: PropTypes.instanceOf(AuthService),
+  params: React.PropTypes.object
 }
 
 export default SignUp
