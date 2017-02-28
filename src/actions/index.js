@@ -91,12 +91,42 @@ export function createEvent(event, organization_id) {
   }
 }
 
+export function editEvent(event, organization_id) {
+  const name = event.name
+  const description = event.description
+  const date = event.date
+  const address = event.address
+  const id = event.id
+
+  return (dispatch) => {
+    axios.put(`/api/events/${organization_id}`, ({
+      id: id,
+      event_name: name,
+      event_description: description,
+      event_date: date,
+      event_address: address,
+    }))
+    .then(res => {
+      dispatch(setEvents(res.data))
+    })
+  }
+}
+
 export function getAllEvents(organization_id) {
   return (dispatch) => {
     axios.get(`/api/events/${organization_id}`)
     .then(res => {
       dispatch(setEvents(res.data))
     })
+  }
+}
+
+export function deleteEvent(id, organization_id) {
+  return (dispatch) => {
+    axios.delete(`/api/events/${organization_id}/${id}`)
+    // .then(res => {
+    //   dispatch(setEvents(res.data))
+    // })
   }
 }
 

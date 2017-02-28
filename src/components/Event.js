@@ -2,6 +2,8 @@ import React, { PropTypes } from 'react'
 import SideBarContainer from '../containers/SideBarContainer'
 import moment from 'moment'
 
+import EditEvent from './EditEvent'
+
 export class Event extends React.Component {
   constructor(){
     super()
@@ -19,10 +21,13 @@ export class Event extends React.Component {
     this.props.getAllRoles(eventID)
   }
 
-  handleAddRoles(e) {
-    e.preventDefault()
+  handleAddRoles() {
     const { role, eventID } = this.state
     this.props.createRole(role, eventID)
+  }
+
+  showAddEventForm() {
+    this.refs.editModal.showModal()
   }
 
   formatDate(date) {
@@ -30,7 +35,7 @@ export class Event extends React.Component {
   }
 
   render(){
-    const { events, roles, auth } = this.props
+    const { events, roles, auth, editEvent, deleteEvent } = this.props
 
     const eventID = this.props.params.event_id
 
@@ -54,6 +59,23 @@ export class Event extends React.Component {
         </li>
       )
     })
+
+    let data
+    if(singleEvent.id) {
+      data = (
+        <EditEvent
+          eventID={this.state.eventID}
+          event={singleEvent}
+          ref='editModal'
+          editEvent={editEvent}
+          deleteEvent={deleteEvent}
+        />
+      )
+    } else {
+      data = (
+        <div>loading...</div>
+      )
+    }
 
     return (
       <div>
@@ -86,13 +108,18 @@ export class Event extends React.Component {
             }
             placeholder='add role'/>
           <button
-            onClick={(e) => this.handleAddRoles(e)}>
+            onClick={() => this.handleAddRoles()}>
             add role
+          </button>
+          <button
+            onClick={()=>this.showAddEventForm()}>
+            edit event
           </button>
           <ul>
             {role}
           </ul>
         </div>
+        {data}
       </div>
     )
   }

@@ -38,7 +38,6 @@ export class EventList extends React.Component {
         return count
       }
     })
-
     return count
   }
 
