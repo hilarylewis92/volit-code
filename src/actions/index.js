@@ -26,14 +26,13 @@ export function setRoles(res) {
 
 export function adminLogin(profile, org_name) {
   return (dispatch) => {
-    const name = profile.name
-    const email = profile.email
+    const { name, email, picture } = profile
 
-    checkDbForOrgAndUser(name, email, org_name, dispatch)
+    checkDbForOrgAndUser(name, email, picture, org_name, dispatch)
   }
 }
 
-function checkDbForOrgAndUser(name, email, org_name, dispatch) {
+function checkDbForOrgAndUser(name, email, picture, org_name, dispatch) {
   axios.get(`/api/user/${email}/${org_name}`)
   .then(res => {
     if(res.data.user.email && res.data.organization.length) {
@@ -45,14 +44,15 @@ function checkDbForOrgAndUser(name, email, org_name, dispatch) {
       }
   })
   .catch(err => {
-    addUserAndOrgToDb(name, email, org_name, dispatch)
+    addUserAndOrgToDb(name, email, picture, org_name, dispatch)
   })
 }
 
-function addUserAndOrgToDb(name, email, org_name, dispatch) {
+function addUserAndOrgToDb(name, email, picture, org_name, dispatch) {
   axios.post('/api/users', ({
     name,
     email,
+    picture,
     organization_name: org_name
   }))
   .then(res => {

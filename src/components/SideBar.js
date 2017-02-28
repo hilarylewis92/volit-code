@@ -4,6 +4,7 @@ import { Link } from 'react-router'
 class SideBar extends React.Component {
   render(){
     const { events, profile, auth } = this.props
+    console.log(profile)
     return (
       <div className='side-bar'>
         <header
@@ -11,7 +12,7 @@ class SideBar extends React.Component {
           <img
             className='side-bar-icon'
             role="presentation"
-            src={require('../assets/icons/icon.svg')}/>
+            src={require('../assets/icons/icon.svg')} />
           <h4
             className='side-bar-admin'>
             administrator
@@ -77,12 +78,16 @@ class SideBar extends React.Component {
           </Link>
         </ul>
         <section className='profile-container'>
+        <img
+          className='profile-icon profile-avatar'
+          role="presentation"
+          src={profile.user && profile.user.picture} />
           <p>You are logged in as:<br/>{profile.user && profile.user.name}</p>
           <Link to='/organization'>
             <button
               onClick={auth.logout.bind(this)}
               className='logout-btn'>
-              Logout
+              Logout &raquo;
             </button>
           </Link>
         </section>

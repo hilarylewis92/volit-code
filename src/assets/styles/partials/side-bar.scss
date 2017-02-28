@@ -71,12 +71,15 @@
 
   p {
     margin: 15px 20px;
+    word-wrap: break-word;
+    font-size: 0.8em;
   }
 
   .logout-btn {
-    height: 44px;
-    bottom: 0;
+    background: none;
+    color: $secondary-tan;
+    font-size: 0.8em;
     margin-left: 20px;
-    width: 120px;
+    padding: 0;
   }
 }
