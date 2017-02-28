@@ -17,7 +17,7 @@
   color: $white;
   font-weight: 200;
   line-height: 150%;
-  margin: 16px 0;
+  margin: 15px;
   text-align: center;
 }
 
@@ -64,17 +64,17 @@
 
 .profile-container {
   border-top: 1px solid $primary-medium-grey;
-  position: absolute;
-  bottom: 50px;
+  margin-top: 75px;
   width: 100%;
-}
 
-.logout-btn {
-  height: 50px;
-  border-radius: 10px;
-  margin-top: 25px;
-  margin-left: 20px;
-  margin-right: 10px;
-  padding: 0px;
-  width: 60px;
+  p {
+    margin: 15px 20px;
+  }
+
+  .logout-btn {
+    height: 44px;
+    bottom: 0;
+    margin-left: 20px;
+    width: 120px;
+  }
 }

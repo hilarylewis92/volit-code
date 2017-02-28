@@ -85,7 +85,7 @@
     "redux-thunk": "^2.2.0"
   },
   "scripts": {
-    "start": "concurrently \"node scripts/start.js\" \"npm run server\"",
+    "start": "npm run server",
     "server": "node server/server.js",
     "build": "node scripts/build.js",
     "test": "jest --watch --env=jsdom",

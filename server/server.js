@@ -4,6 +4,8 @@ const bodyParser = require('body-parser')
 const environment = process.env.NODE_ENV || 'development'
 const configuration = require('../knexfile')[environment]
 const db = require('knex')(configuration)
+const path = require('path');
+
 
 const app = express()
 
@@ -15,6 +17,13 @@ const PORT = process.env.PORT || 3001
 app.set('port', PORT)
 app.locals.title = 'Volit'
 
+if(environment === "production") {
+  app.use(express.static(path.join(__dirname, '/build')))
+  console.log('IN THE PRODUCTION BUILD GAH');
+  app.get('/', (req, res) => {
+    res.sendFile('/build/index.html')
+  })
+}
 app.get('/api/organizations', (req, res) => {
   db('organizations').select()
   .then(organizations => {
@@ -131,6 +140,45 @@ app.post('/api/events/:organization_id', (req, res) => {
     .catch(error => {
       console.error('ERROR: in POST for events')
     })
+  })
+})
+
+app.put('/api/events/:organization_id', (req, res) => {
+  const { organization_id } = req.params
+  const { event_name, event_date, event_description, event_address, id } = req.body
+  const event = { event_name, event_description, event_address, event_date}
+
+  db('events').where('organization_id', organization_id)
+              .andWhere('id', id).first()
+              .update(event)
+
+  .then(() => {
+    db('events').where('organization_id', organization_id)
+                .andWhere('id', id).select()
+
+    .then(evt => {
+      res.status(200).json(evt)
+    })
+  })
+  .catch(error => {
+    console.error('ERROR: in PUT for events')
+  })
+})
+
+app.delete('/api/events/:organization_id/:id', (req, res) => {
+  const { organization_id, id } = req.params
+
+  db('events').where('organization_id', organization_id)
+              .andWhere('id', id).first()
+              .del()
+  .then(() => {
+    db('events').where('organization_id', organization_id).select()
+    .then(events => {
+      res.status(200).json(events)
+    })
+  })
+  .catch(error => {
+    console.error('ERROR: in DELETE for events')
   })
 })
 
