@@ -114,7 +114,7 @@ export class Event extends React.Component {
             className='role-delete-btn'
             id={id}
             onClick={(e) => this.handleDeleteRole(e)}>
-            <div>+</div>
+            <div id={id}>+</div>
           </button>
         </li>
       )
