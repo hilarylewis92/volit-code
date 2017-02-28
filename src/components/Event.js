@@ -28,11 +28,21 @@ export class Event extends React.Component {
     this.props.createRole(newRole, eventID)
   }
 
-  handleDeleteRole(e) {
-    e.preventDefault()
+  handleAddQty(e) {
     const { id } = e.target
     const { eventID } = this.state
+    const { roles } = this.props
 
+    const newRoleCount = roles.reduce(role => {
+      if(role.id === parseInt(id))
+      return role.role_qty = role.role_qty + 1
+    })
+    debugger
+  }
+
+  handleDeleteRole(e) {
+    const { id } = e.target
+    const { eventID } = this.state
     this.props.deleteRole(id, eventID)
   }
 
@@ -46,7 +56,6 @@ export class Event extends React.Component {
 
   render(){
     const { events, roles, auth, editEvent, deleteEvent } = this.props
-
     const eventID = this.props.params.event_id
 
     const singleEvent = events.find(event => {
@@ -63,11 +72,23 @@ export class Event extends React.Component {
 
     const role = eventRoles.map((role, i) => {
       let id = role.id
+      let name = role.role_name
+      let qty = role.role_qty
       return (
         <li
           key={i}>
-          <div>{role.role_name}</div>
-          <div>{role.role_qty}</div>
+          <div>{name}</div>
+          <div>{qty}</div>
+          <button
+            id={id}
+            onClick={(e) => this.handleAddQty(e)}>
+            +
+          </button>
+          <button
+            id={id}
+            onClick={(e) => this.handleSubtractQty(e)}>
+            -
+          </button>
           <button
             id={id}
             onClick={(e) => this.handleDeleteRole(e)}>
