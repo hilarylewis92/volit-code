@@ -9,4 +9,6 @@ function mapStateToProps(state, props) {
   }
 }
 
-export default connect(mapStateToProps)(SideBar)
+const SideBarContainer = connect(mapStateToProps)(SideBar)
+
+export default SideBarContainer;
