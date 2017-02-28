@@ -96,9 +96,9 @@ app.get('/api/users', (req, res) => {
 
 app.post('/api/users', (req, res) => {
   const { name, email, phone_number, organization_name, picture } = req.body
+  console.log(name, email, phone_number, organization_name);
   const user = { name: name, email: email, phone_number: '555-555-5555', picture: picture }
-  const admin_id = db('users').returning('id').insert(user)
-
+  db('users').returning('id').insert(user)
   .then(admin_id => {
     const aid = parseInt(admin_id, 10)
     const organization = { name: organization_name, admin_id: aid }
