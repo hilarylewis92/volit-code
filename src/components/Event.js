@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react'
 import SideBarContainer from '../containers/SideBarContainer'
 import moment from 'moment'
+import { Link } from 'react-router'
 
 import EditEvent from './EditEvent'
 
@@ -208,6 +209,11 @@ export class Event extends React.Component {
               Add Role
             </button>
           </section>
+          <Link
+            to='/event-manager'
+            className='back-btn'>
+            <p>Back to All Events &raquo;</p>
+          </Link>
 
         </div>
          {data}
