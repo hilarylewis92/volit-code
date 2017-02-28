@@ -211,6 +211,8 @@ app.post('/api/roles/:event_id', (req, res) => {
   })
 })
 
-app.listen(PORT, () => {
-  console.log(`${app.locals.title} is running on ${app.get('port')}`)
-})
+if(!module.parent) {
+  app.listen(PORT, () => {
+    console.log(`${app.locals.title} is running on ${app.get('port')}`)
+  })
+}
