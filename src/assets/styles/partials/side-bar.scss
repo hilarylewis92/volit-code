@@ -1,10 +1,11 @@
 .side-bar {
-  height: 100vh;
-  width: 250px;
-  float: left;
   background-color: $primary-dark-grey;
   color: white;
+  float: left;
+  height: 100vh;
+  min-height: 600px;
   position: fixed;
+  width: 250px;
 }
 
 .side-bar-header {
@@ -64,7 +65,8 @@
 
 .profile-container {
   border-top: 1px solid $primary-medium-grey;
-  margin-top: 75px;
+  bottom: 30px;
+  position: absolute;
   width: 100%;
 
   p {

@@ -82,7 +82,7 @@ class SideBar extends React.Component {
             <button
               onClick={auth.logout.bind(this)}
               className='logout-btn'>
-              Logout &raquo;
+              Logout
             </button>
           </Link>
         </section>

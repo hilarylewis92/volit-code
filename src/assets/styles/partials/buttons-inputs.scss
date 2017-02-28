@@ -7,10 +7,15 @@ button, input {
 }
 
 button {
-  background: $primary-blue;
+  background-color: $primary-blue;
   color: white;
   cursor: pointer;
   padding: 0 30px;
+
+  &:disabled {
+    background-color: $primary-medium-grey;
+    cursor: auto;
+  }
 }
 
 input, textarea {

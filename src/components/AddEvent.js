@@ -103,7 +103,7 @@ class AddEvent extends React.Component {
                   address: e.target.value
                 })
               }
-              placeholder='address'/>
+              placeholder='address, city, state'/>
             </div>
 
           <button
