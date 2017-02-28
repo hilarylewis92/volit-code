@@ -96,7 +96,7 @@ class AddEvent extends React.Component {
           <button
             disabled={name && description && date && address ? false : true}
             onClick={(e) => this.handleEventSubmit(e)}>
-            SAVE EVENT
+            Save Event
           </button>
         </form>
       </Modal>

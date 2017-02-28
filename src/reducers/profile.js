@@ -11,6 +11,7 @@ const profile = (state = {}, action) => {
           name: action.user.name,
           email: action.user.email,
           phone_number: action.user.phone_number,
+          picture: action.user.picture
         }
       }, {})
     default:

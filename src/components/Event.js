@@ -26,6 +26,7 @@ export class Event extends React.Component {
     const { role, qty, eventID } = this.state
     const newRole = {role, qty}
     this.props.createRole(newRole, eventID)
+    this.setState({ role: '', qty: '' })
   }
 
   handleAddQty(e) {
@@ -165,6 +166,7 @@ export class Event extends React.Component {
             type='text'
             id='role'
             onChange={(e) => this.setState({ role: e.target.value })}
+            value={this.state.role}
           />
 
           <label
@@ -176,6 +178,7 @@ export class Event extends React.Component {
             type='number'
             id='qty'
             onChange={(e) =>this.setState({ qty: e.target.value })}
+            value={this.state.qty}
           />
 
           <button
