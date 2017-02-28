@@ -17,10 +17,14 @@ class SideBar extends React.Component {
             administrator
           </h4>
         </header>
-        <h2
-          className='organization-name'>
-          {profile.organization && profile.organization.org_name}
-        </h2>
+        <Link
+          className='link'
+          to='/event-manager'>
+          <h2
+            className='organization-name'>
+            {profile.organization && profile.organization.org_name}
+          </h2>
+        </Link>
 
         <ul className='side-bar-links'>
           <Link
