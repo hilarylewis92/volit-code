@@ -50,8 +50,8 @@ class EditEvent extends React.Component {
 
     if(confirm('Are you sure you want to delete this event?')) {
       this.props.deleteEvent(id, orgID)
+      location.replace(`${window.location.origin}/event-manager`)
     }
-    browserHistory.push(`/event-manager`)
   }
 
   render() {
