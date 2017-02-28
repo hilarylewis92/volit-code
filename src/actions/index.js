@@ -98,6 +98,15 @@ export function getAllEvents(organization_id) {
   }
 }
 
+export function deleteEvent(id, organization_id) {
+  return (dispatch) => {
+    axios.delete(`/api/events/${organization_id}/${id}`)
+    // .then(res => {
+    //   dispatch(setEvents(res.data))
+    // })
+  }
+}
+
 export function createRole(role, event_id) {
   return (dispatch) => {
     axios.post(`/api/roles/${event_id}`, ({

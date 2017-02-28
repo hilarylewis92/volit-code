@@ -141,6 +141,21 @@ app.put('/api/events/:organization_id', (req, res) => {
   })
 })
 
+app.delete('/api/events/:organization_id/:id', (req, res) => {
+  const { organization_id, id } = req.params
+
+  db('events').where('organization_id', organization_id)
+              .andWhere('id', id).first()
+              .del()
+  .then(events => {
+    console.log(events);
+    res.status(200).json(events)
+  })
+  // .catch(error => {
+  //   console.error('ERROR: in DELETE for events')
+  // })
+})
+
 app.get('/api/roles/:event_id', (req, res) => {
   const { event_id } = req.params
 

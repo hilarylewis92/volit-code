@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react'
 import Modal from 'boron/DropModal'
 import moment from 'moment'
+import { browserHistory } from 'react-router'
 
 class EditEvent extends React.Component {
   constructor(){
@@ -23,7 +24,6 @@ class EditEvent extends React.Component {
 
   componentDidMount() {
     const { id, event_name, event_date, event_description, event_address, organization_id } = this.props.event
-    // const date = moment(event_date).format('MMDDYYYY')
 
     this.setState({
       id: id,
@@ -46,8 +46,12 @@ class EditEvent extends React.Component {
 
   handleDeleteEvent(e) {
     e.preventDefault()
+    const { id, orgID } = this.state
+
     if(confirm('Are you sure you want to delete this event?')) {
+      this.props.deleteEvent(id, orgID)
     }
+    browserHistory.push(`/event-manager`)
   }
 
   render() {
