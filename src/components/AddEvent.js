@@ -30,6 +30,7 @@ class AddEvent extends React.Component {
   }
 
   render() {
+    const { name, description, date, address } = this.state
     return (
       <Modal
         className='modal'
@@ -106,6 +107,7 @@ class AddEvent extends React.Component {
             </div>
 
           <button
+            disabled={name && description && date && address ? false : true}
             onClick={(e) => this.handleEventSubmit(e)}>
             Save event
           </button>
