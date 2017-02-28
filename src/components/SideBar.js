@@ -73,14 +73,14 @@ class SideBar extends React.Component {
           </Link>
         </ul>
         <section className='profile-container'>
+          <p>You are logged in as:<br/>{profile.user && profile.user.name}</p>
           <Link to='/organization'>
-          <button
-            onClick={auth.logout.bind(this)}
-            className='logout-btn'>
-            Logout
-          </button>
-        </Link>
-        <span>{profile.user && profile.user.name}</span>
+            <button
+              onClick={auth.logout.bind(this)}
+              className='logout-btn'>
+              Logout &raquo;
+            </button>
+          </Link>
         </section>
       </div>
     )
