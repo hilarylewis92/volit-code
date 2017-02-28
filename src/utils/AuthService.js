@@ -11,6 +11,10 @@ export default class AuthService extends EventEmitter {
       auth: {
         redirectUrl: `${window.location.origin}/organization`,
         responseType: 'token'
+      },
+      theme: {
+        logo: 'https://cdn.frontify.com/api/screen/thumbnail/MEcPbcFADZJFiJRgPMHrSwDoW4Kb6d4D2xVM9LIW3Af0U45-kUctGHqywlhJKuVIC0LBV9_C6k-Hw7Gjfgqo4Q/960',
+        primaryColor: '#3C6A8C'
       }
     })
 
@@ -30,7 +34,8 @@ export default class AuthService extends EventEmitter {
   }
 
   login() {
-    this.lock.show()
+    this.lock.show({allowSignUp: window.location.pathname.split("/")[1] === "signup" ? true : false,
+    allowLogin: window.location.pathname.split("/")[1] === "login" ? true : false})
   }
 
   logout() {

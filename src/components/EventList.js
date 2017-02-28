@@ -41,9 +41,20 @@ export class EventList extends React.Component {
     return count
   }
 
+  sortByDate(events) {
+    return events.sort(function(a, b) {
+      let dateA = new Date(a.event_date).getTime()
+      let dateB = new Date(b.event_date).getTime()
+
+      return parseInt(dateA, 10) - parseInt(dateB, 10)
+    })
+  }
+
   render() {
     const {events, orgID} = this.props
-    let event = events.map((event, i)=> {
+    const sortedEvents = this.sortByDate(events)
+
+    let event = sortedEvents.map((event, i)=> {
       const todaysDate = Date.now()
       let eventDate = new Date(event.event_date).getTime()
       let date = this.formatDate(event.event_date)

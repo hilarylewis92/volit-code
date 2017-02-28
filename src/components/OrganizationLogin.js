@@ -20,7 +20,7 @@ export class OrganizationLogin extends React.Component {
   checkOrganizationName(e) {
     e.preventDefault()
     const name = this.state.organization
-    axios.get(`/api/checkorg/${name}`)
+    axios.get(`/api/org_check/${name}`)
     .then((res) => {
       if(res.data.length) {
         browserHistory.push(`/login/${name}`)
@@ -29,7 +29,7 @@ export class OrganizationLogin extends React.Component {
       }
     })
     .catch((err) => {
-      console.error(err)
+      console.error('ERROR: in checkOrganizationName function ', err)
     })
   }
 
