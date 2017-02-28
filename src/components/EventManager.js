@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react'
 import AuthService from '../utils/AuthService'
 import EventList from './EventList'
-import SideBarContainer from '../containers/SideBarContainer'
+import SideBar from '../components/SideBar'
 
 class EventManager extends React.Component {
   static contextTypes = {
@@ -35,7 +35,7 @@ class EventManager extends React.Component {
 
     return (
       <div className="dashboard-container">
-        <SideBarContainer auth={auth} />
+        <SideBar profile={profile} auth={auth} />
         <div className="event-manager-container">
           {data}
         </div>

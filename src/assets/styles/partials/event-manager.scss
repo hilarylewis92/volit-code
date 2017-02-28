@@ -5,27 +5,27 @@
   width: calc(100vw - 250px);
 }
 
-.event-list-header {
+.event-manager-header {
   margin-bottom: 15px;
   max-width: 720px;
   overflow: auto;
   width: 100%;
 
-  .event-list-header-upcoming {
+  .event-manager-header-upcoming, .event-manager-header-title {
     float: left;
   }
 
-  .event-list-upcoming {
+  .event-manager-upcoming, .event-manager-title {
     padding-bottom: 5px;
   }
 
-  .event-list-new-event-btn {
+  .event-manager-new-event-btn, .event-manager-edit-btn {
     float: right;
     margin-top: 5px;
   }
 }
 
-.event-list-item {
+.event-list-item, .event-description-container {
   background: white;
   border: $component-shadow;
   @include border-radius(4px);
@@ -45,4 +45,49 @@
   .event-list-address {
     padding-bottom: 15px;
   }
+
+  .event-description-copy {
+    margin-bottom: 15px;
+  }
+}
+
+.role-split-input {
+  display: inline-block;
+
+  .add-role-qty-input {
+    margin: 0 5px;
+    width: 50px;
+  }
+
+  .qty-label {
+    margin-left: 5px;
+  }
+}
+
+.role-title {
+  display: inline-block;
+  margin: 5px 10px 5px 0;
+}
+
+.role-add-btn, .role-subtract-btn, .role-delete-btn {
+  color: white;
+  height: 21px;
+  margin-right: 5px;
+  padding: 0px 0px 5px 0px;
+  width: 21px;
+}
+
+.role-delete-btn {
+  background-color: $primary-red;
+  padding: 0px 0px 4px 0px;
+
+  div {
+    padding-right: 2px;
+    transform: rotate(-45deg);
+  }
+}
+
+.back-btn {
+  text-decoration: none;
+  color: $primary-dark-grey;
 }
