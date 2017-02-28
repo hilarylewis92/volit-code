@@ -31,12 +31,13 @@ export class Event extends React.Component {
   }
 
   handleAddQty(e) {
+    e.preventDefault()
     const { id } = e.target
     const { eventID } = this.state
     const { roles } = this.props
 
     const newRole = roles.find(role => {
-      if(role.id === parseInt(id))
+      if(role.id === parseInt(id, 10))
       return role.role_qty += 1
     })
     const newRoleCount = newRole.role_qty
@@ -44,6 +45,7 @@ export class Event extends React.Component {
   }
 
   handleSubtractQty(e) {
+    e.preventDefault()
     const { id } = e.target
     const { eventID } = this.state
     const { roles } = this.props
@@ -90,7 +92,13 @@ export class Event extends React.Component {
       return role
     })
 
-    const role = eventRoles.map((role, i) => {
+    const sortedRoles = eventRoles.sort((a, b) => {
+      let eventA = parseInt(a.id, 10)
+      let eventB = parseInt(b.id, 10)
+      return eventA - eventB
+    })
+
+    const role = sortedRoles.map((role, i) => {
       let id = role.id
       let name = role.role_name
       let qty = role.role_qty
@@ -114,7 +122,7 @@ export class Event extends React.Component {
             className='role-delete-btn'
             id={id}
             onClick={(e) => this.handleDeleteRole(e)}>
-            <div>+</div>
+            <div id={id}>+</div>
           </button>
         </li>
       )
