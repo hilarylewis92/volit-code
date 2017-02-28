@@ -1,5 +1,4 @@
 const expect = require('chai').expect
-const should = require('chai').should
 const request = require('supertest')
 const app = require('../server/server.js')
 
