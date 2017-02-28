@@ -1,7 +1,7 @@
 import * as actions from '../../src/actions/index.js';
 import * as types from '../../src/actions/ActionTypes.js';
 
-describe('ADMIN_LOGIN actions', () => {
+describe('ADMIN_LOGIN action creator', () => {
   let res, expected;
 
   beforeEach(() => {
@@ -37,7 +37,7 @@ describe('ADMIN_LOGIN actions', () => {
   })
 })
 
-describe('CREATE_EVENT actions', () => {
+describe('CREATE_EVENT action creator', () => {
   let res, expected;
 
   beforeEach(() => {
@@ -76,5 +76,36 @@ describe('CREATE_EVENT actions', () => {
 
   it('the setEvents action create should create an action object', () => {
     expect(actions.setEvents(res)).toEqual(expected)
+  })
+})
+
+describe('CREATE_ROLE action creator', () => {
+  let res, expected;
+
+  beforeEach(() => {
+    res = [
+        { id: 1, role_name: 'sound guy', event_id: 2 },
+        { id: 2, role_name: 'singer', event_id: 2 }
+    ]
+
+    expected = {
+      type: types.CREATE_ROLE,
+      res: [
+          { id: 1, role_name: 'sound guy', event_id: 2 },
+          { id: 2, role_name: 'singer', event_id: 2 }
+      ]
+    }
+  })
+
+  it('the setRoles should create an action object', () => {
+    expect(actions.setRoles(res)).toEqual(expected)
+  })
+
+  it('the setRoles action should have correct length', () => {
+    expect(actions.setRoles(res).length).toEqual(expected.length)
+  })
+
+  it('the setRoles action res should have correct items', () => {
+    expect(actions.setRoles(res).res[0].id).toEqual(1)
   })
 })
