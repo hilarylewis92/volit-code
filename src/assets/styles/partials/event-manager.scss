@@ -36,6 +36,12 @@
 
   .event-list-date {
     font-size: 0.8em;
+    display: inline-block;
+  }
+
+  .event-list-url {
+    font-size: 0.8em;
+    margin-left: 5px;
   }
 
   .event-list-description {
