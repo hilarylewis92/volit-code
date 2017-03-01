@@ -8,6 +8,7 @@ exports.seed = function(knex, Promise) {
           event_date: '2017-08-15',
           event_description: 'Cool ice cream social to donate to a charity',
           event_address: '0987 Whats Up Ave.',
+          url_key: 'hwX6aOr7',
           volunteer_count: 15,
           organization_id: 100
         })
