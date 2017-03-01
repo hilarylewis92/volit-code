@@ -35,7 +35,6 @@ export class Event extends React.Component {
     const { id } = e.target
     const { eventID } = this.state
     const { roles } = this.props
-
     const newRole = roles.find(role => {
       if(role.id === parseInt(id, 10))
       return role.role_qty += 1
@@ -235,7 +234,12 @@ Event.propTypes = {
   events: PropTypes.array.isRequired,
   roles: PropTypes.array.isRequired,
   createRole: PropTypes.func.isRequired,
-  getAllRoles: PropTypes.func.isRequired
+  getAllRoles: PropTypes.func.isRequired,
+  deleteEvent: PropTypes.func.isRequired,
+  editEvent: PropTypes.func.isRequired,
+  addRoleQty: PropTypes.func.isRequired,
+  deleteRole: PropTypes.func.isRequired,
+  params: PropTypes.object.isRequired
 }
 
 export default Event

@@ -48,6 +48,7 @@ class Login extends React.Component {
 
 Login.propTypes = {
   auth: PropTypes.instanceOf(AuthService),
+  params: PropTypes.object.isRequired
 }
 
 export default Login

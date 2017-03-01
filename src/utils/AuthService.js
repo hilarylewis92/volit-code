@@ -9,7 +9,7 @@ export default class AuthService extends EventEmitter {
 
     this.lock = new Auth0Lock(clientId, domain, {
       auth: {
-        redirectUrl: `${window.location.origin}/organization`,
+        redirectUrl: `${window.location.origin}/event-manager`,
         responseType: 'token'
       },
       theme: {
