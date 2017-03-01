@@ -76,7 +76,7 @@ export class Event extends React.Component {
   }
 
   render(){
-    const { events, roles, auth, editEvent, deleteEvent } = this.props
+    const { profile, events, roles, auth, editEvent, deleteEvent } = this.props
     const eventID = this.props.params.event_id
 
     const singleEvent = events.find(event => {
@@ -146,7 +146,7 @@ export class Event extends React.Component {
 
     return (
       <div>
-        <SideBar auth={auth} />
+        <SideBar profile={profile} auth={auth} />
         <div className='event-manager-container'>
           <header className='event-manager-header'>
             <div className='event-manager-header-title'>

@@ -6,6 +6,7 @@ import Event from '../components/Event'
 function mapStateToProps(state, props) {
   return {
     events: state.events,
+    profile: state.profile,
     roles: state.roles,
     auth: props.auth
   }
