@@ -81,10 +81,7 @@ function addOrgToDb(res, org_name, dispatch) {
 }
 
 export function createEvent(event, organization_id) {
-  const name = event.name
-  const description = event.description
-  const date = event.date
-  const address = event.address
+  const { name, description, date, address, url_key } = event
 
   return (dispatch) => {
     axios.post(`/api/events/${organization_id}`, ({
@@ -92,6 +89,7 @@ export function createEvent(event, organization_id) {
       event_description: description,
       event_date: date,
       event_address: address,
+      url_key
     }))
     .then(res => {
       dispatch(setEvents(res.data))

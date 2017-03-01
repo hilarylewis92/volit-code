@@ -15,8 +15,11 @@ const PORT = process.env.PORT || 3001
 app.set('port', PORT)
 app.locals.title = 'Volit'
 
+/* Organizations */
+
 app.get('/api/organizations', (req, res) => {
-  db('organizations').select()
+  db('organizations')
+  .select()
   .then(organizations => {
     res.status(200).json(organizations)
   })
@@ -27,7 +30,9 @@ app.get('/api/organizations', (req, res) => {
 
 app.get('/api/org_check/:name', (req, res) => {
   const { name } = req.params
-  db('organizations').where('name', name).select()
+  db('organizations')
+  .where('name', name)
+  .select()
   .then((org) => {
     res.status(200).json(org)
   })
@@ -40,9 +45,11 @@ app.post('/api/organizations', (req, res) => {
   const { name, admin_id } = req.body
   const organization = { name, admin_id }
 
-  db('organizations').insert(organization)
+  db('organizations')
+  .insert(organization)
   .then(() => {
-    db('organizations').select()
+    db('organizations')
+    .select()
     .then(organizations => {
       res.status(201).json(organizations)
     })
@@ -69,6 +76,8 @@ app.post('/api/organizations/:admin_id', (req, res) => {
     res.sendStatus(404)
   })
 })
+
+/* Users */
 
 app.get('/api/user/:email/:org_name', (req, res) => {
   const { email, org_name } = req.params
@@ -119,6 +128,8 @@ app.post('/api/users', (req, res) => {
   })
 })
 
+/* Events */
+
 app.get('/api/events/:organization_id', (req, res) => {
   const {organization_id} = req.params
   db('events').where('organization_id', organization_id).select()
@@ -134,12 +145,13 @@ app.post('/api/events/:organization_id', (req, res) => {
   const { organization_id } = req.params
   const {
     event_name, event_date,
-    event_description, event_address
+    event_description, event_address,
+    url_key
   } = req.body
   const event = {
     organization_id, event_name,
     event_description, event_address,
-    event_date
+    event_date, url_key
   }
 
   db('events').insert(event)
@@ -192,6 +204,8 @@ app.delete('/api/events/:organization_id/:id', (req, res) => {
     console.error('ERROR: in DELETE for events')
   })
 })
+
+/* Roles */
 
 app.get('/api/roles/:event_id', (req, res) => {
   const { event_id } = req.params
@@ -254,6 +268,21 @@ app.delete('/api/roles/:event_id/:id', (req, res) => {
   })
   .catch(error => {
     console.error('ERROR: in DELETE for roles')
+  })
+})
+
+/* Event by Url */
+
+app.get('/api/event/:url_key', (req, res) => {
+  const { url_key } = req.params
+  db('events')
+  .where('url_key', url_key)
+  .select()
+  .then(event => {
+    res.status(200).json(event)
+  })
+  .catch(err => {
+    res.status(500).json(err)
   })
 })
 

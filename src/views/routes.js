@@ -12,6 +12,7 @@ import EventContainer from '../containers/EventContainer'
 import OrganizationLogin from '../components/OrganizationLogin'
 import SignUp from '../components/SignUp'
 import Login from '../components/Login'
+import UserEvent from '../components/UserEvent'
 
 
 import AuthService from '../utils/AuthService'
@@ -36,6 +37,7 @@ export const makeMainRoutes = () => {
       <Route path="/organization" component={OrganizationLogin} />
       <Route path="/login/:org_name" component={Login} />
       <Route path="/signup/:org_name" component={SignUp} />
+      <Route path="/event/:url_key" component={UserEvent} />
     </Route>
   )
 }
