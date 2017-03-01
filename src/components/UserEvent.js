@@ -47,7 +47,8 @@ class UserEvent extends React.Component {
 }
 
 UserEvent.propTypes = {
-  url_key: PropTypes.string
+  url_key: PropTypes.string,
+  params: PropTypes.object.isRequired
 }
 
 export default UserEvent;

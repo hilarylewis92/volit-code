@@ -14,7 +14,8 @@ class RoleManager extends React.Component {
 }
 
 RoleManager.propTypes = {
-  auth: PropTypes.object.isRequired
+  auth: PropTypes.object.isRequired,
+  profile: PropTypes.object.isRequired
 }
 
 export default RoleManager
