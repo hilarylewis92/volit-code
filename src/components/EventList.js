@@ -74,6 +74,12 @@ export class EventList extends React.Component {
               className='event-list-date'>
               {date}
             </p>
+            <Link to={`/event/${event.url_key}`}>
+              <span
+              className='event-list-url'>
+                Event URL
+              </span>
+            </Link>
             <p
               className='event-list-description'>
               {description}
