@@ -1,7 +1,5 @@
 import React, { PropTypes } from 'react'
 import Modal from 'boron/DropModal'
-import moment from 'moment'
-import { browserHistory } from 'react-router'
 
 class EditEvent extends React.Component {
   constructor(){
@@ -117,14 +115,15 @@ class EditEvent extends React.Component {
             />
           </div>
           <button
-            onClick={(e) => this.handleDeleteEvent(e)}>
-            Delete event
-          </button>
-
-          <button
+            className='modal-save-btn'
             disabled={name && description && date && address ? false : true}
             onClick={(e) => this.handleEventSubmit(e)}>
-            Save changes
+            Save Changes
+          </button>
+          <button
+          className='modal-delete-btn'
+          onClick={(e) => this.handleDeleteEvent(e)}>
+          Delete Event
           </button>
         </form>
       </Modal>
@@ -132,5 +131,10 @@ class EditEvent extends React.Component {
   }
 }
 
+EditEvent.propTypes = {
+  deleteEvent: PropTypes.func.isRequired,
+  editEvent: PropTypes.func.isRequired,
+  event: PropTypes.object.isRequired
+}
 
 export default EditEvent

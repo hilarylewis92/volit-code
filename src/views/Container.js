@@ -2,7 +2,7 @@ import React, { PropTypes as T } from 'react'
 
 export class Container extends React.Component {
   static contextTypes = {
-    router: T.object
+    router: T.object,
   }
 
   render() {
@@ -19,6 +19,12 @@ export class Container extends React.Component {
       </div>
     )
   }
+}
+
+Container.propTypes = {
+ children: React.PropTypes.node,
+ route: React.PropTypes.object,
+ params: React.PropTypes.object
 }
 
 export default Container

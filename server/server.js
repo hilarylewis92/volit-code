@@ -291,3 +291,5 @@ if(!module.parent) {
     console.log(`${app.locals.title} is running on ${app.get('port')}`)
   })
 }
+
+module.exports = app

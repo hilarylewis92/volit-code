@@ -3,7 +3,7 @@ import { Link } from 'react-router'
 
 class SideBar extends React.Component {
   render(){
-    const { events, profile, auth } = this.props
+    const { profile, auth } = this.props
     return (
       <div className='side-bar'>
         <header
@@ -102,7 +102,6 @@ class SideBar extends React.Component {
 SideBar.propTypes = {
   auth: PropTypes.object.isRequired,
   profile: PropTypes.object.isRequired,
-  events: PropTypes.array
 }
 
 export default SideBar
