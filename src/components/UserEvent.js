@@ -1,6 +1,7 @@
-import React, { PropTypes } from 'react';
-import axios from 'axios'
-import moment from 'moment'
+import React, { PropTypes } from 'react'
+import Header               from './Header'
+import axios                from 'axios'
+import moment               from 'moment'
 
 class UserEvent extends React.Component {
   constructor() {
@@ -23,11 +24,24 @@ class UserEvent extends React.Component {
 
   render() {
     const { event } = this.state
+    const date = event ? moment(event.event_date).format('MMM Do YYYY') : ''
     return (
-      <section>
-        <h1>{event && event.event_name}</h1>
-        <p>{event && event.event_date}</p>
-      </section>
+      <div>
+        <Header text={event && event.event_name} />
+        <section className='user-event-container'>
+          <h1
+            className='user-event-header'>
+            {event && event.event_name}
+          </h1>
+          <p
+            className='user-event-date'>
+            {date}
+          </p>
+          <p className='user-event-description'>
+            {event && event.event_description}
+          </p>
+        </section>
+      </div>
     )
   }
 }

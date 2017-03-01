@@ -1,22 +1,13 @@
 import React, { PropTypes } from 'react'
 import { Link } from 'react-router'
+import Header from './Header'
 
 class SideBar extends React.Component {
   render(){
     const { profile, auth } = this.props
     return (
       <div className='side-bar'>
-        <header
-          className='side-bar-header'>
-          <img
-            className='side-bar-icon'
-            role="presentation"
-            src={require('../assets/icons/icon.svg')} />
-          <h4
-            className='side-bar-admin'>
-            administrator
-          </h4>
-        </header>
+        <Header text='administrator' />
         <Link
           className='link'
           to='/event-manager'>
