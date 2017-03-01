@@ -1,11 +1,11 @@
-import React from 'react';
-import { Provider } from 'react-redux';
-import { mount, wrapper } from 'enzyme';
+import React from 'react'
+import { Provider } from 'react-redux'
+import { mount, wrapper } from 'enzyme'
 
-import EventManagerContainer from '../../src/containers/EventManagerContainer.js';
-import EventList from '../../src/components/EventList';
-import AuthService from '../../src/utils/AuthService';
-let sinon = require('sinon');
+import EventManagerContainer from '../../src/containers/EventManagerContainer.js'
+import EventList from '../../src/components/EventList'
+import AuthService from '../../src/utils/AuthService'
+let sinon = require('sinon')
 const auth = new AuthService('jSm9RjhcmgxhAPat3avNPZTvnIMZvFl2', 'volit.auth0.com')
 
 
@@ -16,10 +16,10 @@ const storeFake = (state) => {
 		subscribe: () => {},
 		dispatch: () => {},
 		getState: () => {
-			return { ...state };
+			return { ...state }
 		},
-	};
-};
+	}
+}
 
 
 describe('EventManagerContainer', function() {
@@ -46,18 +46,17 @@ describe('EventManagerContainer', function() {
           volunteer_count: null,
           organization_id: 5
         }
-      });
+      })
 
   		const wrapper = mount(
   			<Provider store={store}>
   				<EventManagerContainer profile={store.profile} events={store.events} auth={auth} />
   			</Provider>
-      );
+      )
 
-      let yay = wrapper.find(EventList);
-
+      let yay = wrapper.find(EventList)
 
       console.log(store)
-		expect(yay.length).toBeTruthy();
-	});
+		expect(yay.length).toBeTruthy()
+	})
 })

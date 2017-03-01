@@ -1,11 +1,11 @@
-import profile from '../../src/reducers/profile.js';
-import * as types from '../../src/actions/ActionTypes';
+import profile from '../../src/reducers/profile.js'
+import * as types from '../../src/actions/ActionTypes'
 
 describe('the profile reducer', () => {
   it('should return the initial state of an empty object', () => {
     const initialState = {}
     const action = {}
-    const nextState = profile(initialState, action);
+    const nextState = profile(initialState, action)
 
     expect(nextState).toEqual({})
   })
@@ -63,5 +63,5 @@ describe('the profile reducer', () => {
     expect(nextState.user.email).toEqual('yea@yahoo.com')
     expect(nextState.user.name).toEqual('Lil John')
     expect(nextState.user.phone_number).toEqual('888-888-6666')
-  });
+  })
 })

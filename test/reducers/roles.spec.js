@@ -1,5 +1,5 @@
-import roles from '../../src/reducers/roles.js';
-import * as types from '../../src/actions/ActionTypes';
+import roles from '../../src/reducers/roles.js'
+import * as types from '../../src/actions/ActionTypes'
 
 describe('the roles reducer', () => {
   it('should return initial state of empty array', () => {
