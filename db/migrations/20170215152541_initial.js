@@ -20,6 +20,7 @@ exports.up = function(knex, Promise) {
       table.date('event_date')
       table.text('event_description')
       table.string('event_address')
+      table.string('url_key').unique()
       table.integer('volunteer_count')
       table.integer('organization_id')
            .references('id')

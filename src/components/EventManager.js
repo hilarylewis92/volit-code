@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react'
 import AuthService from '../utils/AuthService'
 import EventList from './EventList'
+import Header from './Header'
 import SideBarContainer from '../containers/SideBarContainer'
 
 class EventManager extends React.Component {
