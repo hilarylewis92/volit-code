@@ -1,11 +1,11 @@
-import events from '../../src/reducers/events.js';
-import * as types from '../../src/actions/ActionTypes';
+import events from '../../src/reducers/events.js'
+import * as types from '../../src/actions/ActionTypes'
 
 describe('the event reducer', () => {
   it('should return the initial state of an empty array', () => {
     const initialState = []
     const action = {}
-    const nextState = events(initialState, action);
+    const nextState = events(initialState, action)
 
     expect(nextState).toEqual([])
   })

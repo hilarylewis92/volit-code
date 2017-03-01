@@ -1,8 +1,8 @@
-import * as actions from '../../src/actions/index.js';
-import * as types from '../../src/actions/ActionTypes.js';
+import * as actions from '../../src/actions/index.js'
+import * as types from '../../src/actions/ActionTypes.js'
 
 describe('ADMIN_LOGIN action creator', () => {
-  let res, expected;
+  let res, expected
 
   beforeEach(() => {
     res = {
@@ -38,7 +38,7 @@ describe('ADMIN_LOGIN action creator', () => {
 })
 
 describe('CREATE_EVENT action creator', () => {
-  let res, expected;
+  let res, expected
 
   beforeEach(() => {
     res = {
@@ -80,7 +80,7 @@ describe('CREATE_EVENT action creator', () => {
 })
 
 describe('CREATE_ROLE action creator', () => {
-  let res, expected;
+  let res, expected
 
   beforeEach(() => {
     res = [

@@ -239,7 +239,8 @@ Event.propTypes = {
   editEvent: PropTypes.func.isRequired,
   addRoleQty: PropTypes.func.isRequired,
   deleteRole: PropTypes.func.isRequired,
-  params: PropTypes.object.isRequired
+  params: PropTypes.object.isRequired,
+  profile: PropTypes.object.isRequired
 }
 
 export default Event
